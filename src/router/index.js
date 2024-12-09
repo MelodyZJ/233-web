@@ -16,23 +16,39 @@ const routes = [
         component: () => import('@/views/Home/index.vue')
       },
       {
-        path: '/share',
+        path: '/castingRollingTemperatureEvolution',
         component: () => import('@/views/Share/index.vue')
       },
       {
-        path: '/product',
+        path: '/acrossTheLinetemperatureEvolution',
         component: () => import('@/views/Product/index.vue')
       },
       {
-        path: '/communication',
+        path: '/passRollingCalculation',
         component: () => import('@/views/Communication/index.vue')
       },
       {
-        path: '/download',
+        path: '/optimumSpecialSteelRollingCalculation',
         component: () => import('@/views/Download/index.vue')
       },
       {
-        path: '/about',
+        path: '/reducingDiameterCalculation',
+        component: () => import('@/views/About/index.vue')
+      },
+      {
+        path: '/specialSteelPredictionProperties',
+        component: () => import('@/views/About/index.vue')
+      },
+      {
+        path: '/generalSteelPredictionProperties',
+        component: () => import('@/views/About/index.vue')
+      },
+      {
+        path: '/materialParameter',
+        component: () => import('@/views/About/index.vue')
+      },
+      {
+        path: '/moreProducts',
         component: () => import('@/views/About/index.vue')
       },
     ]

@@ -9,7 +9,7 @@
       <template v-for="(item, index) in navItemList" :key="item.path">
         <el-sub-menu
           v-if="item.children && item.children.length"
-          :index="index.toString()"
+          :index="index"
         >
           <template #title>
             <component :is="item.icon" class="menu-icon"></component>
@@ -17,13 +17,8 @@
           </template>
           <template v-for="(child, index) in item.children" :key="child.path">
             <el-menu-item
-              :index="`${index.toString()}-${child.index}`"
-              @click.native.prevent="
-                handleSubMenuItemClick(
-                  child,
-                  `${index.toString()}-${child.index}`
-                )
-              "
+              :index="index"
+              @click.native.prevent="handleSubMenuItemClick(child)"
             >
               <span class="menu-item-name">{{ child.name }}</span>
             </el-menu-item>
@@ -31,8 +26,8 @@
         </el-sub-menu>
         <el-menu-item
           v-else
-          :index="index.toString()"
-          @click.native.prevent="handleNavItemClick(item, index.toString())"
+          :index="index"
+          @click.native.prevent="handleNavItemClick(item)"
         >
           <!-- 对于没有子菜单的项，直接使用图标和名称 -->
           <component :is="item.icon" class="menu-icon"></component>
@@ -50,67 +45,68 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const navItemList = reactive([
   {
-    path: "/",
+    path: "/home",
     name: "首页",
     icon: "House",
   },
   {
-    path: "/change",
+    path: "/castingRollingTemperatureEvolution",
     name: "铸轧温度演变",
     icon: "Notification",
     children: [
-      { path: "/sub1", name: "直接铸轧", icon: "some-icon" },
-      { path: "/sub2", name: "连铸连轧", icon: "some-icon" },
+      { path: "/directCastingRolling", name: "直接铸轧", icon: "" },
+      { path: "/continuousCastingRolling", name: "连铸连轧", icon: "" },
     ],
   },
   {
-    path: "/share",
+    path: "/acrossTheLinetemperatureEvolution",
     name: "全线温度演变",
     icon: "Connection",
   },
   {
-    path: "/product",
+    path: "/passRollingCalculation",
     name: "孔型轧制计算",
     icon: "EditPen",
   },
   {
-    path: "/communication",
+    path: "/optimumSpecialSteelRollingCalculation",
     name: "优特钢轧制计算",
     icon: "Operation",
   },
   {
-    path: "/download",
+    path: "/reducingDiameterCalculation",
     name: "减定径计算",
     icon: "ZoomOut",
   },
   {
-    path: "/about",
+    path: "/specialSteelPredictionProperties",
     name: "特钢性能预报",
     icon: "PieChart",
   },
   {
-    path: "/about",
+    path: "/generalSteelPredictionProperties",
     name: "普钢性能预报",
     icon: "ChatLineSquare",
   },
   {
-    path: "/about",
+    path: "/materialParameter",
     name: "材料参数",
     icon: "Odometer",
   },
   {
-    path: "/about",
+    path: "/moreProducts",
     name: "更多产品",
     icon: "More",
   },
 ]);
 
-const handleNavItemClick = (item, index) => {
+const handleNavItemClick = (item) => {
+  console.log(item, "----");
   router.push(item.path);
 };
 
 // 如果你有子菜单，你可能还需要一个处理子菜单项点击的方法
-const handleSubMenuItemClick = (childItem, index) => {
+const handleSubMenuItemClick = (childItem) => {
   router.push(childItem.path);
 };
 </script>
@@ -134,7 +130,7 @@ const handleSubMenuItemClick = (childItem, index) => {
       background: transparent !important;
     }
 
-    .menu-icon{
+    .menu-icon {
       width: 18px;
       height: 18px;
       margin-right: 10px;
