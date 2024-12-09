@@ -51,7 +51,7 @@ watch(
 );
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 * {
   margin: 0;
   padding: 0;
@@ -60,5 +60,9 @@ watch(
 
 .app-container {
   min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 </style>

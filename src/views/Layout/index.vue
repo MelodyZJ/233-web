@@ -1,19 +1,21 @@
 <template>
   <div class="layout-container">
     <el-container>
-      <el-container>
-        <el-aside :width="asideWidth + 'px'">
+      <el-header class="top-header">
+        <img src="@/assets/icons/logo.png" alt="线棒材轧制数字化系统">
+        <span class="ml-2">线棒材轧制数字化系统</span>
+      </el-header>
+      <el-container style="height: calc(100vh - 60px)">
+        <!-- 减去头部高度 -->
+        <el-aside :width="asideWidth + 'px'" class="fixed-aside">
           <Aside @foldChange="foldChangeFn" />
         </el-aside>
-        <el-container>
-          <el-header>
-            <Header />
-          </el-header>
-          <el-main>
+
+        <el-main class="main-content">
+          <el-scrollbar>
             <RouterView />
-          </el-main>
-          <!-- <el-footer>Footer</el-footer> -->
-        </el-container>
+          </el-scrollbar>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -21,17 +23,14 @@
 
 <script setup>
 import Aside from "@/components/Aside/index.vue";
-import Header from "@/components/Header/index.vue";
 import { ref } from "vue";
 
-// 侧边栏折叠设置
-const asideWidth = ref(260);
+const asideWidth = ref(200);
 const isFolded = ref(false);
 
-// 手动折叠
 const foldChangeFn = (value) => {
-  isFolded.value = value; // 切换折叠状态
-  asideWidth.value = isFolded.value ? 100 : 260; // 根据状态设置宽度
+  isFolded.value = value;
+  asideWidth.value = isFolded.value ? 80 : 200;
 };
 </script>
 
@@ -41,26 +40,29 @@ const foldChangeFn = (value) => {
   height: 100vh;
   overflow: hidden;
 
-  .el-main {
-    padding: 10px 40px;
-    background-color: var(--theme-main);
-    transition: all 0.3s ease;
+  .top-header {
+    background-color: var(--theme-header);
+    height: 60px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    position: sticky; /* 确保头部固定 */
+    top: 0;
+    z-index: 1000;
   }
 
-  .el-aside {
+  .fixed-aside {
+    height: calc(100vh - 60px);
     background-color: var(--theme-aside);
     transition: all 0.3s ease;
   }
 
-  .el-header {
-    padding: 10px 40px;
-    height: 110px;
-    background-color: var(--theme-header);
-    transition: all 0.3s ease;
-  }
-
-  .el-footer {
-    background-color: var(--theme-footer);
+  .main-content {
+    padding: 0;
+    background-color: #ebeff7;
     transition: all 0.3s ease;
   }
 }

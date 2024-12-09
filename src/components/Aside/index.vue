@@ -1,188 +1,158 @@
 <template>
   <div class="aside-container">
-    <div class="header">
-      <img src="@/assets/icons/vue.svg" alt="" class="head-icon" />
-      <div :class="isFold ? 'right-fold' : 'right-expand'">
-        <div class="title">蓦然回首</div>
-        <div class="content">那人却在灯火阑珊处</div>
-      </div>
-    </div>
-
-    <!-- 导航栏 -->
-    <div class="nav">
-      <div :class="isFold ? 'title-fold' : 'title-expand'">菜单</div>
-      <div
-        class="nav-item"
-        :class="{ active: currentIndex === index }"
-        v-for="(item, index) in navItemList"
-        :key="index"
-        @click="handleNavItemClick(item, index)"
-      >
-        <v-icon
-          :icon="item.icon"
-          :color="currentIndex === index ? '#3b73f0' : ''"
-        />
-        <span :class="isFold ? 'text-fold' : 'text-expand'">{{
-          item.name
-        }}</span>
-      </div>
-    </div>
-
-    <!-- 底部收缩按钮 -->
-    <div class="shrink-btn" @click="handleFold">
-      <el-icon :size="24" color="#9195a1">
-        <Fold v-if="!isFold" />
-        <Expand v-else />
-      </el-icon>
-    </div>
+    <el-menu
+      active-text-color="#004ea6"
+      default-active="0"
+      class="el-menu-vertical"
+      @select="handleNavItemClick"
+    >
+      <template v-for="(item, index) in navItemList" :key="item.path">
+        <el-sub-menu
+          v-if="item.children && item.children.length"
+          :index="index.toString()"
+        >
+          <template #title>
+            <component :is="item.icon" class="menu-icon"></component>
+            <span class="menu-item-name">{{ item.name }}</span>
+          </template>
+          <template v-for="(child, index) in item.children" :key="child.path">
+            <el-menu-item
+              :index="`${index.toString()}-${child.index}`"
+              @click.native.prevent="
+                handleSubMenuItemClick(
+                  child,
+                  `${index.toString()}-${child.index}`
+                )
+              "
+            >
+              <span class="menu-item-name">{{ child.name }}</span>
+            </el-menu-item>
+          </template>
+        </el-sub-menu>
+        <el-menu-item
+          v-else
+          :index="index.toString()"
+          @click.native.prevent="handleNavItemClick(item, index.toString())"
+        >
+          <!-- 对于没有子菜单的项，直接使用图标和名称 -->
+          <component :is="item.icon" class="menu-icon"></component>
+          <span class="menu-item-name">{{ item.name }}</span>
+        </el-menu-item>
+      </template>
+    </el-menu>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { reactive, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
-const currentIndex = ref(0);
 const router = useRouter();
 const navItemList = reactive([
   {
     path: "/",
     name: "首页",
-    icon: "mdi-home",
+    icon: "House",
+  },
+  {
+    path: "/change",
+    name: "铸轧温度演变",
+    icon: "Notification",
+    children: [
+      { path: "/sub1", name: "直接铸轧", icon: "some-icon" },
+      { path: "/sub2", name: "连铸连轧", icon: "some-icon" },
+    ],
   },
   {
     path: "/share",
-    name: "个人分享",
-    icon: "mdi-book-variant",
+    name: "全线温度演变",
+    icon: "Connection",
   },
   {
     path: "/product",
-    name: "项目产品",
-    icon: "mdi-cube",
+    name: "孔型轧制计算",
+    icon: "EditPen",
   },
   {
     path: "/communication",
-    name: "技术交流",
-    icon: "mdi-comment-multiple",
+    name: "优特钢轧制计算",
+    icon: "Operation",
   },
   {
     path: "/download",
-    name: "资源下载",
-    icon: "mdi-download-box",
+    name: "减定径计算",
+    icon: "ZoomOut",
   },
   {
     path: "/about",
-    name: "关于",
-    icon: "mdi-account",
+    name: "特钢性能预报",
+    icon: "PieChart",
+  },
+  {
+    path: "/about",
+    name: "普钢性能预报",
+    icon: "ChatLineSquare",
+  },
+  {
+    path: "/about",
+    name: "材料参数",
+    icon: "Odometer",
+  },
+  {
+    path: "/about",
+    name: "更多产品",
+    icon: "More",
   },
 ]);
 
-// 点击导航项
 const handleNavItemClick = (item, index) => {
-  currentIndex.value = index;
   router.push(item.path);
 };
 
-const emit = defineEmits(["foldChange"]);
-const isFold = ref(false);
-// 点击折叠
-const handleFold = () => {
-  isFold.value = !isFold.value;
-  emit("foldChange", isFold.value);
+// 如果你有子菜单，你可能还需要一个处理子菜单项点击的方法
+const handleSubMenuItemClick = (childItem, index) => {
+  router.push(childItem.path);
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .aside-container {
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 60px);
 
-  .header {
-    display: flex;
-    height: 100px;
-    overflow: hidden;
+  .el-menu-vertical {
+    padding-top: 10px;
 
-    .head-icon {
-      width: 40px;
-      height: 40px;
-      margin: auto 30px;
+    .el-sub-menu,
+    .el-menu-item {
+      width: 90%;
+      margin: 0 auto;
     }
 
-    .right-fold {
-      opacity: 0;
+    .el-menu-item:hover,
+    .el-sub-menu__title:hover {
+      background: transparent !important;
     }
 
-    .right-expand {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      opacity: 1;
-      transition: opacity 1.8s ease;
-      margin-left: -5px;
+    .menu-icon{
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+    }
 
-      .title {
-        font-weight: bold;
-        font-size: 20px;
-        color: var(--fontColorBasic);
-        transition: color 0.3s ease;
-      }
+    .menu-item-name {
+      color: #56596e;
+      font-size: 15px;
+    }
 
-      .content {
-        font-size: 12px;
-        color: var(--fontColorBottom);
+    .el-menu-item.is-active {
+      background-color: #004ea61a !important;
+      border-radius: 8px;
+
+      .menu-item-name {
+        color: #004ea6;
       }
     }
-  }
-
-  .nav {
-    padding: 0 40px;
-    cursor: pointer;
-
-    .title-fold {
-      height: 0;
-      opacity: 0;
-      transition: height 0.3s ease;
-    }
-    .title-expand {
-      margin-top: 10px;
-      height: 50px;
-      font-size: 14px;
-      color: var(--fontColorBottom);
-      transition: all 0.3s ease;
-    }
-
-    .nav-item {
-      height: 56px;
-      font-size: 14px;
-      color: var(--fontColorBottom);
-      font-weight: 700;
-
-      &.active {
-        color: var(--fontColorBasic);
-      }
-
-      .text-fold {
-        opacity: 0;
-      }
-
-      .text-expand {
-        margin-left: 15px;
-        opacity: 1;
-        transition: all 0.3s ease;
-      }
-    }
-  }
-
-  .shrink-btn {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid var(--theme-boder);
-    transition: border-top 0.3s ease;
   }
 }
 </style>
