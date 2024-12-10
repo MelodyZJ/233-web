@@ -2,17 +2,18 @@
   <div class="layout-container">
     <el-container>
       <el-header class="top-header">
-        <img src="@/assets/icons/logo.png" alt="线棒材轧制数字化系统">
-        <span class="ml-2">线棒材轧制数字化系统</span>
+        <Header></Header>
       </el-header>
       <el-container style="height: calc(100vh - 60px)">
         <!-- 减去头部高度 -->
         <el-aside :width="asideWidth + 'px'" class="fixed-aside">
           <Aside @foldChange="foldChangeFn" />
         </el-aside>
-
+        <!-- 右侧内容 -->
         <el-main class="main-content">
           <el-scrollbar>
+            <!-- 面包屑 -->
+            <!-- <Breadcrumb /> -->
             <RouterView />
           </el-scrollbar>
         </el-main>
@@ -23,6 +24,8 @@
 
 <script setup>
 import Aside from "@/components/Aside/index.vue";
+import Header from "@/components/Header/index.vue";
+// import Breadcrumb from "@/components/Breadcrumb/index.vue";
 import { ref } from "vue";
 
 const asideWidth = ref(200);
@@ -43,15 +46,6 @@ const foldChangeFn = (value) => {
   .top-header {
     background-color: var(--theme-header);
     height: 60px;
-    font-size: 20px;
-    color: #fff;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    letter-spacing: 1px;
-    position: sticky; /* 确保头部固定 */
-    top: 0;
-    z-index: 1000;
   }
 
   .fixed-aside {

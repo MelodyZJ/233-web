@@ -6,30 +6,23 @@
       class="el-menu-vertical"
       @select="handleNavItemClick"
     >
-      <template v-for="(item, index) in navItemList" :key="item.path">
+      <template v-for="item in navItemList" :key="item.path">
         <el-sub-menu
           v-if="item.children && item.children.length"
-          :index="index"
+          :index="item.path"
         >
           <template #title>
             <component :is="item.icon" class="menu-icon"></component>
             <span class="menu-item-name">{{ item.name }}</span>
           </template>
-          <template v-for="(child, index) in item.children" :key="child.path">
-            <el-menu-item
-              :index="index"
-              @click.native.prevent="handleSubMenuItemClick(child)"
-            >
+          <template v-for="child in item.children" :key="child.path">
+            <el-menu-item :index="child.path">
               <span class="menu-item-name">{{ child.name }}</span>
             </el-menu-item>
           </template>
         </el-sub-menu>
-        <el-menu-item
-          v-else
-          :index="index"
-          @click.native.prevent="handleNavItemClick(item)"
-        >
-          <!-- 对于没有子菜单的项，直接使用图标和名称 -->
+        <!-- 对于没有子菜单的项，直接使用图标和名称 -->
+        <el-menu-item v-else :index="item.path">
           <component :is="item.icon" class="menu-icon"></component>
           <span class="menu-item-name">{{ item.name }}</span>
         </el-menu-item>
@@ -41,6 +34,8 @@
 <script setup>
 import { reactive, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
+
+onMounted(() => {});
 
 const router = useRouter();
 const navItemList = reactive([
@@ -100,14 +95,8 @@ const navItemList = reactive([
   },
 ]);
 
-const handleNavItemClick = (item) => {
-  console.log(item, "----");
-  router.push(item.path);
-};
-
-// 如果你有子菜单，你可能还需要一个处理子菜单项点击的方法
-const handleSubMenuItemClick = (childItem) => {
-  router.push(childItem.path);
+const handleNavItemClick = (path) => {
+  router.push(path);
 };
 </script>
 
