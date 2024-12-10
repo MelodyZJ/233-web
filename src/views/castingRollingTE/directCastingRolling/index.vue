@@ -7,23 +7,30 @@
           <div id="part1" class="part-box" style="height: 180px">
             <div class="part-title">计算属性</div>
             <div class="part-content">
-              <el-form :inline="true" :model="formInline" label-width="200px">
-                <el-form-item label="截距网格数量（半个边长）">
-                  <el-input
-                    v-model="formInline.user"
-                    placeholder="请输入"
-                    style="width: 200px"
-                  />
-                  <span class="unit">个</span>
-                </el-form-item>
-                <el-form-item label="轴向网格数量">
-                  <el-input
-                    v-model="formInline.user"
-                    placeholder="请输入"
-                    style="width: 200px"
-                  />
-                  <span class="unit">个</span>
-                </el-form-item>
+              <el-form :inline="true" :model="formInline" label-width="220px">
+                <el-row>
+                  <el-col :span="11">
+                    <el-form-item label="截距网格数量（半个边长）">
+                      <el-input
+                        v-model="formInline.user"
+                        placeholder="请输入"
+                        style="width: 200px"
+                      />
+                      <span class="unit">个</span>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="轴向网格数量">
+                      <el-input
+                        v-model="formInline.user"
+                        placeholder="请输入"
+                        style="width: 200px"
+                      />
+                      <span class="unit">个</span>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+
                 <el-form-item label="空冷计算步长">
                   <el-input
                     v-model="formInline.user"
@@ -39,30 +46,52 @@
           <div id="part2" class="part-box" style="height: 180px">
             <div class="part-title">钢种属性</div>
             <div class="part-content">
-              <el-form :inline="true" :model="formInline" label-width="200px">
-                <el-form-item label="钢种">
-                  <el-input
-                    v-model="formInline.user"
-                    placeholder="请输入"
-                    clearable
-                    style="width: 200px"
-                  />
-                </el-form-item>
-                <el-form-item label="环境温度">
-                  <el-input
-                    v-model="formInline.user"
-                    placeholder="请输入"
-                    clearable
-                    style="width: 200px"
-                  />
-                </el-form-item>
+              <el-form :inline="true" :model="formInline" label-width="220px">
+                <el-row>
+                  <el-col :span="11">
+                    <el-form-item label="钢种">
+                      <el-select
+                        v-model="steelGrade"
+                        placeholder="请选择"
+                        clearable
+                        style="width: 200px"
+                      >
+                        <el-option
+                          v-for="item in steelGradeList"
+                          :key="item.id"
+                          :label="item.label"
+                          :value="item.id"
+                        />
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="环境温度">
+                      <el-input
+                        v-model="formInline.user"
+                        placeholder="请输入"
+                        clearable
+                        style="width: 200px"
+                      />
+                      <span class="unit">°C</span>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+
                 <el-form-item label="牌号">
-                  <el-input
-                    v-model="formInline.user"
-                    placeholder="请输入"
+                  <el-select
+                    v-model="steelGrade"
+                    placeholder="请选择"
                     clearable
                     style="width: 200px"
-                  />
+                  >
+                    <el-option
+                      v-for="item in steelGradeList"
+                      :key="item.id"
+                      :label="item.label"
+                      :value="item.id"
+                    />
+                  </el-select>
                 </el-form-item>
               </el-form>
             </div>
@@ -70,6 +99,51 @@
           <!-- 铸坯属性 -->
           <div id="part3" class="part-box" style="height: 180px">
             <div class="part-title">铸坯属性</div>
+            <div class="part-content">
+              <el-form :inline="true" :model="formInline" label-width="200px">
+                <el-form-item label="铸坯形状">
+                  <el-select
+                    v-model="steelGrade"
+                    placeholder="请选择"
+                    clearable
+                    style="width: 200px"
+                  >
+                    <el-option
+                      v-for="item in steelGradeList"
+                      :key="item.id"
+                      :label="item.label"
+                      :value="item.id"
+                    />
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="铸坯尺寸">
+                  <div class="mr-2">
+                    <el-input
+                      v-model="formInline.user"
+                      placeholder="长"
+                      clearable
+                      style="width: 60px"
+                    />
+                  </div>
+                  <div class="mr-2">
+                    <el-input
+                      v-model="formInline.user"
+                      placeholder="宽"
+                      clearable
+                      style="width: 60px"
+                    />
+                  </div>
+                  <div class="mr-2">
+                    <el-input
+                      v-model="formInline.user"
+                      placeholder="高"
+                      clearable
+                      style="width: 60px"
+                    />
+                  </div>
+                </el-form-item>
+              </el-form>
+            </div>
           </div>
           <!-- 铸轧间距属性 -->
           <div id="part4" class="part-box" style="height: 180px">
@@ -118,6 +192,20 @@ const formInline = reactive({
   region: "",
   date: "",
 });
+
+const steelGrade = ref("");
+const steelGradeList = ref([
+  {
+    id: 1,
+    label: "Q235",
+    value: "Q235",
+  },
+  {
+    id: 2,
+    label: "Q345",
+    value: "Q345",
+  },
+]);
 </script>
 
 <style lang="scss" scoped>
@@ -157,13 +245,12 @@ const formInline = reactive({
     }
 
     .part-content {
-     
-      .unit{
+      .unit {
         width: 20px;
         height: 22px;
         text-align: center;
         line-height: 22px;
-        background-color:#fff;
+        background-color: #fff;
         margin-left: -28px;
         z-index: 1;
       }
