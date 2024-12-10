@@ -45,7 +45,7 @@ const navItemList = reactive([
     icon: "House",
   },
   {
-    path: "/castingRollingTemperatureEvolution",
+    path: "/castingRollingTE",
     name: "铸轧温度演变",
     icon: "Notification",
     children: [
@@ -54,7 +54,7 @@ const navItemList = reactive([
     ],
   },
   {
-    path: "/acrossTheLinetemperatureEvolution",
+    path: "/allLineTE",
     name: "全线温度演变",
     icon: "Connection",
   },
@@ -64,7 +64,7 @@ const navItemList = reactive([
     icon: "EditPen",
   },
   {
-    path: "/optimumSpecialSteelRollingCalculation",
+    path: "/greatSteelRollingCalculation",
     name: "优特钢轧制计算",
     icon: "Operation",
   },
@@ -74,12 +74,12 @@ const navItemList = reactive([
     icon: "ZoomOut",
   },
   {
-    path: "/specialSteelPredictionProperties",
+    path: "/specialSteelPrediction",
     name: "特钢性能预报",
     icon: "PieChart",
   },
   {
-    path: "/generalSteelPredictionProperties",
+    path: "/generalSteelPrediction",
     name: "普钢性能预报",
     icon: "ChatLineSquare",
   },
@@ -103,7 +103,7 @@ const handleNavItemClick = (path) => {
 <style lang="scss">
 .aside-container {
   position: relative;
-  height: calc(100vh - 60px);
+  height: calc(100vh - $top-header-height);
 
   .el-menu-vertical {
     padding-top: 10px;

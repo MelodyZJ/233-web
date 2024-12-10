@@ -2,20 +2,20 @@
   <div class="layout-container">
     <el-container>
       <el-header class="top-header">
-        <Header></Header>
+        <Header />
       </el-header>
-      <el-container style="height: calc(100vh - 60px)">
+      <el-container class="main-container">
         <!-- 减去头部高度 -->
         <el-aside :width="asideWidth + 'px'" class="fixed-aside">
           <Aside @foldChange="foldChangeFn" />
         </el-aside>
         <!-- 右侧内容 -->
         <el-main class="main-content">
-          <el-scrollbar>
-            <!-- 面包屑 -->
-            <!-- <Breadcrumb /> -->
-            <RouterView />
-          </el-scrollbar>
+          <!-- <el-scrollbar> -->
+          <!-- TODO 面包屑 -->
+          <!-- <Breadcrumb /> -->
+          <RouterView />
+          <!-- </el-scrollbar> -->
         </el-main>
       </el-container>
     </el-container>
@@ -45,17 +45,20 @@ const foldChangeFn = (value) => {
 
   .top-header {
     background-color: var(--theme-header);
-    height: 60px;
+  }
+
+  .main-container {
+    height: calc(100vh - $top-header-height);
   }
 
   .fixed-aside {
-    height: calc(100vh - 60px);
+    height: calc(100vh - $top-header-height);
     background-color: var(--theme-aside);
     transition: all 0.3s ease;
   }
 
   .main-content {
-    padding: 0;
+    padding: 40px;
     background-color: #ebeff7;
     transition: all 0.3s ease;
   }

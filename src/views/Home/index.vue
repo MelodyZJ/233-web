@@ -119,7 +119,6 @@ const handleClickToCard = (path) => {
 
 <style lang="scss" scoped>
 .home-container {
-  padding: 40px;
   height: 100%;
 
   .v-window {

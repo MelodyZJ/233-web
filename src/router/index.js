@@ -21,7 +21,7 @@ const routes = [
     ],
   },
   {
-    path: "/castingRollingTemperatureEvolution",
+    path: "/castingRollingTE",
     component: Layout,
     children: [
       {
@@ -41,7 +41,7 @@ const routes = [
     ],
   },
   {
-    path: "/acrossTheLinetemperatureEvolution",
+    path: "/allLineTE",
     component: Layout,
     meta: { title: "全线温度演变" },
   },
@@ -51,7 +51,7 @@ const routes = [
     meta: { title: "孔型轧制计算" },
   },
   {
-    path: "/optimumSpecialSteelRollingCalculation",
+    path: "/greatSteelRollingCalculation",
     component: Layout,
     meta: { title: "优特钢轧制计算" },
   },
@@ -61,12 +61,12 @@ const routes = [
     meta: { title: "减定径计算" },
   },
   {
-    path: "/specialSteelPredictionProperties",
+    path: "/specialSteelPrediction",
     component: Layout,
     meta: { title: "特钢性能预报" },
   },
   {
-    path: "/generalSteelPredictionProperties",
+    path: "/generalSteelPrediction",
     component: Layout,
     meta: { title: "普钢性能预报" },
   },

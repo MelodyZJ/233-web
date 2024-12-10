@@ -1,5 +1,5 @@
 <template>
-  <div>optimumSpecialSteelRollingCalculation</div>
+  <div>greatSteelRollingCalculation</div>
 </template>
 
 <script setup></script>

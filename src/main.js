@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import router from "@/router/index";
-import "@/assets/styles/common.scss";
+import "@/assets/styles/reset.scss";
 import "@/assets/styles/theme.scss";
 import { lazyPlugin } from "@/directives/index";
 import App from "./App.vue";
