@@ -22,6 +22,9 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  server: {
+    host: "0.0.0.0",
+  },
   css: {
     // css预处理器
     preprocessorOptions: {

@@ -78,7 +78,7 @@ const windowValue = ref(0);
 
 // 跳转到个人网页
 const handleClick = () => {
-  window.open("/PersonWeb/index.html", "_blank");
+  // window.open("/PersonWeb/index.html", "_blank");
 };
 
 const windowList = reactive([
