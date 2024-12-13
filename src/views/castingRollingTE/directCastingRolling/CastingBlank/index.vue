@@ -1,49 +1,155 @@
 <template>
-  <div class="part-box" style="height: 180px">
+  <div class="part-box" style="height: 300px">
     <div class="part-title">铸坯属性</div>
     <div class="part-content">
-      <el-form :inline="true" :model="castingBlankForm" label-width="200px">
-        <el-form-item label="铸坯形状">
-          <el-select
-            v-model="castingBlank"
-            placeholder="请选择"
-            clearable
-            style="width: 200px"
-          >
-            <el-option
-              v-for="item in castingBlankList"
-              :key="item.id"
-              :label="item.label"
-              :value="item.id"
-            />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="铸坯尺寸">
-          <div class="mr-2">
-            <el-input
-              v-model="castingBlankForm.user"
-              placeholder="长"
-              clearable
-              style="width: 60px"
-            />
-          </div>
-          <div class="mr-2">
-            <el-input
-              v-model="castingBlankForm.user"
-              placeholder="宽"
-              clearable
-              style="width: 60px"
-            />
-          </div>
-          <div class="mr-2">
-            <el-input
-              v-model="castingBlankForm.user"
-              placeholder="高"
-              clearable
-              style="width: 60px"
-            />
-          </div>
-        </el-form-item>
+      <el-form :inline="true" :model="billetForm" label-width="220px">
+        <el-row>
+          <el-col :span="11">
+            <el-form-item label="铸坯形状">
+              <el-select
+                v-model="billetForm.billetShape"
+                placeholder="请选择"
+                clearable
+                style="width: 200px"
+              >
+                <el-option
+                  v-for="item in billetShapeList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="13">
+            <el-form-item label="铸坯尺寸（mm）">
+              <div class="mr-2">
+                <el-input
+                  v-model="billetForm.billetSize.length"
+                  placeholder="长"
+                  style="width: 67px"
+                />
+              </div>
+              <div class="mr-2">
+                <el-input
+                  v-model="billetForm.billetSize.width"
+                  placeholder="宽"
+                  style="width: 67px"
+                />
+              </div>
+              <div class="mr-2">
+                <el-input
+                  v-model="billetForm.billetSize.height"
+                  placeholder="高"
+                  style="width: 67px"
+                />
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="11">
+            <el-form-item label="铸坯表面中心温度" style="width: 500px">
+              <div class="input-unit">
+                <el-input
+                  v-model="billetForm.surfaceCenterTemperature.head"
+                  placeholder="头部"
+                  style="width: 95px"
+                />
+                <span class="unit">°C</span>
+              </div>
+              <div class="input-unit">
+                <el-input
+                  v-model="billetForm.surfaceCenterTemperature.tail"
+                  placeholder="尾部"
+                  style="width: 95px"
+                />
+                <span class="unit">°C</span>
+              </div>
+            </el-form-item>
+          </el-col>
+          <el-col :span="13">
+            <el-form-item label="铸坯倒角">
+              <div class="input-unit">
+                <el-input
+                  v-model="billetForm.billetChamfer"
+                  placeholder="请输入"
+                  class="input"
+                  style="width: 200px"
+                />
+                <span class="unit" style="top:6px;right: 20px">mm</span>
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="11">
+            <el-form-item label="铸坯角度温度" style="width: 500px">
+              <div class="input-unit">
+                <el-input
+                  v-model="billetForm.angularTemperature.head"
+                  placeholder="头部"
+                  style="width: 95px"
+                />
+                <span class="unit">°C</span>
+              </div>
+              <div class="input-unit">
+                <el-input
+                  v-model="billetForm.angularTemperature.tail"
+                  placeholder="尾部"
+                  style="width: 95px"
+                />
+                <span class="unit">°C</span>
+              </div>
+            </el-form-item>
+          </el-col>
+          <el-col :span="13">
+            <el-form-item label="铸坯密度">
+              <div class="input-unit">
+                <el-input
+                  v-model="billetForm.density"
+                  placeholder="请输入"
+                  style="width: 200px"
+                />
+                <span class="unit" style="right: 30px;">kg/m³</span>
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="11">
+            <el-form-item label="铸坯中心温度" style="width: 500px">
+              <div class="input-unit">
+                <el-input
+                  v-model="billetForm.centerTemperature.head"
+                  placeholder="头部"
+                  style="width: 95px"
+                />
+                <span class="unit">°C</span>
+              </div>
+              <div class="input-unit">
+                <el-input
+                  v-model="billetForm.centerTemperature.tail"
+                  placeholder="尾部"
+                  style="width: 95px"
+                />
+                <span class="unit">°C</span>
+              </div>
+            </el-form-item>
+          </el-col>
+          <el-col :span="13">
+            <el-form-item label="连铸拉速">
+              <div class="input-unit">
+                <el-input
+                  v-model="billetForm.speed"
+                  placeholder="请输入"
+                  style="width: 200px"
+                />
+                <span class="unit" style="right: 36px;">m/min</span>
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
     </div>
   </div>
@@ -52,23 +158,38 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const castingBlankForm = reactive({
-  user: "",
-  region: "",
-  date: "",
+const billetForm = reactive({
+  billetShape: "",
+  billetSize: {
+    length: "",
+    width: "",
+    height: "",
+  },
+  surfaceCenterTemperature: {
+    head: "",
+    tail: "",
+  },
+  billetChamfer: "",
+  angularTemperature:{
+    head: "",
+    tail: "",
+  },
+  density: "",
+  centerTemperature: {
+    head: "",
+    tail: "",
+  },
+  speed: ""
 });
 
-const castingBlank = ref("");
-const castingBlankList = ref([
+const billetShapeList = ref([
   {
-    id: 1,
-    label: "Q235",
-    value: "Q235",
+    label: "大大大",
+    value: "大大大",
   },
   {
-    id: 2,
-    label: "Q345",
-    value: "Q345",
+    label: "小小小",
+    value: "小小小",
   },
 ]);
 </script>
@@ -98,14 +219,24 @@ const castingBlankList = ref([
   }
 
   .part-content {
+    width: 100%;
+
+    .input-unit {
+      position: relative;
+      margin-right: 10px;
+    }
+
     .unit {
       width: 20px;
       height: 22px;
+      position: absolute;
+      top: 8px;
+      right: 10px;
       text-align: center;
       line-height: 22px;
       background-color: #fff;
-      margin-left: -28px;
       z-index: 1;
+      color: #606266;
     }
   }
 }

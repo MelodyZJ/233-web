@@ -14,7 +14,7 @@
               <span class="unit">个</span>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
+          <el-col :span="13">
             <el-form-item label="轴向网格数量">
               <el-input
                 v-model="computationalForm.axialGridNum"
@@ -82,6 +82,7 @@ const computationalForm = reactive({
       background-color: #fff;
       margin-left: -28px;
       z-index: 1;
+      color: #606266;
     }
   }
 }

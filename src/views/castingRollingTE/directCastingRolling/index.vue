@@ -1,7 +1,7 @@
 <template>
   <div class="directCastingRolling-container">
     <el-row>
-      <el-col :span="18">
+      <el-col :span="showAnchor ? 18 : 24">
         <div ref="containerRef" class="form-container">
           <!-- 计算属性 -->
           <computational id="part1"></computational>
@@ -17,7 +17,7 @@
           <finish id="part6"></finish>
         </div>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="6" v-if="showAnchor">
         <el-anchor
           :container="containerRef"
           direction="vertical"
@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted, watch } from "vue";
 import Computational from "./Computational/index.vue";
 import SteelGrade from "./SteelGrade/index.vue";
 import CastingBlank from "./CastingBlank/index.vue";
@@ -46,6 +46,28 @@ import TemperatureImage from "./TemperatureImage/index.vue";
 import Finish from "./Finish/index.vue";
 
 const containerRef = ref(null);
+// 视口宽度
+const windowWidth = ref(
+  window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth
+);
+
+onMounted(() => {
+  // 监听窗口大小变化事件
+  window.addEventListener("resize", handleResize);
+});
+
+// 根据视口大小调整锚点栏显示与隐藏
+const showAnchor = ref(true);
+const handleResize = () => {
+  windowWidth.value = window.innerWidth;
+  if (windowWidth.value < 1500) {
+    showAnchor.value = false;
+  } else {
+    showAnchor.value = true;
+  }
+};
 
 const handleClick = (e) => {
   e.preventDefault();
@@ -62,6 +84,10 @@ const handleClick = (e) => {
   .form-container {
     height: calc(100vh - $base-main-padding * 2 - $top-header-height - 50px);
     overflow-y: auto;
+  }
+
+  :deep(.el-anchor__link) {
+    font-size: 13px;
   }
 }
 </style>

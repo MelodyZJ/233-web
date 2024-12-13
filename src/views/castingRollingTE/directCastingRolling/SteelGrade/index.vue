@@ -21,7 +21,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
+          <el-col :span="13">
             <el-form-item label="环境温度">
               <el-input
                 v-model="steelGradeForm.temperature"
@@ -117,11 +117,14 @@ const brandList = ref([
     .unit {
       width: 20px;
       height: 22px;
+      position: relative;
+      top: 2px;
+      right: 28px;
       text-align: center;
       line-height: 22px;
       background-color: #fff;
-      margin-left: -28px;
       z-index: 1;
+      color: #606266;
     }
   }
 }
