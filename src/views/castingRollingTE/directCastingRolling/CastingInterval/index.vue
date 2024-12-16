@@ -3,33 +3,38 @@
     <div class="part-title">铸轧间距属性</div>
     <div class="part-content">
       <el-form :inline="true" :model="castingIntervalForm" label-width="220px">
+        <!-- 铸轧间距 -->
         <el-row>
           <el-col :span="11">
             <el-form-item label="铸轧间距(总长度)">
-              <el-input
-                v-model="castingIntervalForm.spacingTotalLength"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-              <span class="unit">m</span>
+              <div class="input-unit">
+                <el-input
+                  v-model="castingIntervalForm.spacingTotalLength"
+                  placeholder="请输入"
+                  style="width: 200px"
+                />
+                <span class="unit">m</span>
+              </div>
             </el-form-item>
           </el-col>
         </el-row>
-
+        <!-- 已输入长度 -->
         <el-row>
           <el-col :span="11">
             <el-form-item label="已输入长度">
-              <el-input
-                v-model="castingIntervalForm.enteredLength"
-                placeholder="0"
-                style="width: 200px"
-                disabled
-              />
-              <span class="unit">m</span>
+              <div class="input-unit">
+                <el-input
+                  v-model="castingIntervalForm.enteredLength"
+                  placeholder="0"
+                  style="width: 200px"
+                  disabled
+                />
+                <span class="unit" style="background-color: #f5f7fa">m</span>
+              </div>
             </el-form-item>
           </el-col>
         </el-row>
-
+        <!-- 传输段列表 -->
         <el-row>
           <el-col>
             <el-form-item label="传输段列表">
@@ -128,7 +133,7 @@
             </el-form-item>
           </el-col>
         </el-row>
-
+        <!-- 是否补热 -->
         <el-row>
           <el-col>
             <el-form-item label="是否补热">
@@ -143,6 +148,7 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <!-- 是否除磷 -->
         <el-row>
           <el-col>
             <el-form-item label="是否除磷">
@@ -157,6 +163,7 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <!-- 是否待温 -->
         <el-row>
           <el-col>
             <el-form-item label="是否待温">
@@ -171,6 +178,7 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <!-- 补热段属性 -->
         <el-row>
           <el-col>
             <el-form-item label="补热段属性">
@@ -213,6 +221,7 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <!-- 除磷段属性 -->
         <el-row>
           <el-col>
             <el-form-item label="除磷段属性">
@@ -298,12 +307,15 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <!-- 待热段属性 -->
         <el-row>
           <el-col>
             <el-form-item label="待热段属性">
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.waitHeatPropertie.absolutePosition"
+                  v-model="
+                    castingIntervalForm.waitHeatPropertie.absolutePosition
+                  "
                   placeholder="绝对位置"
                   style="width: 150px"
                 />

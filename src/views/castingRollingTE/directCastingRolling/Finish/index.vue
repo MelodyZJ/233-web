@@ -1,7 +1,12 @@
 <template>
   <div class="part-box" style="height: 180px">
     <div class="part-title">完成</div>
-    <div class="part-content"></div>
+    <div class="part-content">
+      <div class="btn">
+        <v-btn variant="tonal" class="submit-btn">提交</v-btn>
+        <v-btn variant="outlined" class="reset-btn">重置</v-btn>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,14 +39,19 @@ import { ref, reactive } from "vue";
   }
 
   .part-content {
-    .unit {
-      width: 20px;
-      height: 22px;
-      text-align: center;
-      line-height: 22px;
-      background-color: #fff;
-      margin-left: -28px;
-      z-index: 1;
+    .btn {
+      display: flex;
+      justify-content: flex-end;
+
+      .submit-btn {
+        background-color: #0c5fff;
+        color: #fff;
+      }
+
+      .reset-btn {
+        border: 1px solid #dcdfe6;
+        margin-left: 10px;
+      }
     }
   }
 }

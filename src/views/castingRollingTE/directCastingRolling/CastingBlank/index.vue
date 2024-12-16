@@ -153,11 +153,19 @@
 
         <el-form-item label="铸坯文件上传">
           <div class="input-unit">
-            <el-input
-              v-model="billetForm.density"
-              placeholder="请选择"
-              style="width: 200px"
-            />
+            <el-upload
+              v-model:file-list="fileList"
+              class="upload-demo"
+              action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+              multiple
+              :on-preview="handlePreview"
+              :on-remove="handleRemove"
+              :before-remove="beforeRemove"
+              :limit="3"
+              :on-exceed="handleExceed"
+            >
+              <el-button type="primary">选择文件</el-button>
+            </el-upload>
           </div>
         </el-form-item>
       </el-form>
@@ -202,6 +210,33 @@ const billetShapeList = ref([
     value: "小小小",
   },
 ]);
+
+const fileList = ref([]);
+
+const handleRemove = (file, uploadFiles) => {
+  console.log(file, uploadFiles);
+};
+
+const handlePreview = (uploadFile) => {
+  console.log(uploadFile);
+};
+
+const handleExceed = (files, uploadFiles) => {
+  ElMessage.warning(
+    `The limit is 3, you selected ${files.length} files this time, add up to ${
+      files.length + uploadFiles.length
+    } totally`
+  );
+};
+
+const beforeRemove = (uploadFile, uploadFiles) => {
+  return ElMessageBox.confirm(
+    `Cancel the transfer of ${uploadFile.name} ?`
+  ).then(
+    () => true,
+    () => false
+  );
+};
 </script>
 
 <style lang="scss" scoped>
