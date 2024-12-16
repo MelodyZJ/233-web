@@ -1,5 +1,5 @@
 <template>
-  <div class="part-box" style="height: 300px">
+  <div class="part-box" style="height: 350px">
     <div class="part-title">铸坯属性</div>
     <div class="part-content">
       <el-form :inline="true" :model="billetForm" label-width="220px">
@@ -22,7 +22,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="13">
-            <el-form-item label="铸坯尺寸（mm）">
+            <el-form-item label="铸坯尺寸(mm)">
               <div class="mr-2">
                 <el-input
                   v-model="billetForm.billetSize.length"
@@ -77,7 +77,7 @@
                   class="input"
                   style="width: 200px"
                 />
-                <span class="unit" style="top:6px;right: 20px">mm</span>
+                <span class="unit" style="top: 6px; right: 20px">mm</span>
               </div>
             </el-form-item>
           </el-col>
@@ -111,7 +111,7 @@
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit" style="right: 30px;">kg/m³</span>
+                <span class="unit" style="right: 30px">kg/m³</span>
               </div>
             </el-form-item>
           </el-col>
@@ -145,11 +145,21 @@
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit" style="right: 36px;">m/min</span>
+                <span class="unit" style="right: 36px">m/min</span>
               </div>
             </el-form-item>
           </el-col>
         </el-row>
+
+        <el-form-item label="铸坯文件上传">
+          <div class="input-unit">
+            <el-input
+              v-model="billetForm.density"
+              placeholder="请选择"
+              style="width: 200px"
+            />
+          </div>
+        </el-form-item>
       </el-form>
     </div>
   </div>
@@ -170,7 +180,7 @@ const billetForm = reactive({
     tail: "",
   },
   billetChamfer: "",
-  angularTemperature:{
+  angularTemperature: {
     head: "",
     tail: "",
   },
@@ -179,7 +189,7 @@ const billetForm = reactive({
     head: "",
     tail: "",
   },
-  speed: ""
+  speed: "",
 });
 
 const billetShapeList = ref([
@@ -206,7 +216,7 @@ const billetShapeList = ref([
     font-size: 15px;
     padding: 20px;
     border-radius: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     &::before {
       content: "";

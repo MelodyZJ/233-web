@@ -1,11 +1,11 @@
 <template>
-  <div class="part-box" style="height: 180px">
+  <div class="part-box" style="height: 190px">
     <div class="part-title">计算属性</div>
     <div class="part-content">
       <el-form :inline="true" :model="computationalForm" label-width="220px">
         <el-row>
           <el-col :span="11">
-            <el-form-item label="截距网格数量（半个边长）">
+            <el-form-item label="截距网格数量(半个边长)">
               <el-input
                 v-model="computationalForm.interceptGridNum"
                 placeholder="请输入"
@@ -61,7 +61,7 @@ const computationalForm = reactive({
     font-size: 15px;
     padding: 20px;
     border-radius: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     &::before {
       content: "";

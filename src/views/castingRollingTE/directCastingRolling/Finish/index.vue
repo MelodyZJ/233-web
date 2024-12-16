@@ -21,7 +21,7 @@ import { ref, reactive } from "vue";
     font-size: 15px;
     padding: 20px;
     border-radius: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     &::before {
       content: "";
