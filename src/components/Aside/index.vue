@@ -65,6 +65,10 @@ const navItemList = reactive([
     path: "/allLineTE",
     name: "全线温度演变",
     icon: "Connection",
+    children: [
+      { path: "/evolutionConfig", name: "演变配置", icon: "" },
+      { path: "/taskList", name: "任务列表", icon: "" },
+    ],
   },
   {
     path: "/passRollingCalculation",

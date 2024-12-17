@@ -42,7 +42,20 @@ const routes = [
   {
     path: "/allLineTE",
     component: Layout,
-    meta: { title: "全线温度演变" },
+    children: [
+      {
+        path: "/evolutionConfig",
+        component: () => import("@/views/allLineTE/evolutionConfig/index.vue"),
+        name: "EvolutionConfig",
+        meta: { title: "演变配置" },
+      },
+      {
+        path: "/taskList",
+        component: () => import("@/views/allLineTE/taskList/index.vue"),
+        name: "TaskList",
+        meta: { title: "任务列表" },
+      },
+    ],
   },
   {
     path: "/passRollingCalculation",

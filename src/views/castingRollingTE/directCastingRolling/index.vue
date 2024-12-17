@@ -82,7 +82,7 @@ const handleClick = (e) => {
   height: calc(100vh - $base-main-padding * 2 - $top-header-height - 10px);
 
   .form-container {
-    height: calc(100vh - $base-main-padding * 2 - $top-header-height - 50px);
+    height: calc(100vh - $base-main-padding * 2 - $top-header-height - 60px);
     overflow-y: auto;
   }
 
