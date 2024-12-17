@@ -9,13 +9,19 @@
         <el-aside :width="asideWidth + 'px'" class="fixed-aside">
           <Aside @foldChange="foldChangeFn" />
         </el-aside>
+
         <!-- 右侧内容 -->
         <el-main class="main-content">
-          <!-- <el-scrollbar> -->
-          <!-- TODO 面包屑 -->
-          <!-- <Breadcrumb /> -->
+          <el-breadcrumb separator="/" style="padding: 25px 0 20px 0;">
+            <el-breadcrumb-item
+              v-for="(item, index) in breadcrumbItems"
+              :key="index"
+            >
+              <router-link :to="item.to">{{ item.name }}</router-link>
+            </el-breadcrumb-item>
+          </el-breadcrumb>
+          
           <RouterView />
-          <!-- </el-scrollbar> -->
         </el-main>
       </el-container>
     </el-container>
@@ -25,9 +31,10 @@
 <script setup>
 import Aside from "@/components/Aside/index.vue";
 import Header from "@/components/Header/index.vue";
-// import Breadcrumb from "@/components/Breadcrumb/index.vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
+const route = useRoute();
 const asideWidth = ref(200);
 const isFolded = ref(false);
 
@@ -35,6 +42,27 @@ const foldChangeFn = (value) => {
   isFolded.value = value;
   asideWidth.value = isFolded.value ? 80 : 200;
 };
+
+const breadcrumbItems = computed(() => {
+  let matched = route.matched;
+  let items = [];
+  for (let record of matched) {
+    if (record.meta && record.meta.title) {
+      items.push({
+        name: record.meta.title,
+        to: record.path,
+      });
+    }
+  }
+  // 如果需要添加首页，可以在这里手动添加
+  if (items.length > 0 && items[0].name !== "首页") {
+    items.unshift({
+      name: "首页",
+      to: "/",
+    });
+  }
+  return items;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -48,7 +76,7 @@ const foldChangeFn = (value) => {
   }
 
   .main-container {
-    height: calc(100vh - $top-header-height);
+    // height: calc(100vh - $top-header-height);
   }
 
   .fixed-aside {
@@ -58,7 +86,7 @@ const foldChangeFn = (value) => {
   }
 
   .main-content {
-    padding: 40px;
+    padding: 0 40px 40px 40px;
     background-color: #ebeff7;
     transition: all 0.3s ease;
   }

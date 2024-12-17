@@ -27,40 +27,7 @@
         </div>
       </v-window-item>
     </v-window>
-
-    <!-- 底部模块 -->
-    <div class="footer">
-      <p class="title">模块数据</p>
-      <div class="footer-box">
-        <div class="data">
-          <div class="data-one">
-            <div class="num">50443</div>
-            <div class="text">总访问量</div>
-          </div>
-          <div class="data-two">
-            <div class="num">32</div>
-            <div class="text">今日访问量</div>
-          </div>
-        </div>
-        <div class="card-box">
-          <div
-            class="card-item"
-            v-for="(item, index) in modeCardList"
-            :key="index"
-          >
-            <div class="header"></div>
-            <p class="title">{{ item.title }}</p>
-            <p class="desc">{{ item.desc }}</p>
-            <v-btn
-              icon="mdi-arrow-right"
-              color="#3b73f0"
-              class="footer-btn"
-              @click="handleClickToCard(item.path)"
-            ></v-btn>
-          </div>
-        </div>
-      </div>
-    </div>
+   
   </div>
 </template>
 

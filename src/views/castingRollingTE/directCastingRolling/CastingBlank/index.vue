@@ -164,7 +164,7 @@
               :limit="3"
               :on-exceed="handleExceed"
             >
-              <el-button type="primary">选择文件</el-button>
+              <v-btn variant="outlined" class="custom-btn">选择文件</v-btn>
             </el-upload>
           </div>
         </el-form-item>
@@ -282,6 +282,11 @@ const beforeRemove = (uploadFile, uploadFiles) => {
       background-color: #fff;
       z-index: 1;
       color: #606266;
+    }
+
+    .custom-btn {
+      background-color: #fff;
+      color: #0c5fff;
     }
   }
 }

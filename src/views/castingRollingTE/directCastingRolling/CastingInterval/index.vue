@@ -127,9 +127,13 @@
                   </template>
                 </el-table-column>
               </el-table>
-              <el-button class="mt-4" type="primary" @click="onAddItem">
-                添加传输段
-              </el-button>
+
+              <v-btn
+                variant="outlined"
+                class="custom-btn mt-3"
+                @click="onAddItem"
+                >添加传输段</v-btn
+              >
             </el-form-item>
           </el-col>
         </el-row>
@@ -474,6 +478,11 @@ const onAddItem = () => {
 
     .next-row {
       margin-top: 10px;
+    }
+
+    .custom-btn {
+      background-color: #fff;
+      color: #0c5fff;
     }
   }
 }

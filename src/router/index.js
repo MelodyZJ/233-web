@@ -10,10 +10,9 @@ const routes = [
   {
     path: "/home",
     component: Layout,
-
     children: [
       {
-        path: "/home",
+        path: "",
         component: () => import("@/views/home/index.vue"),
         name: "Home",
         meta: { title: "首页" },

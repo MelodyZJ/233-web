@@ -5,17 +5,14 @@
       <span class="ml-2">线棒材轧制数字化系统</span>
     </div>
     <div class="right">
-      <el-popover
-        placement="bottom"
-        title="Title"
-        :width="200"
-        trigger="click"
-        content="this is content, this is content, this is content"
-      >
-        <template #reference>
-          <img src="@/assets/imgs/avatar.png" alt="用户头像" class="avatar" />
+      <el-dropdown placement="bottom">
+        <img src="@/assets/imgs/avatar.png" alt="用户头像" class="avatar" />
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item>退出登录</el-dropdown-item>
+          </el-dropdown-menu>
         </template>
-      </el-popover>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -50,6 +47,10 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
+    }
+
+    :deep(.el-tooltip__trigger:focus-visible) {
+      outline: none;
     }
   }
 }

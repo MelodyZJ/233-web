@@ -79,7 +79,7 @@ const handleClick = (e) => {
   padding: 30px;
   background-color: #fff;
   border-radius: $base-border-radius;
-  height: calc(100vh - $base-main-padding * 2 - $top-header-height);
+  height: calc(100vh - $base-main-padding * 2 - $top-header-height - 10px);
 
   .form-container {
     height: calc(100vh - $base-main-padding * 2 - $top-header-height - 50px);
