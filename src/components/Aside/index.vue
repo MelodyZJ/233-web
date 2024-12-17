@@ -2,7 +2,7 @@
   <div class="aside-container">
     <el-menu
       active-text-color="#004ea6"
-      default-active="0"
+      :default-active="route.path"
       class="el-menu-vertical"
       @select="handleNavItemClick"
     >
@@ -16,13 +16,20 @@
             <span class="menu-item-name">{{ item.name }}</span>
           </template>
           <template v-for="child in item.children" :key="child.path">
-            <el-menu-item :index="child.path">
+            <el-menu-item
+              :index="child.path"
+              :class="{ 'is-active': isActive(item.path) }"
+            >
               <span class="menu-item-name">{{ child.name }}</span>
             </el-menu-item>
           </template>
         </el-sub-menu>
         <!-- 对于没有子菜单的项，直接使用图标和名称 -->
-        <el-menu-item v-else :index="item.path">
+        <el-menu-item
+          v-else
+          :index="item.path"
+          :class="{ 'is-active': isActive(item.path) }"
+        >
           <component :is="item.icon" class="menu-icon"></component>
           <span class="menu-item-name">{{ item.name }}</span>
         </el-menu-item>
@@ -33,11 +40,12 @@
 
 <script setup>
 import { reactive, computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 onMounted(() => {});
 
 const router = useRouter();
+const route = useRoute();
 const navItemList = reactive([
   {
     path: "/home",
@@ -94,6 +102,10 @@ const navItemList = reactive([
     icon: "More",
   },
 ]);
+
+const activePath = computed(() => route.path);
+
+const isActive = (path) => activePath.value.startsWith(path);
 
 const handleNavItemClick = (path) => {
   router.push(path);
