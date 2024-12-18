@@ -3,7 +3,8 @@
     <div class="title">建立生产线</div>
     <div class="tip">请将组件拖入下框中建立生产线</div>
     <div class="content">
-      <div class="product-line"></div>
+      <div class="product-line">
+      </div>
     </div>
   </div>
 </template>

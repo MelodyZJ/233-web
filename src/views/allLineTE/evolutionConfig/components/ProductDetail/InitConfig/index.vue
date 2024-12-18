@@ -1,5 +1,5 @@
 <template>
-  <div class="part-box">
+  <div class="part-box" style="height: 250px">
     <div class="part-title">初始配置</div>
     <div class="part-content">
       <el-form :inline="true" :model="initConfigForm" label-width="120px">
@@ -36,21 +36,69 @@
           </el-col>
         </el-row>
 
-        <el-form-item label="牌号">
-          <el-select
-            v-model="initConfigForm.brand"
-            placeholder="请选择"
-            clearable
-            style="width: 200px"
-          >
-            <el-option
-              v-for="item in brandList"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="牌号">
+              <el-select
+                v-model="initConfigForm.brand"
+                placeholder="请选择"
+                clearable
+                style="width: 200px"
+              >
+                <el-option
+                  v-for="item in brandList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
+            <el-form-item label="粗轧咬入速度">
+              <div class="input-unit">
+                <el-input
+                  v-model="initConfigForm.biteSpeed"
+                  placeholder="请输入"
+                  clearable
+                  style="width: 200px"
+                />
+                <span class="unit" style="right: 18px">m/s</span>
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="环境温度">
+              <div class="input-unit">
+                <el-input
+                  v-model="initConfigForm.envTemperature"
+                  placeholder="请输入"
+                  clearable
+                  style="width: 200px"
+                />
+                <span class="unit">°C</span>
+              </div>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
+            <el-form-item label="浊环水温度">
+              <div class="input-unit">
+                <el-input
+                  v-model="initConfigForm.waterTemperature"
+                  placeholder="请输入"
+                  clearable
+                  style="width: 200px"
+                />
+                <span class="unit">°C</span>
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
     </div>
   </div>
@@ -63,6 +111,9 @@ const initConfigForm = reactive({
   steelGrade: "",
   beforeSpeed: "",
   brand: "",
+  biteSpeed: "",
+  envTemperature: "",
+  waterTemperature: "",
 });
 
 const steelGrade = ref("");

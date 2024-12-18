@@ -5,9 +5,16 @@
         <div ref="containerRef" class="form-container">
           <!-- 初始配置 -->
           <init-config id="part1"></init-config>
+          <!-- 除磷箱 -->
+          <descale-box id="part2"></descale-box>
+          <!-- 脱头 -->
+          <take-off-head id="part3"></take-off-head>
+          <!-- 模块轧机 -->
+          <model-machine id="part4"></model-machine>
         </div>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="1"></el-col>
+      <el-col :span="5">
         <el-anchor
           :container="containerRef"
           direction="vertical"
@@ -15,6 +22,9 @@
           @click="handleClick"
         >
           <el-anchor-link href="#part1" title="初始配置" />
+          <el-anchor-link href="#part2" title="除磷箱" />
+          <el-anchor-link href="#part3" title="脱头" />
+          <el-anchor-link href="#part4" title="模块轧机" />
         </el-anchor>
       </el-col>
     </el-row>
@@ -24,6 +34,11 @@
 <script setup>
 import { ref, reactive, onMounted, watch } from "vue";
 import InitConfig from "./InitConfig/index.vue";
+import DescaleBox from "./DescaleBox/index.vue";
+import TakeOffHead from "./TakeOffHead/index.vue";
+import ModelMachine from "./ModelMachine/index.vue";
+
+const containerRef = ref(null);
 
 const handleClick = (e) => {
   e.preventDefault();
@@ -36,6 +51,7 @@ const handleClick = (e) => {
   background-color: #fff;
   border-radius: $base-border-radius;
   padding: 20px;
+  overflow: scroll;
 
   .form-container {
     height: 100%;

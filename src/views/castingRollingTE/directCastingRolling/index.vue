@@ -1,7 +1,7 @@
 <template>
   <div class="directCastingRolling-container">
     <el-row>
-      <el-col :span="showAnchor ? 18 : 24">
+      <el-col :span="showAnchor ? 18 : 23">
         <div ref="containerRef" class="form-container">
           <!-- 计算属性 -->
           <computational id="part1"></computational>
@@ -17,7 +17,8 @@
           <finish id="part6"></finish>
         </div>
       </el-col>
-      <el-col :span="6" v-if="showAnchor">
+      <el-col :span="1"></el-col>
+      <el-col :span="4" v-if="showAnchor">
         <el-anchor
           :container="containerRef"
           direction="vertical"
