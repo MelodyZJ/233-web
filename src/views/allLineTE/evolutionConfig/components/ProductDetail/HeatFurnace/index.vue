@@ -1,19 +1,32 @@
 <template>
-  <div class="part-box" style="height: 250px">
-    <div class="part-title">初始配置</div>
+  <div class="part-box" style="height: 300px">
+    <div class="part-title">加热炉</div>
     <div class="part-content">
-      <el-form :inline="true" :model="initConfigForm" label-width="120px">
+      <el-form :inline="true" :model="HeatFurnaceForm" label-width="120px">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="钢种">
+            <el-form-item label="入炉温度">
+              <div class="input-unit">
+                <el-input
+                  v-model="HeatFurnaceForm.chargeTemperature"
+                  placeholder="请输入"
+                  style="width: 200px"
+                />
+                <span class="unit">℃</span>
+              </div>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
+            <el-form-item label="铸坯形状">
               <el-select
-                v-model="initConfigForm.steelGrade"
+                v-model="HeatFurnaceForm.billetShape"
                 placeholder="请选择"
                 clearable
                 style="width: 200px"
               >
                 <el-option
-                  v-for="item in steelGradeList"
+                  v-for="item in billetShapeList"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
@@ -21,15 +34,44 @@
               </el-select>
             </el-form-item>
           </el-col>
+        </el-row>
+
+        <el-row>
           <el-col :span="12">
-            <el-form-item label="轧前铸坯速度">
+            <el-form-item label="保温时间">
               <div class="input-unit">
                 <el-input
-                  v-model="initConfigForm.beforeSpeed"
+                  v-model="HeatFurnaceForm.holdTime"
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit">m/s</span>
+                <span class="unit">min</span>
+              </div>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
+            <el-form-item label="铸坯尺寸(mm)">
+              <div class="mr-2">
+                <el-input
+                  v-model="HeatFurnaceForm.billetSize.length"
+                  placeholder="长"
+                  style="width: 80px"
+                />
+              </div>
+              <div class="mr-2">
+                <el-input
+                  v-model="HeatFurnaceForm.billetSize.width"
+                  placeholder="宽"
+                  style="width: 80px"
+                />
+              </div>
+              <div class="mr-2 mt-2">
+                <el-input
+                  v-model="HeatFurnaceForm.billetSize.height"
+                  placeholder="高"
+                  style="width: 80px"
+                />
               </div>
             </el-form-item>
           </el-col>
@@ -37,60 +79,14 @@
 
         <el-row>
           <el-col :span="12">
-            <el-form-item label="牌号">
-              <el-select
-                v-model="initConfigForm.brand"
-                placeholder="请选择"
-                clearable
-                style="width: 200px"
-              >
-                <el-option
-                  v-for="item in brandList"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                />
-              </el-select>
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="粗轧咬入速度">
+            <el-form-item label="出炉温度">
               <div class="input-unit">
                 <el-input
-                  v-model="initConfigForm.biteSpeed"
+                  v-model="HeatFurnaceForm.ovenTemperature"
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit">m/s</span>
-              </div>
-            </el-form-item>
-          </el-col>
-        </el-row>
-
-        <el-row>
-          <el-col :span="12">
-            <el-form-item label="环境温度">
-              <div class="input-unit">
-                <el-input
-                  v-model="initConfigForm.envTemperature"
-                  placeholder="请输入"
-                  style="width: 200px"
-                />
-                <span class="unit">°C</span>
-              </div>
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="浊环水温度">
-              <div class="input-unit">
-                <el-input
-                  v-model="initConfigForm.waterTemperature"
-                  placeholder="请输入"
-                  style="width: 200px"
-                />
-                <span class="unit">°C</span>
+                <span class="unit">℃</span>
               </div>
             </el-form-item>
           </el-col>
@@ -103,35 +99,47 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const initConfigForm = reactive({
-  steelGrade: "",
-  beforeSpeed: "",
-  brand: "",
-  biteSpeed: "",
-  envTemperature: "",
-  waterTemperature: "",
+const HeatFurnaceForm = reactive({
+  chargeTemperature: "",
+  billetShape: "",
+  holdTime: "",
+  billetSize: {
+    length: "",
+    width: "",
+    height: "",
+  },
+  ovenTemperature: "",
 });
 
-const steelGrade = ref("");
-const steelGradeList = ref([
+const value = ref(false);
+
+const unitNameList = ref([
   {
-    label: "钢种1",
-    value: "钢种1",
+    value: "1",
+    label: "1#机组",
   },
   {
-    label: "钢种2",
-    value: "钢种2",
+    value: "2",
+    label: "2#机组",
+  },
+  {
+    value: "3",
+    label: "3#机组",
   },
 ]);
 
-const brandList = ref([
+const billetShapeList = ref([
   {
-    label: "牌号1",
-    value: "牌号1",
+    value: "1",
+    label: "圆坯",
   },
   {
-    label: "牌号2",
-    value: "牌号2",
+    value: "2",
+    label: "方坯",
+  },
+  {
+    value: "3",
+    label: "矩型坯",
   },
 ]);
 </script>

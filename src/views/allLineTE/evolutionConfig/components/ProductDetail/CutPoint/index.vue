@@ -1,30 +1,18 @@
 <template>
-  <div class="part-box" style="height: 140px">
-    <div class="part-title">除磷箱</div>
+  <div class="part-box" style="height: 150px">
+    <div class="part-title">切割点</div>
     <div class="part-content">
-      <el-form :inline="true" :model="descaleBoxForm" label-width="120px">
+      <el-form :inline="true" :model="cutPointForm" label-width="120px">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="是否投用">
-              <el-switch
-                v-model="value"
-                class="ml-2"
-                style="
-                  --el-switch-on-color: #13ce66;
-                  --el-switch-off-color: #ff4949;
-                "
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item label="水压">
+            <el-form-item label="定尺长度">
               <div class="input-unit">
                 <el-input
-                  v-model="descaleBoxForm.typeValue"
+                  v-model="cutPointForm.measureLength"
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit">Mpa</span>
+                <span class="unit">mm</span>
               </div>
             </el-form-item>
           </el-col>
@@ -37,12 +25,9 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const descaleBoxForm = reactive({
-  type: "",
-  typeValue: "",
+const cutPointForm = reactive({
+  measureLength: "",
 });
-
-const value = ref(false);
 </script>
 
 <style lang="scss" scoped>

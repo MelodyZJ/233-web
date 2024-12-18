@@ -210,7 +210,7 @@
                   placeholder="辊道均速"
                   style="width: 150px"
                 />
-                <span class="unit" style="right: 36px">m/min</span>
+                <span class="unit">m/min</span>
               </div>
               <div class="input-unit">
                 <el-input
@@ -250,7 +250,7 @@
                   placeholder="水量"
                   style="width: 150px"
                 />
-                <span class="unit" style="right: 24px">m³/h</span>
+                <span class="unit">m³/h</span>
               </div>
               <el-select
                 v-model="castingIntervalForm.dephosphorizationPropertie.type2"
@@ -273,7 +273,7 @@
                   placeholder="换热系数"
                   style="width: 150px"
                 />
-                <span class="unit" style="right: 45px">W/(m³K)</span>
+                <span class="unit">W/(m³K)</span>
               </div>
               <div class="input-unit next-row">
                 <el-input
@@ -295,7 +295,7 @@
                   placeholder="请输入"
                   style="width: 150px"
                 />
-                <span class="unit" style="right: 18px">mm</span>
+                <span class="unit">mm</span>
               </div>
               <div class="input-unit next-row">
                 <el-input
@@ -306,7 +306,7 @@
                   placeholder="辊道均速"
                   style="width: 150px"
                 />
-                <span class="unit" style="right: 35px">m/min</span>
+                <span class="unit">m/min</span>
               </div>
             </el-form-item>
           </el-col>
@@ -464,7 +464,7 @@ const onAddItem = () => {
     }
 
     .unit {
-      width: 20px;
+      width: fit-content;
       height: 22px;
       position: absolute;
       top: 8px;

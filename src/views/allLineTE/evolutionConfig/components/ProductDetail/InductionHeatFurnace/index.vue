@@ -1,30 +1,35 @@
 <template>
-  <div class="part-box" style="height: 140px">
-    <div class="part-title">除磷箱</div>
+  <div class="part-box" style="height: 150px">
+    <div class="part-title">感应加热炉</div>
     <div class="part-content">
-      <el-form :inline="true" :model="descaleBoxForm" label-width="120px">
+      <el-form
+        :inline="true"
+        :model="inductionHeatFurnaceForm"
+        label-width="120px"
+      >
         <el-row>
           <el-col :span="12">
-            <el-form-item label="是否投用">
-              <el-switch
-                v-model="value"
-                class="ml-2"
-                style="
-                  --el-switch-on-color: #13ce66;
-                  --el-switch-off-color: #ff4949;
-                "
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item label="水压">
+            <el-form-item label="出口温度">
               <div class="input-unit">
                 <el-input
-                  v-model="descaleBoxForm.typeValue"
+                  v-model="inductionHeatFurnaceForm.outletTemperature"
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit">Mpa</span>
+                <span class="unit">℃</span>
+              </div>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
+            <el-form-item label="轧件运行速度">
+              <div class="input-unit">
+                <el-input
+                  v-model="inductionHeatFurnaceForm.rollingSpeed"
+                  placeholder="请输入"
+                  style="width: 200px"
+                />
+                <span class="unit">m/s</span>
               </div>
             </el-form-item>
           </el-col>
@@ -37,12 +42,10 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const descaleBoxForm = reactive({
-  type: "",
-  typeValue: "",
+const inductionHeatFurnaceForm = reactive({
+  outletTemperature: "",
+  rollingSpeed: "",
 });
-
-const value = ref(false);
 </script>
 
 <style lang="scss" scoped>

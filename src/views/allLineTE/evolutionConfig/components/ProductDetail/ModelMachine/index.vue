@@ -1,18 +1,65 @@
 <template>
-  <div class="part-box" style="height: 140px">
+  <div class="part-box" style="height: 220px">
     <div class="part-title">模块轧机</div>
     <div class="part-content">
-      <el-form :inline="true" :model="ModelMachineForm" label-width="180px">
+      <el-form :inline="true" :model="ModelMachineForm" label-width="120px">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="下一设备入口速度">
+            <el-form-item label="机组名称">
+              <el-select
+                v-model="ModelMachineForm.unitName"
+                placeholder="请选择"
+                clearable
+                style="width: 200px"
+              >
+                <el-option
+                  v-for="item in unitNameList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
+            <el-form-item label="轧辊直径">
               <div class="input-unit">
                 <el-input
-                  v-model="ModelMachineForm.nextDeviceSpeed"
+                  v-model="ModelMachineForm.rollDiameter"
+                  placeholder="请输入"
+                  clearable
+                  style="width: 200px"
+                />
+                <!-- <span class="unit">m/s</span> -->
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="延伸系数">
+              <div class="input-unit">
+                <el-input
+                  v-model="ModelMachineForm.elongationCoefficient"
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit" style="right: 21px">m/s</span>
+                <span class="unit">mm</span>
+              </div>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
+            <el-form-item label="轧辊冷却水换热系数">
+              <div class="input-unit">
+                <el-input
+                  v-model="ModelMachineForm.waterCoefficient"
+                  placeholder="请输入"
+                  style="width: 200px"
+                />
+                <span class="unit">W/(m2·℃)</span>
               </div>
             </el-form-item>
           </el-col>
@@ -26,10 +73,28 @@
 import { ref, reactive } from "vue";
 
 const ModelMachineForm = reactive({
-  nextDeviceSpeed: "",
+  unitNameList: "",
+  rollDiameter: "",
+  elongationCoefficient: "",
+  waterCoefficient: "",
 });
 
 const value = ref(false);
+
+const unitNameList = ref([
+  {
+    value: "1",
+    label: "1#机组",
+  },
+  {
+    value: "2",
+    label: "2#机组",
+  },
+  {
+    value: "3",
+    label: "3#机组",
+  },
+]);
 </script>
 
 <style lang="scss" scoped>
@@ -64,7 +129,7 @@ const value = ref(false);
     }
 
     .unit {
-      width: 20px;
+      width: fit-content;
       height: 22px;
       position: absolute;
       top: 8px;

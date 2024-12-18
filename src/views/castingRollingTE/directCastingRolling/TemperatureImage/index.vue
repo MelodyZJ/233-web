@@ -34,8 +34,9 @@ import { ref, reactive } from "vue";
   }
 
   .part-content {
+    
     .unit {
-      width: 20px;
+      width: fit-content;
       height: 22px;
       text-align: center;
       line-height: 22px;

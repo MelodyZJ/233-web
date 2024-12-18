@@ -111,7 +111,7 @@
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit" style="right: 30px">kg/m³</span>
+                <span class="unit">kg/m³</span>
               </div>
             </el-form-item>
           </el-col>
@@ -145,7 +145,7 @@
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit" style="right: 36px">m/min</span>
+                <span class="unit">m/min</span>
               </div>
             </el-form-item>
           </el-col>
@@ -272,7 +272,7 @@ const beforeRemove = (uploadFile, uploadFiles) => {
     }
 
     .unit {
-      width: 20px;
+      width: fit-content;
       height: 22px;
       position: absolute;
       top: 8px;

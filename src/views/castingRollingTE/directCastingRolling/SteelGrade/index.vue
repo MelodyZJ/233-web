@@ -114,8 +114,9 @@ const brandList = ref([
   }
 
   .part-content {
+    
     .unit {
-      width: 20px;
+      width: fit-content;
       height: 22px;
       position: relative;
       top: 2px;

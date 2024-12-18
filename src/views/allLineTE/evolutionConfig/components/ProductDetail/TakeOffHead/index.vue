@@ -2,7 +2,7 @@
   <div class="part-box" style="height: 140px">
     <div class="part-title">脱头</div>
     <div class="part-content">
-      <el-form :inline="true" :model="takeOffHeadForm" label-width="180px">
+      <el-form :inline="true" :model="takeOffHeadForm" label-width="170px">
         <el-row>
           <el-col :span="12">
             <el-form-item label="下一设备入口速度">
@@ -12,7 +12,7 @@
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit" style="right: 21px">m/s</span>
+                <span class="unit">m/s</span>
               </div>
             </el-form-item>
           </el-col>
@@ -64,7 +64,7 @@ const value = ref(false);
     }
 
     .unit {
-      width: 20px;
+      width: fit-content;
       height: 22px;
       position: absolute;
       top: 8px;

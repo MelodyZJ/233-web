@@ -1,8 +1,8 @@
 <template>
-  <div class="part-box" style="height: 140px">
-    <div class="part-title">除磷箱</div>
+  <div class="part-box" style="height: 150px">
+    <div class="part-title">保温罩</div>
     <div class="part-content">
-      <el-form :inline="true" :model="descaleBoxForm" label-width="120px">
+      <el-form :inline="true" :model="heatCoverForm" label-width="120px">
         <el-row>
           <el-col :span="12">
             <el-form-item label="是否投用">
@@ -17,14 +17,14 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="水压">
+            <el-form-item label="温度系数">
               <div class="input-unit">
                 <el-input
-                  v-model="descaleBoxForm.typeValue"
+                  v-model="heatCoverForm.temperatureCoefficient"
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit">Mpa</span>
+                <!-- <span class="unit">mm</span> -->
               </div>
             </el-form-item>
           </el-col>
@@ -37,12 +37,11 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const descaleBoxForm = reactive({
-  type: "",
-  typeValue: "",
+const heatCoverForm = reactive({
+  temperatureCoefficient: "",
 });
 
-const value = ref(false);
+const value = ref(true);
 </script>
 
 <style lang="scss" scoped>

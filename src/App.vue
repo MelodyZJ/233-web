@@ -13,9 +13,9 @@ const userStore = useThemeStore();
 const router = useRouter();
 
 // 刷新后默认导航至home
-if (router.path !== "/home") {
-  router.push("/home");
-}
+// if (router.path !== "/home") {
+//   router.push("/home");
+// }
 
 // 当前浏览器深色与浅色模式切换听器
 const listeners = {
