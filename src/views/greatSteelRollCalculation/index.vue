@@ -1,5 +1,5 @@
 <template>
-  <div>passRollingCalculation</div>
+  <div>greatSteelRollCalculation</div>
 </template>
 
 <script setup></script>

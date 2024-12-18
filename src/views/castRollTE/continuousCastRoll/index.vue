@@ -1,5 +1,5 @@
 <template>
-  <div>greatSteelRollingCalculation</div>
+  <div>continuousCastRoll</div>
 </template>
 
 <script setup></script>

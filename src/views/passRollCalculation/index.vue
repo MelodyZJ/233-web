@@ -1,5 +1,5 @@
 <template>
-  <div>continuousCastingRolling</div>
+  <div>passRollCalculation</div>
 </template>
 
 <script setup></script>

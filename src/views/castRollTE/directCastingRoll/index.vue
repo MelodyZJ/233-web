@@ -1,5 +1,5 @@
 <template>
-  <div class="directCastingRolling-container">
+  <div class="directCastingRoll-container">
     <el-row>
       <el-col :span="showAnchor ? 18 : 23">
         <div ref="containerRef" class="form-container">
@@ -76,7 +76,7 @@ const handleClick = (e) => {
 </script>
 
 <style lang="scss" scoped>
-.directCastingRolling-container {
+.directCastingRoll-container {
   padding: 30px;
   background-color: #fff;
   border-radius: $base-border-radius;

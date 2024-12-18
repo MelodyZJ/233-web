@@ -20,21 +20,21 @@ const routes = [
     ],
   },
   {
-    path: "/castingRollingTE",
+    path: "/castRollTE",
     component: Layout,
     children: [
       {
-        path: "/directCastingRolling",
+        path: "/directCastingRoll",
         component: () =>
-          import("@/views/castingRollingTE/directCastingRolling/index.vue"),
-        name: "DirectCastingRolling",
+          import("@/views/castRollTE/directCastingRoll/index.vue"),
+        name: "directCastingRoll",
         meta: { title: "直接铸轧" },
       },
       {
-        path: "/continuousCastingRolling",
+        path: "/continuousCastRoll",
         component: () =>
-          import("@/views/castingRollingTE/continuousCastingRolling/index.vue"),
-        name: "ContinuousCastingRolling",
+          import("@/views/castRollTE/continuousCastRoll/index.vue"),
+        name: "continuousCastRoll",
         meta: { title: "连续铸轧" },
       },
     ],
@@ -58,12 +58,12 @@ const routes = [
     ],
   },
   {
-    path: "/passRollingCalculation",
+    path: "/passRollCalculation",
     component: Layout,
     meta: { title: "孔型轧制计算" },
   },
   {
-    path: "/greatSteelRollingCalculation",
+    path: "/greatSteelRollCalculation",
     component: Layout,
     meta: { title: "优特钢轧制计算" },
   },

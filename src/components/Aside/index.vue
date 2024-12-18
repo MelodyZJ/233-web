@@ -53,12 +53,12 @@ const navItemList = reactive([
     icon: "House",
   },
   {
-    path: "/castingRollingTE",
+    path: "/castRollTE",
     name: "铸轧温度演变",
     icon: "Notification",
     children: [
-      { path: "/directCastingRolling", name: "直接铸轧", icon: "" },
-      { path: "/continuousCastingRolling", name: "连铸连轧", icon: "" },
+      { path: "/directCastingRoll", name: "直接铸轧", icon: "" },
+      { path: "/continuousCastRoll", name: "连铸连轧", icon: "" },
     ],
   },
   {
@@ -71,12 +71,12 @@ const navItemList = reactive([
     ],
   },
   {
-    path: "/passRollingCalculation",
+    path: "/passRollCalculation",
     name: "孔型轧制计算",
     icon: "EditPen",
   },
   {
-    path: "/greatSteelRollingCalculation",
+    path: "/greatSteelRollCalculation",
     name: "优特钢轧制计算",
     icon: "Operation",
   },
