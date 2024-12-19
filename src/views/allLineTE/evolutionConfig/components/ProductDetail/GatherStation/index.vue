@@ -1,31 +1,18 @@
 <template>
   <div class="part-box" style="height: 150px">
-    <div class="part-title">飞剪</div>
+    <div class="part-title">集卷站</div>
     <div class="part-content">
-      <el-form :inline="true" :model="flyShearForm" label-width="120px">
+      <el-form :inline="true" :model="gatherStationForm" label-width="120px">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="限制速度">
+            <el-form-item label="集卷时间">
               <div class="input-unit">
                 <el-input
-                  v-model="flyShearForm.limitSpeed"
+                  v-model="gatherStationForm.gatherTime"
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit">m/s</span>
-              </div>
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="限制等效直径">
-              <div class="input-unit">
-                <el-input
-                  v-model="flyShearForm.limitDiameter"
-                  placeholder="请输入"
-                  style="width: 200px"
-                />
-                <span class="unit">mm</span>
+                <span class="unit">s</span>
               </div>
             </el-form-item>
           </el-col>
@@ -38,9 +25,8 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const flyShearForm = reactive({
-  limitSpeed: "",
-  limitDiameter: "",
+const gatherStationForm = reactive({
+  gatherTime: "",
 });
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>continuousCastRoll</div>
+  <div>calculateConfig</div>
 </template>
 
 <script setup></script>

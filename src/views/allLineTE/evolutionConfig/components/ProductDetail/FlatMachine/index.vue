@@ -1,13 +1,13 @@
 <template>
-  <div class="part-box" style="height: 220px">
-    <div class="part-title">模块轧机</div>
+  <div class="part-box" style="height: 200px">
+    <div class="part-title">平立悬臂轧机</div>
     <div class="part-content">
-      <el-form :inline="true" :model="ModelMachineForm" label-width="120px">
+      <el-form :inline="true" :model="flatMachineForm" label-width="120px">
         <el-row>
           <el-col :span="12">
             <el-form-item label="机组名称">
               <el-select
-                v-model="ModelMachineForm.unitName"
+                v-model="flatMachineForm.unitName"
                 placeholder="请选择"
                 clearable
                 style="width: 200px"
@@ -26,12 +26,11 @@
             <el-form-item label="轧辊直径">
               <div class="input-unit">
                 <el-input
-                  v-model="ModelMachineForm.rollDiameter"
+                  v-model="flatMachineForm.rollDiameter"
                   placeholder="请输入"
-                  clearable
                   style="width: 200px"
                 />
-                <!-- <span class="unit">m/s</span> -->
+                <span class="unit">mm</span>
               </div>
             </el-form-item>
           </el-col>
@@ -42,7 +41,7 @@
             <el-form-item label="延伸系数">
               <div class="input-unit">
                 <el-input
-                  v-model="ModelMachineForm.elongationCoefficient"
+                  v-model="flatMachineForm.elongationCoefficient"
                   placeholder="请输入"
                   style="width: 200px"
                 />
@@ -55,7 +54,7 @@
             <el-form-item label="轧辊冷却水换热系数" label-width="140px">
               <div class="input-unit">
                 <el-input
-                  v-model="ModelMachineForm.waterCoefficient"
+                  v-model="flatMachineForm.waterCoefficient"
                   placeholder="请输入"
                   style="width: 180px"
                 />
@@ -72,14 +71,12 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const ModelMachineForm = reactive({
+const flatMachineForm = reactive({
   unitNameList: "",
   rollDiameter: "",
   elongationCoefficient: "",
   waterCoefficient: "",
 });
-
-const value = ref(false);
 
 const unitNameList = ref([
   {

@@ -1,0 +1,27 @@
+:root {
+  --theme-aside: #fff;
+  --theme-header: #0c5fff;
+  --theme-main: #f4f4f5;
+  --theme-card: #fff;
+  --theme-footer: #445566;
+  --theme-boder: #e6e6e6;
+  --theme-search: #fff;
+  --fontColorBasic: #000;
+  --fontColorSecond: #3b3948;
+  --fontColorBottom: #9195a1;
+  --el-menu-text-color: #6a6e87;
+  --el-menu-active-color: #004ea6;
+}
+
+.dark {
+  --theme-aside: #202025;
+  --theme-header: #17161b;
+  --theme-main: #17161b;
+  --theme-card: #202025;
+  --theme-footer: #445566;
+  --theme-boder: #3a3a42;
+  --theme-search: #202025;
+  --fontColorBasic: #fff;
+  --fontColorSecond: #dddfe4;
+  --fontColorBottom: #9195a1;
+}/*# sourceMappingURL=theme.css.map */

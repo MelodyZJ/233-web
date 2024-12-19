@@ -1,19 +1,19 @@
 <template>
-  <div class="part-box" style="height: 220px">
-    <div class="part-title">模块轧机</div>
+  <div class="part-box" style="height: 200px">
+    <div class="part-title">水箱</div>
     <div class="part-content">
-      <el-form :inline="true" :model="ModelMachineForm" label-width="120px">
+      <el-form :inline="true" :model="waterBoxForm" label-width="120px">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="机组名称">
+            <el-form-item label="水箱类型">
               <el-select
-                v-model="ModelMachineForm.unitName"
+                v-model="waterBoxForm.waterBox"
                 placeholder="请选择"
                 clearable
                 style="width: 200px"
               >
                 <el-option
-                  v-for="item in unitNameList"
+                  v-for="item in waterBoxList"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
@@ -23,43 +23,34 @@
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="轧辊直径">
-              <div class="input-unit">
-                <el-input
-                  v-model="ModelMachineForm.rollDiameter"
-                  placeholder="请输入"
-                  clearable
-                  style="width: 200px"
+            <el-form-item label="换热模型">
+              <el-select
+                v-model="waterBoxForm.heatModel"
+                placeholder="请选择"
+                clearable
+                style="width: 200px"
+              >
+                <el-option
+                  v-for="item in heatModelList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
                 />
-                <!-- <span class="unit">m/s</span> -->
-              </div>
+              </el-select>
             </el-form-item>
           </el-col>
         </el-row>
 
         <el-row>
           <el-col :span="12">
-            <el-form-item label="延伸系数">
+            <el-form-item label="水压">
               <div class="input-unit">
                 <el-input
-                  v-model="ModelMachineForm.elongationCoefficient"
+                  v-model="waterBoxForm.waterPressure"
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit">mm</span>
-              </div>
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="轧辊冷却水换热系数" label-width="140px">
-              <div class="input-unit">
-                <el-input
-                  v-model="ModelMachineForm.waterCoefficient"
-                  placeholder="请输入"
-                  style="width: 180px"
-                />
-                <span class="unit">W/(m2·℃)</span>
+                <span class="unit">Mpa</span>
               </div>
             </el-form-item>
           </el-col>
@@ -72,27 +63,39 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const ModelMachineForm = reactive({
-  unitNameList: "",
-  rollDiameter: "",
-  elongationCoefficient: "",
-  waterCoefficient: "",
+const waterBoxForm = reactive({
+  waterBox: "",
+  heatModel: "",
+  waterPressure: "",
 });
 
-const value = ref(false);
-
-const unitNameList = ref([
+const waterBoxList = ref([
   {
     value: "1",
-    label: "1#机组",
+    label: "1#水箱",
   },
   {
     value: "2",
-    label: "2#机组",
+    label: "2#水箱",
   },
   {
     value: "3",
-    label: "3#机组",
+    label: "3#水箱",
+  },
+]);
+
+const heatModelList = ref([
+  {
+    value: "1",
+    label: "1#模型",
+  },
+  {
+    value: "2",
+    label: "2#模型",
+  },
+  {
+    value: "3",
+    label: "3#模型",
   },
 ]);
 </script>

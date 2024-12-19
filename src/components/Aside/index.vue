@@ -67,18 +67,17 @@ const navItemList = reactive([
     icon: "Connection",
     children: [
       { path: "/evolutionConfig", name: "演变配置", icon: "" },
-      { path: "/taskList", name: "任务列表", icon: "" },
+      { path: "/taskList-a", name: "任务列表", icon: "" },
     ],
   },
   {
     path: "/passRollCalculation",
     name: "孔型轧制计算",
     icon: "EditPen",
-  },
-  {
-    path: "/greatSteelRollCalculation",
-    name: "优特钢轧制计算",
-    icon: "Operation",
+    children: [
+      { path: "/calculateConfig", name: "计算配置", icon: "" },
+      { path: "/taskList-p", name: "任务列表", icon: "" },
+    ],
   },
   {
     path: "/reduceDiameterCalculation",
@@ -109,7 +108,7 @@ const navItemList = reactive([
 
 const activePath = computed(() => route.path);
 
-const isActive = (path) => activePath.value.startsWith(path);
+const isActive = (path) => activePath.value == path;
 
 const handleNavItemClick = (path) => {
   router.push(path);

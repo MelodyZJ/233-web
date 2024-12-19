@@ -1,36 +1,44 @@
 <template>
   <div class="part-box" style="height: 150px">
-    <div class="part-title">飞剪</div>
+    <div class="part-title">任务名</div>
     <div class="part-content">
-      <el-form :inline="true" :model="flyShearForm" label-width="120px">
+      <el-form :inline="true" :model="taskNameForm" label-width="120px">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="限制速度">
+            <el-form-item label="生产线总长度">
               <div class="input-unit">
                 <el-input
-                  v-model="flyShearForm.limitSpeed"
-                  placeholder="请输入"
+                  v-model="taskNameForm.totalLength"
+                  placeholder="10000"
                   style="width: 200px"
+                  disabled
                 />
-                <span class="unit">m/s</span>
+                <span class="unit">m</span>
               </div>
             </el-form-item>
           </el-col>
+        </el-row>
 
+        <el-row>
           <el-col :span="12">
-            <el-form-item label="限制等效直径">
+            <el-form-item label="任务名">
               <div class="input-unit">
                 <el-input
-                  v-model="flyShearForm.limitDiameter"
+                  v-model="taskNameForm.taskName"
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit">mm</span>
+                <!-- <span class="unit">s</span> -->
               </div>
             </el-form-item>
           </el-col>
         </el-row>
       </el-form>
+
+      <div class="btn">
+        <v-btn variant="tonal" class="submit-btn">提交</v-btn>
+        <v-btn variant="outlined" class="reset-btn">重置</v-btn>
+      </div>
     </div>
   </div>
 </template>
@@ -38,9 +46,9 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const flyShearForm = reactive({
-  limitSpeed: "",
-  limitDiameter: "",
+const taskNameForm = reactive({
+  totalLength: "",
+  taskName: "",
 });
 </script>
 
@@ -83,7 +91,7 @@ const flyShearForm = reactive({
       right: 10px;
       text-align: center;
       line-height: 22px;
-      background-color: #fff;
+      background-color: transparent;
       z-index: 1;
       color: #606266;
     }
@@ -91,6 +99,22 @@ const flyShearForm = reactive({
     .custom-btn {
       background-color: #fff;
       color: #0c5fff;
+    }
+
+    .btn {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px 0 30px 0;
+
+      .submit-btn {
+        background-color: #0c5fff;
+        color: #fff;
+      }
+
+      .reset-btn {
+        border: 1px solid #dcdfe6;
+        margin-left: 10px;
+      }
     }
   }
 }

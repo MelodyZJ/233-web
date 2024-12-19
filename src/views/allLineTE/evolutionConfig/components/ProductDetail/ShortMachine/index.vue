@@ -1,13 +1,13 @@
 <template>
-  <div class="part-box" style="height: 220px">
-    <div class="part-title">模块轧机</div>
+  <div class="part-box" style="height: 250px">
+    <div class="part-title">短应力线轧机</div>
     <div class="part-content">
-      <el-form :inline="true" :model="ModelMachineForm" label-width="120px">
+      <el-form :inline="true" :model="shortMachineForm" label-width="120px">
         <el-row>
           <el-col :span="12">
             <el-form-item label="机组名称">
               <el-select
-                v-model="ModelMachineForm.unitName"
+                v-model="shortMachineForm.unitName"
                 placeholder="请选择"
                 clearable
                 style="width: 200px"
@@ -26,12 +26,11 @@
             <el-form-item label="轧辊直径">
               <div class="input-unit">
                 <el-input
-                  v-model="ModelMachineForm.rollDiameter"
+                  v-model="shortMachineForm.rollDiameter"
                   placeholder="请输入"
-                  clearable
                   style="width: 200px"
                 />
-                <!-- <span class="unit">m/s</span> -->
+                <span class="unit">mm</span>
               </div>
             </el-form-item>
           </el-col>
@@ -42,7 +41,7 @@
             <el-form-item label="延伸系数">
               <div class="input-unit">
                 <el-input
-                  v-model="ModelMachineForm.elongationCoefficient"
+                  v-model="shortMachineForm.elongationCoefficient"
                   placeholder="请输入"
                   style="width: 200px"
                 />
@@ -55,11 +54,38 @@
             <el-form-item label="轧辊冷却水换热系数" label-width="140px">
               <div class="input-unit">
                 <el-input
-                  v-model="ModelMachineForm.waterCoefficient"
+                  v-model="shortMachineForm.waterCoefficient"
                   placeholder="请输入"
                   style="width: 180px"
                 />
                 <span class="unit">W/(m2·℃)</span>
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="是否投用">
+              <el-switch
+                v-model="shortMachineForm.isUse"
+                class="ml-2"
+                style="
+                  --el-switch-on-color: #13ce66;
+                  --el-switch-off-color: #ff4949;
+                "
+              />
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
+            <el-form-item label="切分数">
+              <div class="input-unit">
+                <el-input
+                  v-model="shortMachineForm.cutPonint"
+                  placeholder="请输入"
+                  style="width: 200px"
+                />
               </div>
             </el-form-item>
           </el-col>
@@ -72,14 +98,14 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const ModelMachineForm = reactive({
+const shortMachineForm = reactive({
   unitNameList: "",
   rollDiameter: "",
   elongationCoefficient: "",
   waterCoefficient: "",
+  isUse: false,
+  cutPonint: "",
 });
-
-const value = ref(false);
 
 const unitNameList = ref([
   {

@@ -1,31 +1,37 @@
 <template>
   <div class="part-box" style="height: 150px">
-    <div class="part-title">飞剪</div>
+    <div class="part-title">冷床</div>
     <div class="part-content">
-      <el-form :inline="true" :model="flyShearForm" label-width="120px">
+      <el-form :inline="true" :model="coolBedForm" label-width="120px">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="限制速度">
+            <el-form-item label="步进时间">
               <div class="input-unit">
                 <el-input
-                  v-model="flyShearForm.limitSpeed"
+                  v-model="coolBedForm.stepTime"
                   placeholder="请输入"
                   style="width: 200px"
                 />
-                <span class="unit">m/s</span>
+                <span class="unit">s</span>
               </div>
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="限制等效直径">
-              <div class="input-unit">
+            <el-form-item label="冷床尺寸(m)">
+              <div class="mr-2">
                 <el-input
-                  v-model="flyShearForm.limitDiameter"
-                  placeholder="请输入"
-                  style="width: 200px"
+                  v-model="coolBedForm.coolBedSize.length"
+                  placeholder="长"
+                  style="width: 100px"
                 />
-                <span class="unit">mm</span>
+              </div>
+              <div class="mr-2">
+                <el-input
+                  v-model="coolBedForm.coolBedSize.width"
+                  placeholder="宽"
+                  style="width: 100px"
+                />
               </div>
             </el-form-item>
           </el-col>
@@ -38,9 +44,12 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const flyShearForm = reactive({
-  limitSpeed: "",
-  limitDiameter: "",
+const coolBedForm = reactive({
+  stepTime: "",
+  coolBedSize: {
+    length: "",
+    width: "",
+  },
 });
 </script>
 

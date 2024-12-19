@@ -25,15 +25,13 @@ const routes = [
     children: [
       {
         path: "/directCastingRoll",
-        component: () =>
-          import("@/views/castRollTE/directCastingRoll/index.vue"),
+        component: () => import("@/views/castRollTE/common/index.vue"),
         name: "directCastingRoll",
         meta: { title: "直接铸轧" },
       },
       {
         path: "/continuousCastRoll",
-        component: () =>
-          import("@/views/castRollTE/continuousCastRoll/index.vue"),
+        component: () => import("@/views/castRollTE/common/index.vue"),
         name: "continuousCastRoll",
         meta: { title: "连续铸轧" },
       },
@@ -46,13 +44,13 @@ const routes = [
       {
         path: "/evolutionConfig",
         component: () => import("@/views/allLineTE/evolutionConfig/index.vue"),
-        name: "EvolutionConfig",
+        name: "evolutionConfig",
         meta: { title: "演变配置" },
       },
       {
-        path: "/taskList",
-        component: () => import("@/views/allLineTE/taskList/index.vue"),
-        name: "TaskList",
+        path: "/taskList-a",
+        component: () => import("@/views/allLineTE/taskList-a/index.vue"),
+        name: "taskList-a",
         meta: { title: "任务列表" },
       },
     ],
@@ -60,12 +58,20 @@ const routes = [
   {
     path: "/passRollCalculation",
     component: Layout,
-    meta: { title: "孔型轧制计算" },
-  },
-  {
-    path: "/greatSteelRollCalculation",
-    component: Layout,
-    meta: { title: "优特钢轧制计算" },
+    children: [
+      {
+        path: "/calculateConfig",
+        component: () => import("@/views/passRollCalculation/calculateConfig/index.vue"),
+        name: "calculateConfig",
+        meta: { title: "计算配置" },
+      },
+      {
+        path: "/taskList-p",
+        component: () => import("@/views/passRollCalculation/taskList-p/index.vue"),
+        name: "taskList-p",
+        meta: { title: "任务列表" },
+      },
+    ],
   },
   {
     path: "/reduceDiameterCalculation",
