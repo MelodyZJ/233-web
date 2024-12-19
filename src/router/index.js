@@ -68,7 +68,7 @@ const routes = [
     meta: { title: "优特钢轧制计算" },
   },
   {
-    path: "/reducingDiameterCalculation",
+    path: "/reduceDiameterCalculation",
     component: Layout,
     meta: { title: "减定径计算" },
   },

@@ -81,7 +81,7 @@ const navItemList = reactive([
     icon: "Operation",
   },
   {
-    path: "/reducingDiameterCalculation",
+    path: "/reduceDiameterCalculation",
     name: "减定径计算",
     icon: "ZoomOut",
   },
