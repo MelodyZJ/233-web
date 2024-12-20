@@ -22,6 +22,15 @@
                 clearable
                 style="width: 300px"
               >
+                <template #footer>
+                  <v-btn
+                    variant="outlined"
+                    style="color: #0c5fff"
+                    size="small"
+                    @click="addProject"
+                    >添加项目</v-btn
+                  >
+                </template>
                 <el-option
                   v-for="item in belongProjectList"
                   :key="item.value"
@@ -34,6 +43,32 @@
         </el-row>
       </el-form>
     </div>
+
+    <v-dialog v-model="dialog" width="auto">
+      <v-card width="400" class="px-1 py-2">
+        <v-card-title class="text-lg px-3">新建项目</v-card-title>
+        <v-card-text class="px-3">
+          <el-input v-model="input" placeholder="新建项目名称" class="h-10" />
+        </v-card-text>
+
+        <template v-slot:actions>
+          <div class="mr-1">
+            <v-btn
+              variant="outlined"
+              class="border border-gray-300"
+              @click="dialog = false"
+              >取消</v-btn
+            >
+            <v-btn
+              variant="tonal"
+              class="bg-indigo-primary text-white ml-3"
+              @click="dialog = false"
+              >确定</v-btn
+            >
+          </div>
+        </template>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -59,6 +94,11 @@ const belongProjectList = [
     value: 3,
   },
 ];
+
+const dialog = ref(false);
+const addProject = () => {
+  dialog.value = true;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -81,6 +121,9 @@ const belongProjectList = [
       background-color: #f89623;
       margin-right: 10px;
     }
+  }
+
+  .part-content {
   }
 }
 </style>
