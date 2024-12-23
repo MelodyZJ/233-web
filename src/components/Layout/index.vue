@@ -12,7 +12,7 @@
 
         <!-- 右侧内容 -->
         <el-main class="main-content">
-          <el-breadcrumb separator="/" style="padding: 25px 0 20px 0;">
+          <el-breadcrumb separator="/" style="padding: 25px 0 20px 0">
             <el-breadcrumb-item
               v-for="(item, index) in breadcrumbItems"
               :key="index"
@@ -20,7 +20,7 @@
               <router-link :to="item.to">{{ item.name }}</router-link>
             </el-breadcrumb-item>
           </el-breadcrumb>
-          
+
           <RouterView />
         </el-main>
       </el-container>

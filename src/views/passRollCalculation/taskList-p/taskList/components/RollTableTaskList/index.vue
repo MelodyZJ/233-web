@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <div class="table" style="width: 100%">
+    <div class="table-data">
       <el-table
         ref="tableRef"
         :data="tableData"
@@ -99,7 +99,7 @@
           fixed="right"
           label="操作"
           align="center"
-          min-width="130"
+          min-width="100"
         >
           <template #default="scope">
             <el-button
@@ -120,7 +120,7 @@
 
             <el-button
               link
-              type="primary"
+              type="danger"
               @click.prevent="deleteItem(scope.$index)"
             >
               删除
@@ -130,6 +130,7 @@
       </el-table>
 
       <pagination
+        v-show="total > 0"
         :total="total"
         v-model:page="queryParams.pageNum"
         v-model:limit="queryParams.pageSize"
@@ -140,6 +141,8 @@
 </template>
 
 <script setup>
+import router from "@/router";
+
 const now = new Date();
 
 const data = reactive({
@@ -179,6 +182,13 @@ const data = reactive({
       status: "已完成",
       creatTime: "2024-11-08",
     },
+    {
+      taskName: "我爱你的心暖暖",
+      projectName: "222",
+      type: "类型1",
+      status: "已完成",
+      creatTime: "2024-11-08",
+    },
   ],
   queryParams: {
     pageNum: 1,
@@ -189,14 +199,20 @@ const data = reactive({
   },
 });
 const { queryParams, tableData, rules } = toRefs(data);
-const total = ref(10);
+const total = ref(20);
 const tableRef = ref(null);
 
+// 获取列表
 const getList = () => {};
-
+// 跳转到孔型系统
 const toSystem = (index) => {};
-const toTable = (index) => {};
-
+// 跳转到轧制表
+const toTable = (index) => {
+  router.push({
+    path: "/taskList-p/resultShow",
+  });
+};
+// 删除操作
 const deleteItem = (index) => {
   tableData.value.splice(index, 1);
 };
@@ -242,6 +258,7 @@ const calculateStateList = ref([
 <style lang="scss" scoped>
 .rollTableTaskList-container {
   margin-top: 20px;
+  flex-grow: 1;
 
   .top-search {
     display: flex;
@@ -249,7 +266,8 @@ const calculateStateList = ref([
     gap: 10px;
   }
 
-  .table {
+  .table-data {
+    width: 100%;
     margin-top: 30px;
   }
 }

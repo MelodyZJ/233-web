@@ -49,7 +49,7 @@ const props = defineProps({
   },
   background: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   autoScroll: {
     type: Boolean,

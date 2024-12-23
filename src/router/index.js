@@ -61,15 +61,28 @@ const routes = [
     children: [
       {
         path: "/calculateConfig",
-        component: () => import("@/views/passRollCalculation/calculateConfig/index.vue"),
+        component: () =>
+          import("@/views/passRollCalculation/calculateConfig/index.vue"),
         name: "calculateConfig",
         meta: { title: "计算配置" },
       },
       {
         path: "/taskList-p",
-        component: () => import("@/views/passRollCalculation/taskList-p/index.vue"),
+        component: () =>
+          import("@/views/passRollCalculation/taskList-p/index.vue"),
         name: "taskList-p",
         meta: { title: "任务列表" },
+        children: [
+          {
+            path: "/taskList-p/resultShow",
+            component: () =>
+              import(
+                "@/views/passRollCalculation/taskList-p/resultShow/index.vue"
+              ),
+            name: "resultShow",
+            meta: { title: "结果展示" },
+          },
+        ],
       },
     ],
   },
