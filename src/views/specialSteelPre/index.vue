@@ -1,5 +1,5 @@
 <template>
-  <div>generalSteelPredictionProperties</div>
+  <div>specialSteelPre</div>
 </template>
 
 <script setup></script>

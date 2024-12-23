@@ -1,5 +1,5 @@
 <template>
-  <div>reduceDiameterCalculation</div>
+  <div>reduceDiameterCalc</div>
 </template>
 
 <script setup></script>

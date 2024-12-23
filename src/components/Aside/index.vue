@@ -71,7 +71,7 @@ const navItemList = reactive([
     ],
   },
   {
-    path: "/passRollCalculation",
+    path: "/passRollCalc",
     name: "孔型轧制计算",
     icon: "EditPen",
     children: [
@@ -80,17 +80,17 @@ const navItemList = reactive([
     ],
   },
   {
-    path: "/reduceDiameterCalculation",
+    path: "/reduceDiameterCalc",
     name: "减定径计算",
     icon: "ZoomOut",
   },
   {
-    path: "/specialSteelPrediction",
+    path: "/specialSteelPre",
     name: "特钢性能预报",
     icon: "PieChart",
   },
   {
-    path: "/generalSteelPrediction",
+    path: "/generalSteelPre",
     name: "普钢性能预报",
     icon: "ChatLineSquare",
   },

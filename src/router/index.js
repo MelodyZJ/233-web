@@ -56,20 +56,20 @@ const routes = [
     ],
   },
   {
-    path: "/passRollCalculation",
+    path: "/passRollCalc",
     component: Layout,
     children: [
       {
         path: "/calculateConfig",
         component: () =>
-          import("@/views/passRollCalculation/calculateConfig/index.vue"),
+          import("@/views/passRollCalc/calculateConfig/index.vue"),
         name: "calculateConfig",
         meta: { title: "计算配置" },
       },
       {
         path: "/taskList-p",
         component: () =>
-          import("@/views/passRollCalculation/taskList-p/index.vue"),
+          import("@/views/passRollCalc/taskList-p/index.vue"),
         name: "taskList-p",
         meta: { title: "任务列表" },
         children: [
@@ -77,7 +77,7 @@ const routes = [
             path: "/taskList-p/resultShow",
             component: () =>
               import(
-                "@/views/passRollCalculation/taskList-p/resultShow/index.vue"
+                "@/views/passRollCalc/taskList-p/resultShow/index.vue"
               ),
             name: "resultShow",
             meta: { title: "结果展示" },
@@ -87,17 +87,17 @@ const routes = [
     ],
   },
   {
-    path: "/reduceDiameterCalculation",
+    path: "/reduceDiameterCalc",
     component: Layout,
     meta: { title: "减定径计算" },
   },
   {
-    path: "/specialSteelPrediction",
+    path: "/specialSteelPre",
     component: Layout,
     meta: { title: "特钢性能预报" },
   },
   {
-    path: "/generalSteelPrediction",
+    path: "/generalSteelPre",
     component: Layout,
     meta: { title: "普钢性能预报" },
   },
