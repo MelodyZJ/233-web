@@ -96,8 +96,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
-
 const shortMachineForm = reactive({
   unitNameList: "",
   rollDiameter: "",

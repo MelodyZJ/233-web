@@ -31,7 +31,6 @@
 <script setup>
 import Aside from "@/components/Aside/index.vue";
 import Header from "@/components/Header/index.vue";
-import { ref, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();

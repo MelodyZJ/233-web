@@ -241,7 +241,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
 import dayjs from "dayjs";
 
 const paraConfigForm = reactive({});

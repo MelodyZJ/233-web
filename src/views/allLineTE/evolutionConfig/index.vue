@@ -11,7 +11,6 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, watch } from "vue";
 import ComponentLib from "./components/ComponentLib/index.vue";
 import ProductLine from "./components/ProductLine/index.vue";
 import ProductDetail from "./components/ProductDetail/index.vue";

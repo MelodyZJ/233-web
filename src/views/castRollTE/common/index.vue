@@ -38,7 +38,6 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, watch } from "vue";
 import Computational from "./Computational/index.vue";
 import SteelGrade from "./SteelGrade/index.vue";
 import CastingBlank from "./CastingBlank/index.vue";

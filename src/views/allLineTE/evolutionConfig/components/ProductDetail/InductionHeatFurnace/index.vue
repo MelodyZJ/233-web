@@ -40,8 +40,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
-
 const inductionHeatFurnaceForm = reactive({
   outletTemperature: "",
   rollingSpeed: "",

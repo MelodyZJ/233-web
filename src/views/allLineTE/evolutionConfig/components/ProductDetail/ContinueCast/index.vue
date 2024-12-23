@@ -110,8 +110,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
-
 const continueCastForm = reactive({
   surfaceCenterTemperature: "",
   castSpeed: "",

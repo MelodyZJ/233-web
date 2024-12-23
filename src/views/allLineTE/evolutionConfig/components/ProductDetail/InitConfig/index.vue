@@ -101,8 +101,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
-
 const initConfigForm = reactive({
   steelGrade: "",
   beforeSpeed: "",

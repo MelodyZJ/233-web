@@ -36,8 +36,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
-
 const flyShearForm = reactive({
   limitSpeed: "",
   limitDiameter: "",

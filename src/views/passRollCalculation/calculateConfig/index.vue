@@ -24,7 +24,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
 import BaseInfo from "./BaseInfo/index.vue";
 import ParaConfig from "./ParaConfig/index.vue";
 

@@ -73,8 +73,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
-
 const baseInfoForm = reactive({
   riskName: "",
   belongProject: "",

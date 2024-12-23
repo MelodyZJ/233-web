@@ -83,7 +83,6 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, watch } from "vue";
 import InitConfig from "./InitConfig/index.vue";
 import DescaleBox from "./DescaleBox/index.vue";
 import TakeOffHead from "./TakeOffHead/index.vue";

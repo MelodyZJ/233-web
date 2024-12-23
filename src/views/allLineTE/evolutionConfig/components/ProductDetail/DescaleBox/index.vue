@@ -35,8 +35,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
-
 const descaleBoxForm = reactive({
   type: "",
   typeValue: "",

@@ -17,7 +17,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
 import RollTableTaskList from "./RollTableTaskList/index.vue";
 
 const tab = ref(null);

@@ -20,7 +20,15 @@ import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 
 // tailwindcss
-import 'tailwindcss/tailwind.css';
+import "tailwindcss/tailwind.css";
+
+// 分页组件
+import Pagination from "@/components/Pagination/index.vue";
+import zhCn from "element-plus/es/locale/lang/zh-cn";
+
+// 修改分页器默认文字
+zhCn.el.pagination.total = "共" + `{total}` + "条";
+zhCn.el.pagination.goto = "跳转至";
 
 const vuetify = createVuetify({
   components,
@@ -41,9 +49,12 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 // pinia持久化
 pinia.use(piniaPluginPersistedstate);
 
+// 全局组件挂载
+app.component("Pagination", Pagination);
+
 app
   .use(router)
-  .use(ElementPlus)
+  .use(ElementPlus, { locale: zhCn })
   .use(vuetify)
   .use(pinia)
   .use(lazyPlugin)

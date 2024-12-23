@@ -61,8 +61,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
-
 const waterBoxForm = reactive({
   waterBox: "",
   heatModel: "",

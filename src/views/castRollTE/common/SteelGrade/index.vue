@@ -55,8 +55,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
-
 const steelGradeForm = reactive({
   steelGrade: "",
   temperature: "",
