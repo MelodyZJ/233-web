@@ -30,7 +30,7 @@
       </el-select>
 
       <div class="btn">
-        <el-button>表格表头设置</el-button>
+        <el-button @click="openDialog">表格表头设置</el-button>
         <el-button>导出Excel</el-button>
       </div>
     </div>
@@ -166,6 +166,31 @@
         @pagination="getList"
       />
     </div>
+
+    <!-- 表格表头设置弹窗 -->
+    <v-dialog v-model="showDialog" width="auto">
+      <v-card width="400" class="px-1 py-2">
+        <v-card-title class="text-lg px-3">表格表头设置</v-card-title>
+        <v-card-text class="px-3"> </v-card-text>
+
+        <template v-slot:actions>
+          <div class="mr-1">
+            <v-btn
+              variant="outlined"
+              class="border border-gray-300"
+              @click="showDialog = false"
+              >取消</v-btn
+            >
+            <v-btn
+              variant="tonal"
+              class="bg-indigo-primary text-white ml-3"
+              @click="showDialog = false"
+              >确定</v-btn
+            >
+          </div>
+        </template>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -295,6 +320,11 @@ const calculateStateList = ref([
     label: "状态2",
   },
 ]);
+
+const showDialog = ref(false);
+const openDialog = () => {
+  showDialog.value = true;
+};
 </script>
 
 <style lang="scss" scoped>

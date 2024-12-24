@@ -34,6 +34,26 @@
         <div class="part-title">轧制功率曲线图</div>
         <div id="rollPowerGraph" class="echarts"></div>
       </div>
+      <div class="echarts-item">
+        <div class="part-title">电机转速曲线图</div>
+        <div id="motorSpeedGraph" class="echarts"></div>
+      </div>
+      <div class="echarts-item">
+        <div class="part-title">延伸率曲线图</div>
+        <div id="elongationGraph" class="echarts"></div>
+      </div>
+      <div class="echarts-item">
+        <div class="part-title">力矩对比图</div>
+        <div id="forceCompareGraph" class="echarts"></div>
+      </div>
+      <div class="echarts-item">
+        <div class="part-title">轧制温度曲线图</div>
+        <div id="rollTemperatureGraph" class="echarts"></div>
+      </div>
+      <div class="echarts-item">
+        <div class="part-title">功率对比图</div>
+        <div id="powerCompareGraph" class="echarts"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -42,10 +62,13 @@
 import * as echarts from "echarts";
 
 import router from "@/router";
-import { onMounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 
 onMounted(() => {
-  initChart();
+  console.log("onMounted");
+  nextTick(() => {
+    initChart();
+  });
 });
 
 const data = reactive({
@@ -67,6 +90,7 @@ const rackList = ref([
   },
 ]);
 
+// 调整电机备率
 const handleChange = (value) => {
   console.log(value);
 };
@@ -83,8 +107,8 @@ const option = {
     data: ["数据一", "数据二", "数据三", "数据四", "数据五"],
   },
   grid: {
-    left: "3%",
-    right: "4%",
+    left: "5%",
+    right: "5%",
     bottom: "3%",
     containLabel: true,
   },
@@ -124,24 +148,46 @@ const option = {
   ],
 };
 
-// vue3需要使用shallowRef
-const myChart = shallowRef(null);
-// k线图数据
-const graphData = ref({});
-// 初始化图表
+const myCharts = ref({});
+// 初始化图表的函数
 const initChart = () => {
-  if (myChart.value) myChart.value.dispose(); // 之前的myChart先销毁
-  myChart.value = echarts.init(document.getElementById("rollPowerGraph"));
+  const chartConfigs = [
+    { id: "rollPowerGraph", option: option },
+    { id: "motorSpeedGraph", option: option },
+    { id: "elongationGraph", option: option },
+    { id: "forceCompareGraph", option: option },
+    { id: "rollTemperatureGraph", option: option },
+    { id: "powerCompareGraph", option: option },
+  ];
 
-  // 隔离option
-  const copyOption = JSON.parse(JSON.stringify(option));
+  chartConfigs.forEach(({ id, option }) => {
+    if (myCharts.value[id]) {
+      myCharts.value[id].dispose();
+      console.log("dispose");
+    }
+    myCharts.value[id] = echarts.init(document.getElementById(id));
+    myCharts.value[id].setOption(option, true);
+  });
 
-  myChart.value.setOption(copyOption, true);
-
+  // 调整窗口大小时的处理
   window.onresize = function () {
-    myChart.value.resize();
+    for (const id in myCharts.value) {
+      if (myCharts.value.hasOwnProperty(id)) {
+        myCharts.value[id].resize();
+      }
+    }
   };
 };
+
+onUnmounted(() => {
+  console.log(myCharts.value, "myCharts");
+  // 销毁图表实例
+  for (const id in myCharts.value) {
+    if (myCharts.value.hasOwnProperty(id)) {
+      myCharts.value[id].dispose();
+    }
+  }
+});
 </script>
 
 <style lang="scss" scoped>
@@ -154,17 +200,19 @@ const initChart = () => {
 
   .echarts-content {
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 
     .echarts-item {
-      width: 500px;
-      height: 380px;
+      width: 33.3%;
+      margin-bottom: 20px;
 
       .part-title {
         height: 50px;
         display: flex;
         align-items: center;
         font-size: 15px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
 
         &::before {
           content: "";
@@ -178,8 +226,8 @@ const initChart = () => {
       }
 
       .echarts {
-        width: 500px;
-        height: 300px;
+        width: 100%;
+        height: 280px;
       }
     }
   }
