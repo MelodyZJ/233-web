@@ -57,7 +57,7 @@ const navItemList = reactive([
     name: "铸轧温度演变",
     icon: "Notification",
     children: [
-      { path: "/directCastingRoll", name: "直接铸轧", icon: "" },
+      { path: "/directCastRoll", name: "直接铸轧", icon: "" },
       { path: "/continuousCastRoll", name: "连铸连轧", icon: "" },
     ],
   },

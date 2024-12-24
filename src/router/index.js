@@ -24,9 +24,9 @@ const routes = [
     component: Layout,
     children: [
       {
-        path: "/directCastingRoll",
+        path: "/directCastRoll",
         component: () => import("@/views/castRollTE/common/index.vue"),
-        name: "directCastingRoll",
+        name: "directCastRoll",
         meta: { title: "直接铸轧" },
       },
       {

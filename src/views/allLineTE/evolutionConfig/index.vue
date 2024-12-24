@@ -1,5 +1,5 @@
 <template>
-  <div class="directCastingRoll-container">
+  <div class="directCastRoll-container">
     <div class="left">
       <component-lib></component-lib>
     </div>
@@ -18,7 +18,7 @@ import ProductDetail from "./components/ProductDetail/index.vue";
 </script>
 
 <style lang="scss" scoped>
-.directCastingRoll-container {
+.directCastRoll-container {
   height: calc(100vh - $base-main-padding * 2 - $top-header-height - 10px);
   display: flex;
   gap: 20px;

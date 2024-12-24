@@ -1,5 +1,5 @@
 <template>
-  <div class="directCastingRoll-container">
+  <div class="directCastRoll-container">
     <el-row>
       <el-col :span="showAnchor ? 18 : 23">
         <div ref="containerRef" class="form-container">
@@ -40,8 +40,8 @@
 <script setup>
 import Computational from "./Computational/index.vue";
 import SteelGrade from "./SteelGrade/index.vue";
-import CastingBlank from "./CastingBlank/index.vue";
-import CastingInterval from "./CastingInterval/index.vue";
+import CastBlank from "./CastBlank/index.vue";
+import CastInterval from "./CastInterval/index.vue";
 import TemperatureImage from "./TemperatureImage/index.vue";
 import Finish from "./Finish/index.vue";
 
@@ -75,7 +75,7 @@ const handleClick = (e) => {
 </script>
 
 <style lang="scss" scoped>
-.directCastingRoll-container {
+.directCastRoll-container {
   padding: 30px;
   background-color: #fff;
   border-radius: $base-border-radius;
