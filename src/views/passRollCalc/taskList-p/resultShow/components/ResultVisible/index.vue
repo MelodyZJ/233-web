@@ -65,7 +65,6 @@ import router from "@/router";
 import { onMounted, onUnmounted } from "vue";
 
 onMounted(() => {
-  console.log("onMounted");
   nextTick(() => {
     initChart();
   });
@@ -163,7 +162,6 @@ const initChart = () => {
   chartConfigs.forEach(({ id, option }) => {
     if (myCharts.value[id]) {
       myCharts.value[id].dispose();
-      console.log("dispose");
     }
     myCharts.value[id] = echarts.init(document.getElementById(id));
     myCharts.value[id].setOption(option, true);
@@ -180,7 +178,6 @@ const initChart = () => {
 };
 
 onUnmounted(() => {
-  console.log(myCharts.value, "myCharts");
   // 销毁图表实例
   for (const id in myCharts.value) {
     if (myCharts.value.hasOwnProperty(id)) {

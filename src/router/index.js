@@ -52,6 +52,13 @@ const routes = [
         component: () => import("@/views/allLineTE/taskList-a/index.vue"),
         name: "taskList-a",
         meta: { title: "任务列表" },
+        children: [
+          {
+            path: "/taskList-a/resultShow",
+            name: "resultShow1",
+            meta: { title: "结果展示" },
+          },
+        ],
       },
     ],
   },
@@ -68,18 +75,13 @@ const routes = [
       },
       {
         path: "/taskList-p",
-        component: () =>
-          import("@/views/passRollCalc/taskList-p/index.vue"),
+        component: () => import("@/views/passRollCalc/taskList-p/index.vue"),
         name: "taskList-p",
         meta: { title: "任务列表" },
         children: [
           {
             path: "/taskList-p/resultShow",
-            component: () =>
-              import(
-                "@/views/passRollCalc/taskList-p/resultShow/index.vue"
-              ),
-            name: "resultShow",
+            name: "resultShow2",
             meta: { title: "结果展示" },
           },
         ],
