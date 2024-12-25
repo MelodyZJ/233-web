@@ -46,12 +46,12 @@ const handleClick = () => {
 
 const windowList = reactive([
   {
-    title: "个人主页",
-    desc: "很多事情值得记录，当然也值得回味",
+    title: "主页",
+    desc: "好日子在后头呢，但人得往前走。",
   },
   {
-    title: "微信聊天小程序",
-    desc: "单聊、群聊，可发送文字、表情、图片、语音、位置...",
+    title: "我才是主页",
+    desc: "“给你加薪了哈！”，食人族向正在被煮的我说。",
   },
 ]);
 

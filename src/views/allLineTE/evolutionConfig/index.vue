@@ -81,7 +81,7 @@ const componentItemList = ref({
   pageNum: 1,
 });
 
-//维修类型分页
+// 组件库分页
 const prev = () => {
   componentItemList.value.pageNum--;
 };
