@@ -23,7 +23,7 @@ const unwatch = watch(
   () => route.path,
   (newPath, oldPath) => {
     routePath.value = newPath;
-    console.log(`路由从 ${oldPath} 变化到 ${newPath}`);
+    // console.log(`路由从 ${oldPath} 变化到 ${newPath}`);
   },
   { immediate: true }
 );

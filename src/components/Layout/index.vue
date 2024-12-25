@@ -21,7 +21,7 @@
             </el-breadcrumb-item>
           </el-breadcrumb>
 
-          <RouterView />
+          <router-view v-if="isRouterActive" />
         </el-main>
       </el-container>
     </el-container>
@@ -34,6 +34,16 @@ import Header from "@/components/Header/index.vue";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
+const router = useRouter();
+// 提供强制刷新函数
+const isRouterActive = ref(true);
+provide("reload", () => {
+  isRouterActive.value = false;
+  nextTick(() => {
+    isRouterActive.value = true;
+  });
+});
+
 const asideWidth = ref(200);
 const isFolded = ref(false);
 

@@ -8,9 +8,9 @@
           <!-- 钢种属性 -->
           <steel-grade id="part2"></steel-grade>
           <!-- 铸坯属性 -->
-          <casting-blank id="part3"></casting-blank>
+          <cast-blank id="part3"></cast-blank>
           <!-- 铸轧间距属性 -->
-          <casting-interval id="part4"></casting-interval>
+          <cast-interval id="part4"></cast-interval>
           <!-- 铸轧温度图像 -->
           <temperature-image id="part5"></temperature-image>
           <!-- 完成 -->
@@ -44,6 +44,7 @@ import CastBlank from "./CastBlank/index.vue";
 import CastInterval from "./CastInterval/index.vue";
 import TemperatureImage from "./TemperatureImage/index.vue";
 import Finish from "./Finish/index.vue";
+import { useRoute } from "vue-router";
 
 const containerRef = ref(null);
 // 视口宽度
@@ -57,6 +58,22 @@ onMounted(() => {
   // 监听窗口大小变化事件
   window.addEventListener("resize", handleResize);
 });
+
+// 监听路由变化重新刷新页面
+const route = useRoute();
+const reload = inject("reload");
+const updateFun = () => {
+  reload();
+};
+
+watch(
+  () => route.path,
+  (newPath, oldPath) => {
+    if (newPath !== oldPath) {
+      updateFun();
+    }
+  }
+);
 
 // 根据视口大小调整锚点栏显示与隐藏
 const showAnchor = ref(true);
@@ -72,6 +89,9 @@ const handleResize = () => {
 const handleClick = (e) => {
   e.preventDefault();
 };
+
+// 在离开当前路由之前清空数据
+onBeforeRouteLeave((to, from) => {});
 </script>
 
 <style lang="scss" scoped>

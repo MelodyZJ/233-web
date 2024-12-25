@@ -1,11 +1,10 @@
 <template>
   <div class="app-container">
-    <RouterView />
+    <router-view />
   </div>
 </template>
 
 <script setup>
-import { watch } from "vue";
 import { useThemeStore } from "@/store/themeStore.js";
 import { useRouter } from "vue-router";
 
@@ -68,7 +67,7 @@ watch(
 
 .primary-btn {
   height: 32px !important;
-  background-color: #5084FF !important;
+  background-color: #5084ff !important;
   color: #fff !important;
 }
 
