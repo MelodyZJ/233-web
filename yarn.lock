@@ -163,6 +163,11 @@
   "resolved" "https://registry.npmjs.org/@types/lodash/-/lodash-4.17.0.tgz"
   "version" "4.17.0"
 
+"@types/sortablejs@^1.15.8":
+  "integrity" "sha512-b79830lW+RZfwaztgs1aVPgbasJ8e7AXtZYHTELNXZPsERt4ymJdjV4OccDbHQAvHrCcFpbF78jkm0R6h/pZVg=="
+  "resolved" "https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.8.tgz"
+  "version" "1.15.8"
+
 "@types/web-bluetooth@^0.0.16":
   "integrity" "sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ=="
   "resolved" "https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.16.tgz"
@@ -1391,6 +1396,13 @@
   "integrity" "sha512-EOG8KXDQNwkJILkx/gPcoL/7vH+hORoBaKgGe+6W7VFMvCYJfmF2dGbvgDroVnI8LU7/kTu8mbjRZGBU1z9NTA=="
   "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.7.tgz"
   "version" "0.14.7"
+
+"vue-draggable-plus@^0.6.0":
+  "integrity" "sha512-G5TSfHrt9tX9EjdG49InoFJbt2NYk0h3kgjgKxkFWr3ulIUays0oFObr5KZ8qzD4+QnhtALiRwIqY6qul4egqw=="
+  "resolved" "https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.6.0.tgz"
+  "version" "0.6.0"
+  dependencies:
+    "@types/sortablejs" "^1.15.8"
 
 "vue-router@^4.3.0":
   "integrity" "sha512-dqUcs8tUeG+ssgWhcPbjHvazML16Oga5w34uCUmsk7i0BcnskoLGwjpa15fqMr2Fa5JgVBrdL2MEgqz6XZ/6IQ=="
