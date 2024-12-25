@@ -110,51 +110,16 @@
         ref="tableRef"
         :data="tableData"
         highlight-current-row
-        style="width: 99%"
         :header-cell-style="{ background: '#42434B', color: '#f5f5f5' }"
         border
       >
         <el-table-column
-          label="机架号"
-          align="center"
-          max-width="150"
-          prop="taskName"
-        />
-        <el-table-column
-          label="孔型形状"
-          align="center"
-          max-width="120"
-          prop="projectName"
-        />
-        <el-table-column
-          label="型铁面积 (mm)"
-          align="center"
-          max-width="150"
-          prop="type"
-        />
-        <el-table-column
-          label="辊缝 (mm)"
-          align="center"
-          max-width="150"
-          prop="status"
-        />
-        <el-table-column
-          label="延伸率 (u)"
-          align="center"
-          max-width="150"
-          prop="creatTime"
-        />
-        <el-table-column
-          label="轧制速度 (m/s)"
-          align="center"
-          max-width="150"
-          prop="creatTime"
-        />
-        <el-table-column
-          label="电机转速 (rpm)"
-          align="center"
-          max-width="150"
-          prop="creatTime"
+          v-for="column in columns"
+          :key="column.prop"
+          :label="column.label"
+          :align="column.align"
+          :max-width="column.maxWidth"
+          :prop="column.prop"
         />
       </el-table>
 
@@ -195,6 +160,7 @@
 </template>
 
 <script setup>
+import { VueDraggable } from "vue-draggable-plus";
 import router from "@/router";
 
 const now = new Date();
@@ -209,59 +175,96 @@ const data = reactive({
     weight: "",
     intervalTtime: "",
   },
+  columns: [
+    { label: "机架号", align: "center", maxWidth: "150", prop: "rackNum" },
+    {
+      label: "孔型形状",
+      align: "center",
+      maxWidth: "120",
+      prop: "passShape",
+    },
+    {
+      label: "型铁面积 (mm)",
+      align: "center",
+      maxWidth: "150",
+      prop: "ironArea",
+    },
+    { label: "辊缝 (mm)", align: "center", maxWidth: "150", prop: "rollGap" },
+    {
+      label: "延伸率 (u)",
+      align: "center",
+      maxWidth: "150",
+      prop: "elongationRate",
+    },
+    {
+      label: "轧制速度 (m/s)",
+      align: "center",
+      maxWidth: "150",
+      prop: "rollSpeed",
+    },
+    {
+      label: "电机转速 (rpm)",
+      align: "center",
+      maxWidth: "150",
+      prop: "motorSpeed",
+    },
+  ],
   tableData: [
     {
-      taskName: "我是任务",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
+      rackNum: "机架1",
+      passShape: "圆形",
+      ironArea: "100",
+      rollGap: "10",
+      elongationRate: "500",
+      rollSpeed: "600",
+      motorSpeed: "3000",
     },
     {
-      taskName: "我是任务",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
+      rackNum: "机架2",
+      passShape: "圆形",
+      ironArea: "100",
+      rollGap: "10",
+      elongationRate: "500",
+      rollSpeed: "600",
+      motorSpeed: "3000",
     },
     {
-      taskName: "我才是任务",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
+      rackNum: "机架3",
+      passShape: "圆形",
+      ironArea: "100",
+      rollGap: "10",
+      elongationRate: "500",
+      rollSpeed: "600",
+      motorSpeed: "3000",
     },
     {
-      taskName: "今夜星光闪闪",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
+      rackNum: "机架4",
+      passShape: "圆形",
+      ironArea: "100",
+      rollGap: "10",
+      elongationRate: "500",
+      rollSpeed: "600",
+      motorSpeed: "3000",
     },
     {
-      taskName: "我爱你的心暖暖",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
-    },
-    {
-      taskName: "我爱你的心暖暖",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
+      rackNum: "机架5",
+      passShape: "圆形",
+      ironArea: "100",
+      rollGap: "10",
+      elongationRate: "500",
+      rollSpeed: "600",
+      motorSpeed: "3000",
     },
   ],
   queryParams: {
     pageNum: 1,
     pageSize: 10,
-    belongProject: undefined,
-    tableType: undefined,
-    calculateState: undefined,
+    belongProject: "",
+    tableType: "",
+    calculateState: "",
   },
 });
-const { formData, tableData, queryParams, rules } = toRefs(data);
+const { formData, columns, tableData, queryParams } = toRefs(data);
 const total = ref(20);
 const tableRef = ref(null);
 
@@ -324,6 +327,10 @@ const calculateStateList = ref([
 const showDialog = ref(false);
 const openDialog = () => {
   showDialog.value = true;
+};
+
+const onEnd = () => {
+  console.log("拖拽结束");
 };
 </script>
 
