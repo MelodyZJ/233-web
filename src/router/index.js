@@ -55,6 +55,7 @@ const routes = [
         children: [
           {
             path: "/taskList-a/resultShow",
+            component: Layout,
             name: "resultShow1",
             meta: { title: "结果展示" },
           },
@@ -81,6 +82,7 @@ const routes = [
         children: [
           {
             path: "/taskList-p/resultShow",
+            component: Layout,
             name: "resultShow2",
             meta: { title: "结果展示" },
           },

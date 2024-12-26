@@ -95,7 +95,7 @@ const handleChange = (value) => {
 };
 
 // 折线图配置
-const option = {
+const option1 = {
   title: {
     text: "",
   },
@@ -111,10 +111,12 @@ const option = {
     bottom: "3%",
     containLabel: true,
   },
-  xAxis: {
-    type: "category",
-    data: ["100", "200", "300", "400", "500", "600", "700"],
-  },
+  xAxis: [
+    {
+      type: "category",
+      data: ["100", "200", "300", "400", "500", "600", "700"],
+    },
+  ],
   yAxis: {
     type: "value",
   },
@@ -147,16 +149,102 @@ const option = {
   ],
 };
 
+// 折线图和散点图二合一配置
+const option2 = {
+  title: {
+    text: "",
+  },
+  tooltip: {
+    trigger: "axis",
+  },
+  legend: {
+    data: ["数据一", "数据二", "数据三", "数据四", "数据五"],
+  },
+  grid: {
+    left: "5%",
+    right: "5%",
+    bottom: "3%",
+    containLabel: true,
+  },
+  xAxis: [
+    {
+      type: "category",
+      data: ["100", "200", "300", "400", "500", "600", "700"],
+    },
+    //  设置第二个x轴
+    {
+      type: "category",
+      position: "bottom",
+      offset: 25,
+      axisPointer: {
+        type: "none",
+      },
+      //  隐藏第二条x轴
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+      axisLabel: {
+        show: false,
+      },
+    },
+  ],
+  yAxis: {
+    type: "value",
+  },
+  series: [
+    {
+      name: "数据一",
+      type: "line",
+      data: [110, 192, 201, 234, 300, 320, 330],
+    },
+    {
+      name: "数据二",
+      type: "line",
+      data: [120, 182, 191, 234, 290, 330, 310],
+    },
+    {
+      name: "数据三",
+      type: "line",
+      data: [105, 172, 191, 234, 310, 320, 315],
+    },
+    {
+      name: "数据四",
+      type: "line",
+      data: [125, 162, 191, 244, 295, 355, 350],
+    },
+    {
+      name: "数据五",
+      type: "line",
+      data: [120, 172, 198, 223, 315, 330, 310],
+    },
+    {
+      name: "随机点",
+      type: "scatter",
+      xAxisIndex: 1,
+      data: [
+        [100, 150],
+        [200, 200],
+        [300, 200],
+        [400, 300],
+        [500, 380],
+      ],
+    },
+  ],
+};
+
 const myCharts = ref({});
 // 初始化图表的函数
 const initChart = () => {
   const chartConfigs = [
-    { id: "rollPowerGraph", option: option },
-    { id: "motorSpeedGraph", option: option },
-    { id: "elongationGraph", option: option },
-    { id: "forceCompareGraph", option: option },
-    { id: "rollTemperatureGraph", option: option },
-    { id: "powerCompareGraph", option: option },
+    { id: "rollPowerGraph", option: option2 },
+    { id: "motorSpeedGraph", option: option1 },
+    { id: "elongationGraph", option: option1 },
+    { id: "forceCompareGraph", option: option2 },
+    { id: "rollTemperatureGraph", option: option1 },
+    { id: "powerCompareGraph", option: option1 },
   ];
 
   chartConfigs.forEach(({ id, option }) => {

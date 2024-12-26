@@ -7,11 +7,11 @@
         <v-btn variant="outlined" class="custom-btn">下载模板</v-btn>
       </div>
 
+      <!-- 具体参数 -->
       <el-table
         ref="tableRef1"
         :data="tableData1"
         highlight-current-row
-        style="width: 100%"
         height="100%"
         :header-cell-style="{ background: '#fafafa' }"
         border
@@ -85,11 +85,12 @@
         >添加配置</v-btn
       >
 
+      <!-- 钢种信息 -->
       <el-table
         ref="tableRef2"
         :data="tableData2"
         highlight-current-row
-        style="width: 100%; margin-top: 20px"
+        style="margin-top: 20px"
         :header-cell-style="{ background: '#fafafa' }"
         border
       >
@@ -110,48 +111,51 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="产线布置形式" align="center" max-width="150">
-          <template #default="scope">
-            <el-input
-              v-model="scope.row.productLineLayout"
-              placeholder="请输入"
-            />
-          </template>
-        </el-table-column>
+        <template v-if="props.tab == '1'">
+          <el-table-column label="产线布置形式" align="center" max-width="150">
+            <template #default="scope">
+              <el-input
+                v-model="scope.row.productLineLayout"
+                placeholder="请输入"
+              />
+            </template>
+          </el-table-column>
 
-        <el-table-column label="热膨胀系数" align="center" max-width="150">
-          <template #default="scope">
-            <el-input
-              v-model="scope.row.heatExpansionCoe"
-              placeholder="请输入"
-            />
-          </template>
-        </el-table-column>
+          <el-table-column label="热膨胀系数" align="center" max-width="150">
+            <template #default="scope">
+              <el-input
+                v-model="scope.row.heatExpansionCoe"
+                placeholder="请输入"
+              />
+            </template>
+          </el-table-column>
 
-        <el-table-column label="铸坯高度" align="center" max-width="150">
-          <template #default="scope">
-            <el-input v-model="scope.row.billetHeight" placeholder="请输入" />
-          </template>
-        </el-table-column>
+          <el-table-column label="铸坯高度" align="center" max-width="150">
+            <template #default="scope">
+              <el-input v-model="scope.row.billetHeight" placeholder="请输入" />
+            </template>
+          </el-table-column>
 
-        <el-table-column label="铸坯宽度" align="center" max-width="150">
-          <template #default="scope">
-            <el-input v-model="scope.row.billetWidth" placeholder="请输入" />
-          </template>
-        </el-table-column>
+          <el-table-column label="铸坯宽度" align="center" max-width="150">
+            <template #default="scope">
+              <el-input v-model="scope.row.billetWidth" placeholder="请输入" />
+            </template>
+          </el-table-column>
 
-        <el-table-column label="铸坯长度" align="center" max-width="150">
-          <template #default="scope">
-            <el-input v-model="scope.row.billetLength" placeholder="请输入" />
-          </template>
-        </el-table-column>
+          <el-table-column label="铸坯长度" align="center" max-width="150">
+            <template #default="scope">
+              <el-input v-model="scope.row.billetLength" placeholder="请输入" />
+            </template>
+          </el-table-column>
+        </template>
       </el-table>
 
+      <!-- 化学成分 -->
       <el-table
         ref="tableRef3"
         :data="tableData3"
         highlight-current-row
-        style="width: 100%; margin-top: 20px"
+        style="margin-top: 20px"
         :header-cell-style="{ background: '#fafafa' }"
         border
       >
@@ -213,6 +217,13 @@
 
 <script setup>
 import dayjs from "dayjs";
+
+const props = defineProps({
+  tab: {
+    type: String,
+    default: "1",
+  },
+});
 
 const paraConfigForm = reactive({});
 

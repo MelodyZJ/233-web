@@ -13,10 +13,17 @@
               <!-- 基本信息 -->
               <base-info></base-info>
               <!-- 参数配置 -->
-              <para-config></para-config>
+              <para-config :tab="tab"></para-config>
             </div>
           </v-tabs-window-item>
-          <v-tabs-window-item value="2"></v-tabs-window-item>
+          <v-tabs-window-item value="2">
+            <div class="user-table">
+              <!-- 基本信息 -->
+              <base-info></base-info>
+              <!-- 参数配置 -->
+              <para-config :tab="tab"></para-config>
+            </div>
+          </v-tabs-window-item>
         </v-tabs-window>
       </v-card-text>
     </v-card>
@@ -27,7 +34,7 @@
 import BaseInfo from "./BaseInfo/index.vue";
 import ParaConfig from "./ParaConfig/index.vue";
 
-const tab = ref(null);
+const tab = ref("1");
 </script>
 
 <style lang="scss" scoped>
@@ -47,7 +54,8 @@ const tab = ref(null);
     padding: 0;
   }
 
-  .design-table {
+  .design-table,
+  .user-table {
     height: calc(100vh - $base-main-padding * 2 - $top-header-height - 95px);
     overflow-y: scroll;
   }
