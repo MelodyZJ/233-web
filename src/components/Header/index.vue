@@ -9,7 +9,7 @@
         <img src="@/assets/imgs/avatar.png" alt="用户头像" class="avatar" />
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <el-dropdown-item @click="loginOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -17,7 +17,15 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const loginOut = () => {
+  router.push("/login");
+};
+</script>
 
 <style lang="scss" scoped>
 .header-container {

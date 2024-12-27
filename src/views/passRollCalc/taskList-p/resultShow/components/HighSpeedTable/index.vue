@@ -107,28 +107,33 @@
     </div>
     <!-- 表格 -->
     <div class="table-data">
-      <VueDraggable v-model="headers" target=".sort-target">
-        <table class="table-content">
-          <thead>
-            <tr class="sort-target">
-              <th
-                v-for="header in headers"
-                :key="header.value"
-                class="table-header"
-              >
-                {{ header.text }}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in tablelist" :key="item.name" class="table-row">
-              <td v-for="header in headers" :key="header.value">
-                {{ item[header.value] }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </VueDraggable>
+      <el-scrollbar>
+        <VueDraggable v-model="headers" target=".sort-target">
+          <table
+            class="table-content"
+            :style="{ width: computeDragWidth(headers.length) }"
+          >
+            <thead>
+              <tr class="sort-target">
+                <th
+                  v-for="header in headers"
+                  :key="header.value"
+                  class="table-header"
+                >
+                  {{ header.text }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in tablelist" :key="item.name" class="table-row">
+                <td v-for="header in headers" :key="header.value">
+                  {{ item[header.value] }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </VueDraggable>
+      </el-scrollbar>
 
       <pagination
         v-show="total > 0"
@@ -215,6 +220,18 @@ const data = reactive({
       text: "电机转速 (rpm)",
       value: "motorSpeed",
     },
+    {
+      text: "电机转速 (rpm)",
+      value: "motorSpeed",
+    },
+    {
+      text: "电机转速 (rpm)",
+      value: "motorSpeed",
+    },
+    {
+      text: "电机转速 (rpm)",
+      value: "motorSpeed",
+    },
   ],
   // 表格数据
   tablelist: [
@@ -256,6 +273,15 @@ const data = reactive({
     },
     {
       rackNum: "机架5",
+      passShape: "圆形",
+      ironArea: "100",
+      rollGap: "10",
+      elongationRate: "500",
+      rollSpeed: "600",
+      motorSpeed: "3000",
+    },
+    {
+      rackNum: "机架6",
       passShape: "圆形",
       ironArea: "100",
       rollGap: "10",
@@ -484,6 +510,11 @@ const headTypeList = ref([
 
 // 选中的表头
 const selected = ref([]);
+
+// 计算生产线长度
+const computeDragWidth = (length) => {
+  return `${length * 150}px`;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -505,7 +536,7 @@ const selected = ref([]);
     width: 100%;
 
     .table-content {
-      width: 100%;
+      width: 2000px;
 
       .table-header {
         width: 150px;
