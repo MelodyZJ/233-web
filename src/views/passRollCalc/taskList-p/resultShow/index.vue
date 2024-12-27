@@ -9,10 +9,14 @@
       <v-card-text class="pa-0">
         <v-tabs-window v-model="tab">
           <v-tabs-window-item value="1">
-            <high-speed-table />
+            <div class="table-box">
+              <high-speed-table />
+            </div>
           </v-tabs-window-item>
           <v-tabs-window-item value="2">
-            <result-visible />
+            <div class="table-box">
+              <result-visible />
+            </div>
           </v-tabs-window-item>
         </v-tabs-window>
       </v-card-text>
@@ -39,6 +43,11 @@ const tab = ref(null);
 
   .v-btn--size-default {
     padding: 0;
+  }
+
+  .table-box {
+    height: calc(100vh - $base-main-padding * 2 - $top-header-height - 95px);
+    overflow-y: scroll;
   }
 }
 </style>

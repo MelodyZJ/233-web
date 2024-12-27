@@ -9,7 +9,7 @@
       <v-card-text class="pa-0">
         <v-tabs-window v-model="tab">
           <v-tabs-window-item value="1">
-            <div class="design-table">
+            <div class="table-box">
               <!-- 基本信息 -->
               <base-info></base-info>
               <!-- 参数配置 -->
@@ -17,7 +17,7 @@
             </div>
           </v-tabs-window-item>
           <v-tabs-window-item value="2">
-            <div class="user-table">
+            <div class="table-box">
               <!-- 基本信息 -->
               <base-info></base-info>
               <!-- 参数配置 -->
@@ -54,8 +54,7 @@ const tab = ref("1");
     padding: 0;
   }
 
-  .design-table,
-  .user-table {
+  .table-box {
     height: calc(100vh - $base-main-padding * 2 - $top-header-height - 95px);
     overflow-y: scroll;
   }
