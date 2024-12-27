@@ -37,7 +37,7 @@
     </div>
     <!-- 表单 -->
     <div class="form-content">
-      <el-form :inline="true" :model="formData" label-width="110px">
+      <el-form :inline="true" :model="formData" label-width="120px" class="ml-[-40px]">
         <el-row>
           <el-col :span="6">
             <el-form-item label="表号">
