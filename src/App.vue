@@ -66,13 +66,11 @@ watch(
 }
 
 .primary-btn {
-  height: 32px !important;
   background-color: #5084ff !important;
   color: #fff !important;
 }
 
 .white-btn {
-  height: 32px !important;
   border: 1px solid #dcdfe6 !important;
   margin-left: 10px !important;
 }

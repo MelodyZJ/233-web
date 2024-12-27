@@ -57,6 +57,7 @@ const windowWidth = ref(
 onMounted(() => {
   // 监听窗口大小变化事件
   window.addEventListener("resize", handleResize);
+  handleResize();
 });
 
 // 监听路由变化重新刷新页面

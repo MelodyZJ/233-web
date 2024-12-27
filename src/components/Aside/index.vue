@@ -83,6 +83,9 @@ const navItemList = reactive([
     path: "/reduceDiameterCalc",
     name: "减定径计算",
     icon: "ZoomOut",
+    children: [
+      { path: "/highSpeedWire", name: "高速线材", icon: "" },
+    ],
   },
   {
     path: "/specialSteelPre",

@@ -97,7 +97,15 @@ const routes = [
   {
     path: "/reduceDiameterCalc",
     component: Layout,
-    meta: { title: "减定径计算" },
+    children: [
+      {
+        path: "/highSpeedWire",
+        component: () =>
+          import("@/views/reduceDiameterCalc/highSpeedWire/index.vue"),
+        name: "highSpeedWire",
+        meta: { title: "高速线材" },
+      },
+    ],
   },
   {
     path: "/specialSteelPre",

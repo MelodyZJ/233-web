@@ -6,12 +6,14 @@
           v-model="queryParams.startTime"
           type="date"
           placeholder="开始时间"
+          style="height: 36px;"
         />
 
         <el-date-picker
           v-model="queryParams.endTime"
           type="date"
           placeholder="结束时间"
+          style="height: 36px;"
         />
 
         <div class="btn">

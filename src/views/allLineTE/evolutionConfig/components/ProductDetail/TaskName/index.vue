@@ -36,8 +36,8 @@
       </el-form>
 
       <div class="btn">
-        <v-btn variant="tonal" class="submit-btn">提交</v-btn>
-        <v-btn variant="outlined" class="reset-btn">重置</v-btn>
+        <v-btn variant="tonal" class="primary-btn">提交</v-btn>
+        <v-btn variant="outlined" class="white-btn">重置</v-btn>
       </div>
     </div>
   </div>
@@ -103,16 +103,6 @@ const taskNameForm = reactive({
       display: flex;
       justify-content: flex-end;
       padding: 20px 0 30px 0;
-
-      .submit-btn {
-        background-color: #0c5fff;
-        color: #fff;
-      }
-
-      .reset-btn {
-        border: 1px solid #dcdfe6;
-        margin-left: 10px;
-      }
     }
   }
 }
