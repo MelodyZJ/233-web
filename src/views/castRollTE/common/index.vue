@@ -1,5 +1,5 @@
 <template>
-  <div class="directCastRoll-container">
+  <div class="common-container">
     <el-row>
       <el-col :span="showAnchor ? 18 : 23">
         <div ref="containerRef" class="form-container">
@@ -96,7 +96,7 @@ onBeforeRouteLeave((to, from) => {});
 </script>
 
 <style lang="scss" scoped>
-.directCastRoll-container {
+.common-container {
   padding: 30px;
   background-color: #fff;
   border-radius: $base-border-radius;

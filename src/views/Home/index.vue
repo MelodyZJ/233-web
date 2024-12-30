@@ -81,7 +81,6 @@ const handleClickToCard = (path) => {
 
 <style lang="scss" scoped>
 .home-container {
-  height: calc(100vh - $base-main-padding * 2 - $top-header-height - 10px);
 
   .v-window {
     height: 460px;
