@@ -58,7 +58,7 @@ watch(
 }
 
 .app-container {
-  min-height: 100vh;
+  height: 100vh;
 }
 
 ::-webkit-scrollbar {

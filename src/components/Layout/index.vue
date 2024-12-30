@@ -21,7 +21,9 @@
             </el-breadcrumb-item>
           </el-breadcrumb>
 
-          <router-view v-if="isRouterActive" />
+          <el-scrollbar>
+            <router-view v-if="isRouterActive" />
+          </el-scrollbar>
         </el-main>
       </el-container>
     </el-container>
@@ -83,11 +85,7 @@ const breadcrumbItems = computed(() => {
   .top-header {
     background-color: var(--theme-header);
   }
-
-  .main-container {
-    // height: calc(100vh - $top-header-height);
-  }
-
+ 
   .fixed-aside {
     height: calc(100vh - $top-header-height);
     background-color: var(--theme-aside);
@@ -98,6 +96,8 @@ const breadcrumbItems = computed(() => {
     padding: 0 40px 40px 40px;
     background-color: #ebeff7;
     transition: all 0.3s ease;
+    height: calc(100vh - $top-header-height);
+    overflow: hidden;
   }
 }
 </style>

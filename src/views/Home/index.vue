@@ -27,7 +27,6 @@
         </div>
       </v-window-item>
     </v-window>
-   
   </div>
 </template>
 
