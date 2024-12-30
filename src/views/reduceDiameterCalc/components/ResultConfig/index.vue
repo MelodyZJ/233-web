@@ -1,6 +1,11 @@
 <template>
   <div class="flex items-center gap-3">
-    <v-card v-for="(item, index) in rackList" :key="index" class="rack-item">
+    <v-card
+      v-for="(item, index) in rackList"
+      :key="index"
+      elevation="2"
+      class="rack-item"
+    >
       <el-form :model="item" label-width="80px">
         <el-form-item label="机架号">
           <el-input v-model="item.rackNum" disabled />
