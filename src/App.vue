@@ -58,7 +58,7 @@ watch(
 }
 
 .app-container {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 ::-webkit-scrollbar {
@@ -67,6 +67,11 @@ watch(
 
 .primary-btn {
   background-color: #5084ff !important;
+  color: #fff !important;
+}
+
+.primary-btn2 {
+  background-color: #0c5fff !important;
   color: #fff !important;
 }
 

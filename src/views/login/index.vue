@@ -8,6 +8,7 @@
         placeholder="请输入账号"
         prepend-inner-icon="mdi-email-outline"
         variant="outlined"
+        color="primary"
       ></v-text-field>
 
       <v-text-field
@@ -19,11 +20,17 @@
         variant="outlined"
         @click:append-inner="visible = !visible"
         hide-details
+        color="primary"
       ></v-text-field>
 
       <div class="d-flex justify-space-between align-center py-2">
-        <v-checkbox label="记住密码" color="#0c5fff" hide-details class="ml-[-10px]"></v-checkbox>
-        <span>忘记密码</span>
+        <v-checkbox
+          label="记住密码"
+          color="#0c5fff"
+          hide-details
+          class="ml-[-10px]"
+        ></v-checkbox>
+        <span class="forget-psw">忘记密码</span>
       </div>
 
       <v-btn
@@ -57,5 +64,13 @@ const login = () => {
   align-items: center;
   justify-content: center;
   height: 100vh;
+
+  .forget-psw {
+    cursor: pointer;
+
+    &:hover {
+      color: #0c5fff;
+    }
+  }
 }
 </style>

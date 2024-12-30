@@ -28,7 +28,7 @@
           :disabled="step === 0"
           >上一步</v-btn
         >
-        <v-btn variant="outlined" class="primary-btn" @click="nextStep"
+        <v-btn variant="outlined" class="primary-btn2" @click="nextStep"
           >{{ step === 1 ? "开始计算" : "确认参数" }}
         </v-btn>
       </div>
@@ -79,7 +79,7 @@ const nextStep = () => {
     }
 
     :deep(.v-stepper-item--selected .v-stepper-item__avatar) {
-      background-color: #007aff;
+      background-color: #0C5FFF;
     }
   }
 }
