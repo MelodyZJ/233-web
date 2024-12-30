@@ -120,12 +120,26 @@ const routes = [
   {
     path: "/materialParameter",
     component: Layout,
-    meta: { title: "材料参数" },
+    children: [
+      {
+        path: "",
+        component: () => import("@/views/materialParameter/index.vue"),
+        name: "materialParameter",
+        meta: { title: "材料参数" },
+      },
+    ],
   },
   {
     path: "/moreProducts",
     component: Layout,
-    meta: { title: "更多产品" },
+    children: [
+      {
+        path: "",
+        component: () => import("@/views/moreProducts/index.vue"),
+        name: "moreProducts",
+        meta: { title: "更多产品" },
+      },
+    ],
   },
 ];
 

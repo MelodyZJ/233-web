@@ -1,7 +1,17 @@
 <template>
-  <div>moreProducts</div>
+  <div class="moreProducts-container">
+    111
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+</script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.moreProducts-container {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: $base-border-radius;
+  height: calc(100vh - $base-main-padding * 2 - $top-header-height - 10px);
+}
+</style>
