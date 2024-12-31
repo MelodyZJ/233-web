@@ -4,9 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        indigo: {
-          primary: "#0C5FFF",
-        },
+        primary: "#0C5FFF",
+        grayB3B3B3: "#B3B3B3",
       },
     },
   },

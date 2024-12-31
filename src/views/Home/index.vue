@@ -7,8 +7,7 @@
           <div class="left">
             <div class="title">{{ item.title }}</div>
             <div class="desc">{{ item.desc }}</div>
-            <div class="detail">
-            </div>
+            <div class="detail"></div>
             <div class="footer">
               <v-btn
                 class="footer-btn"
@@ -39,9 +38,7 @@ const router = useRouter();
 const windowValue = ref(0);
 
 // 跳转到个人网页
-const handleClick = () => {
-  // window.open("/PersonWeb/index.html", "_blank");
-};
+const handleClick = () => {};
 
 const windowList = reactive([
   {
