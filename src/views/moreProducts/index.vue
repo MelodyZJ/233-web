@@ -48,8 +48,8 @@
       <div class="bottom-content">
         <div class="item">
           <div class="item-title">
-            <span class="version">2.0.0</span>
-            <span> 版本更新</span>
+            <span class="version">1.0.0</span>
+            <span>&nbsp;版本更新</span>
             <span class="ml-5 text-sm text-grayB3B3B3">2024/12/30</span>
           </div>
           <div class="item-list" v-for="(item, index) in 3" :key="index">
