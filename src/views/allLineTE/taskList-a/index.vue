@@ -52,6 +52,7 @@ onUnmounted(() => {
   background-color: #fff;
   border-radius: $base-border-radius;
   height: calc(100vh - $base-main-padding * 2 - $top-header-height - 10px);
+  box-shadow: $box-shadow;
 
   // v-tab样式设置
   .tab-text {

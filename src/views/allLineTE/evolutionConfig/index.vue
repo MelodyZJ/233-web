@@ -163,6 +163,7 @@ const computeDragWidth = (length) => {
     width: 320px;
     background-color: #fff;
     border-radius: $base-border-radius;
+    box-shadow: $box-shadow;
 
     .component-lib-container {
       width: 320px;
@@ -242,6 +243,7 @@ const computeDragWidth = (length) => {
       border-radius: $base-border-radius;
       display: flex;
       flex-direction: column;
+      box-shadow: $box-shadow;
 
       .title {
         padding: 15px 20px 5px 20px;

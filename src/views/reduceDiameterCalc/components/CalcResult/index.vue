@@ -267,6 +267,7 @@ onUnmounted(() => {
   background-color: #fff;
   border-radius: $base-border-radius;
   padding: 20px;
+  box-shadow: $box-shadow;
 
   .echarts-content {
     width: 100%;

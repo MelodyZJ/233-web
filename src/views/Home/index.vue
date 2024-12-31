@@ -81,6 +81,7 @@ const handleClickToCard = (path) => {
 
 <style lang="scss" scoped>
 .home-container {
+  box-shadow: $box-shadow;
 
   .v-window {
     height: 460px;

@@ -67,6 +67,7 @@ const nextStep = () => {
     padding: 10px 30px 30px 30px;
     background-color: #fff;
     border-radius: $base-border-radius;
+    box-shadow: $box-shadow;
 
     .v-stepper,
     .v-stepper-header {
@@ -79,7 +80,7 @@ const nextStep = () => {
     }
 
     :deep(.v-stepper-item--selected .v-stepper-item__avatar) {
-      background-color: #0C5FFF;
+      background-color: #0c5fff;
     }
   }
 }
