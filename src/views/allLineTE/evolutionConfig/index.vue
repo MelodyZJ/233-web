@@ -51,13 +51,32 @@
               class="product-drag"
               :style="{ width: computeDragWidth(list2.length) }"
             >
-              <div v-for="item in list2" :key="item.id" class="product-item">
+              <div
+                v-for="(item, index) in list2"
+                :key="item.id"
+                class="product-item"
+              >
                 <div class="left">
                   <img src="@/assets/imgs/component.png" alt="组件" />
                   <span>{{ item.name }}</span>
+                  <el-input
+                    v-model="item.length"
+                    placeholder="长度(m)"
+                    class="length"
+                  ></el-input>
                 </div>
                 <div class="right">
-                  <img src="@/assets/imgs/line-arrow.png" alt="箭头" />
+                  <img
+                    src="@/assets/imgs/line-arrow.png"
+                    alt="箭头"
+                    v-if="index != list2.length - 1"
+                  />
+                  <el-input
+                    v-model="item.distance"
+                    placeholder="距离(m)"
+                    class="distance"
+                    v-if="index != list2.length - 1"
+                  ></el-input>
                 </div>
               </div>
             </VueDraggable>
@@ -94,42 +113,62 @@ const list1 = ref([
   {
     name: "连铸机",
     id: "1",
+    distance: "",
+    length: "",
   },
   {
     name: "除鳞箱",
     id: "2",
+    distance: "",
+    length: "",
   },
   {
     name: "保温罩",
     id: "3",
+    distance: "",
+    length: "",
   },
   {
     name: "感应加热炉",
     id: "4",
+    distance: "",
+    length: "",
   },
   {
     name: "脱头",
     id: "5",
+    distance: "",
+    length: "",
   },
   {
     name: "水箱",
     id: "6",
+    distance: "",
+    length: "",
   },
   {
     name: "冷床",
     id: "7",
+    distance: "",
+    length: "",
   },
   {
     name: "风冷线",
     id: "8",
+    distance: "",
+    length: "",
   },
   {
     name: "集卷站",
     id: "9",
+    distance: "",
+    length: "",
   },
   {
     name: "打捆站",
     id: "10",
+    distance: "",
+    length: "",
   },
 ]);
 const list2 = ref(
@@ -149,7 +188,7 @@ function clone(element) {
 
 // 计算生产线长度
 const computeDragWidth = (length) => {
-  return `${length * 200 + 20}px`;
+  return `${length * 220 + 20}px`;
 };
 </script>
 
@@ -238,7 +277,7 @@ const computeDragWidth = (length) => {
 
     .product-line-container {
       width: 100%;
-      height: 255px;
+      height: 305px;
       background-color: #fff;
       border-radius: $base-border-radius;
       display: flex;
@@ -260,7 +299,7 @@ const computeDragWidth = (length) => {
         padding: 20px;
 
         .product-drag {
-          height: 150px;
+          height: 200px;
           display: flex;
           background-color: #f6f7f9;
           border: 1px solid #ededef;
@@ -268,7 +307,7 @@ const computeDragWidth = (length) => {
 
           .product-item {
             cursor: move;
-            width: 200px;
+            width: 220px;
             height: 100%;
             display: flex;
             padding: 20px 0;
@@ -281,7 +320,7 @@ const computeDragWidth = (length) => {
               flex: 1;
               display: flex;
               flex-direction: column;
-              justify-content: center;
+              justify-content: space-between;
               align-items: center;
               gap: 10px;
 
@@ -293,6 +332,10 @@ const computeDragWidth = (length) => {
               span {
                 font-size: 14px;
               }
+
+              .length {
+                width: 80px;
+              }
             }
 
             .right {
@@ -300,10 +343,18 @@ const computeDragWidth = (length) => {
               display: flex;
               justify-content: center;
               align-items: center;
+              position: relative;
 
               img {
                 width: 20px;
                 height: 20px;
+                margin-top: -40px;
+              }
+
+              .distance {
+                position: absolute;
+                bottom: 0px;
+                width: 80px;
               }
             }
           }

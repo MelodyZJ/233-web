@@ -61,7 +61,7 @@
             >
             <v-btn
               variant="tonal"
-              class="bg-primary text-white ml-3"
+              class="bg-blue-600 text-white ml-3"
               @click="dialog = false"
               >确定</v-btn
             >
