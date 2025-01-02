@@ -28,7 +28,7 @@ onMounted(() => {
   initChart();
 });
 
-// 折线图配置
+// 折线图和散点图二合一配置
 const option = {
   title: {
     text: "",
@@ -45,10 +45,31 @@ const option = {
     bottom: "3%",
     containLabel: true,
   },
-  xAxis: {
-    type: "category",
-    data: ["100", "200", "300", "400", "500", "600", "700"],
-  },
+  xAxis: [
+    {
+      type: "category",
+      data: ["100", "200", "300", "400", "500", "600", "700"],
+    },
+    //  设置第二个x轴
+    {
+      type: "category",
+      position: "bottom",
+      offset: 25,
+      axisPointer: {
+        type: "none",
+      },
+      //  隐藏第二条x轴
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+      axisLabel: {
+        show: false,
+      },
+    },
+  ],
   yAxis: {
     type: "value",
   },
@@ -77,6 +98,23 @@ const option = {
       name: "数据五",
       type: "line",
       data: [120, 172, 198, 223, 315, 330, 310],
+    },
+    {
+      name: "随机点",
+      type: "scatter",
+      xAxisIndex: 1,
+      symbolSize: 80,
+      itemStyle: {
+        color: "#EB3323",
+        borderColor: "#EBB38A",
+        borderWidth: 24,
+      },
+      data: [
+        [50, 70],
+        [100, 80],
+        [200, 90],
+        [300, 100],
+      ],
     },
   ],
 };

@@ -66,17 +66,15 @@
                   ></el-input>
                 </div>
                 <div class="right">
-                  <img
-                    src="@/assets/imgs/line-arrow.png"
-                    alt="箭头"
-                    v-if="index != list2.length - 1"
-                  />
-                  <el-input
-                    v-model="item.distance"
-                    placeholder="距离(m)"
-                    class="distance"
-                    v-if="index != list2.length - 1"
-                  ></el-input>
+                  <template v-if="index != list2.length - 1">
+                    <img src="@/assets/imgs/line-arrow.png" alt="箭头" />
+                    <el-input
+                      v-model="item.distance"
+                      placeholder="距离(m)"
+                      class="distance"
+                    ></el-input>
+                  </template>
+                  <v-btn class="primary-btn" v-else>完成</v-btn>
                 </div>
               </div>
             </VueDraggable>
