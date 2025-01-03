@@ -80,6 +80,11 @@ watch(
   margin-left: 10px !important;
 }
 
+.simple-btn {
+  background-color: #fff !important;
+  color: #0c5fff !important;
+}
+
 .search-input {
   width: 180px !important;
 }

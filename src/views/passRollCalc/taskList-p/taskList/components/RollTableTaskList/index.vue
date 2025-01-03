@@ -54,7 +54,6 @@
         ref="tableRef"
         :data="tableData"
         highlight-current-row
-        style="width: 99%"
         :header-cell-style="{ background: '#fafafa' }"
         border
       >

@@ -18,7 +18,7 @@
           <template v-for="child in item.children" :key="child.path">
             <el-menu-item
               :index="child.path"
-              :class="{ 'is-active': isActive(item.path) }"
+              :class="{ 'is-active': isActive(child.path) }"
             >
               <span class="menu-item-name">{{ child.name }}</span>
             </el-menu-item>
@@ -83,14 +83,17 @@ const navItemList = reactive([
     path: "/reduceDiameterCalc",
     name: "减定径计算",
     icon: "ZoomOut",
-    children: [
-      { path: "/highSpeedWire", name: "高速线材", icon: "" },
-    ],
+    children: [{ path: "/highSpeedWire", name: "高速线材", icon: "" }],
   },
   {
     path: "/specialSteelPre",
     name: "特钢性能预报",
     icon: "PieChart",
+    children: [
+      { path: "/specialSteelWire", name: "特殊钢线材", icon: "" },
+      { path: "/specialSteelBar", name: "特殊钢棒材", icon: "" },
+      { path: "/taskList-s", name: "任务列表", icon: "" },
+    ],
   },
   {
     path: "/generalSteelPre",
@@ -111,7 +114,7 @@ const navItemList = reactive([
 
 const activePath = computed(() => route.path);
 
-const isActive = (path) => activePath.value == path;
+const isActive = (path) => activePath.value.includes(path);
 
 const handleNavItemClick = (path) => {
   router.push(path);

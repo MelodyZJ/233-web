@@ -110,7 +110,28 @@ const routes = [
   {
     path: "/specialSteelPre",
     component: Layout,
-    meta: { title: "特钢性能预报" },
+    children: [
+      {
+        path: "/specialSteelWire",
+        component: () =>
+          import("@/views/specialSteelPre/specialSteelWire/index.vue"),
+        name: "specialSteelWire",
+        meta: { title: "特殊钢线材" },
+      },
+      {
+        path: "/specialSteelBar",
+        component: () =>
+          import("@/views/specialSteelPre/specialSteelBar/index.vue"),
+        name: "specialSteelBar",
+        meta: { title: "特殊钢棒材" },
+      },
+      {
+        path: "/taskList-s",
+        component: () => import("@/views/specialSteelPre/taskList-s/index.vue"),
+        name: "taskList-s",
+        meta: { title: "任务列表" },
+      },
+    ],
   },
   {
     path: "/generalSteelPre",
