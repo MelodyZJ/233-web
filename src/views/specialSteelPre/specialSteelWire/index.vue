@@ -2,8 +2,29 @@
   <div class="specialSteelWire-container">
     <div class="calcProductLine">
       <div>计算生产线</div>
-      <div class="line-box"></div>
-      <v-btn variant="tonal" class="primary-btn2">开始计算</v-btn>
+      <el-scrollbar style="height: 180px">
+        <div class="line-box" :style="{ width: computeDragWidth(list.length) }">
+          <div
+            v-for="(item, index) in list"
+            :key="item.id"
+            class="product-item"
+          >
+            <div class="left">
+              <img src="@/assets/imgs/component.png" alt="组件" />
+              <span>{{ item.name }}</span>
+            </div>
+            <div class="right">
+              <template v-if="index != list.length - 1">
+                <img src="@/assets/imgs/line-arrow.png" alt="箭头" />
+              </template>
+            </div>
+          </div>
+        </div>
+      </el-scrollbar>
+
+      <v-btn variant="tonal" class="primary-btn2" style="margin-top: 13px"
+        >开始计算</v-btn
+      >
     </div>
     <div class="paraConfig">
       <div>参数配置</div>
@@ -16,13 +37,12 @@
         ref="tableRef1"
         :data="tableData1"
         :span-method="arraySpanMethod1"
-        highlight-current-row
         :header-cell-style="{ background: '#fafafa' }"
         border
       >
         <el-table-column label="水箱缩略图" align="center" width="220">
           <template #default="{ rowIndex }">
-            <!-- <img src="" alt="" /> -->
+            <img src="@/assets/imgs/water-box.png" alt="水箱缩略图" class="pa-7"/>
           </template>
         </el-table-column>
         <el-table-column
@@ -61,14 +81,13 @@
         ref="tableRef2"
         :data="tableData2"
         :span-method="arraySpanMethod2"
-        highlight-current-row
         :header-cell-style="{ background: '#fafafa' }"
         border
         style="margin-top: 20px"
       >
         <el-table-column label="风机缩略图" align="center" width="220">
           <template #default="{ rowIndex }">
-            <!-- <img src="" alt="" /> -->
+            <img src="@/assets/imgs/fan.png" alt="风机缩略图" class="pa-7"/>
           </template>
         </el-table-column>
         <el-table-column
@@ -113,8 +132,6 @@
 </template>
 
 <script setup>
-import { Value } from "sass";
-
 const data = reactive({
   tableData1: [
     {
@@ -226,6 +243,74 @@ const arraySpanMethod2 = ({ row, column, rowIndex, columnIndex }) => {
     }
   }
 };
+
+const list = ref([
+  {
+    name: "连铸机",
+    id: "1",
+    distance: "",
+    length: "",
+  },
+  {
+    name: "除鳞箱",
+    id: "2",
+    distance: "",
+    length: "",
+  },
+  {
+    name: "保温罩",
+    id: "3",
+    distance: "",
+    length: "",
+  },
+  {
+    name: "感应加热炉",
+    id: "4",
+    distance: "",
+    length: "",
+  },
+  {
+    name: "脱头",
+    id: "5",
+    distance: "",
+    length: "",
+  },
+  {
+    name: "水箱",
+    id: "6",
+    distance: "",
+    length: "",
+  },
+  {
+    name: "冷床",
+    id: "7",
+    distance: "",
+    length: "",
+  },
+  {
+    name: "风冷线",
+    id: "8",
+    distance: "",
+    length: "",
+  },
+  {
+    name: "集卷站",
+    id: "9",
+    distance: "",
+    length: "",
+  },
+  {
+    name: "打捆站",
+    id: "10",
+    distance: "",
+    length: "",
+  },
+]);
+
+// 计算生产线长度
+const computeDragWidth = (length) => {
+  return `${length * 150}px`;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -235,17 +320,71 @@ const arraySpanMethod2 = ({ row, column, rowIndex, columnIndex }) => {
   gap: 20px;
 
   .calcProductLine {
-    height: 280px;
+    height: 290px;
     background-color: #fff;
     border-radius: $base-border-radius;
     box-shadow: $box-shadow;
     padding: 20px;
 
     .line-box {
-      height: 150px;
-      margin: 15px 0;
+      display: flex;
+      height: 160px;
       border: 1px solid #ededef;
       border-radius: $base-border-radius;
+      margin-top: 15px;
+
+      .product-item {
+        cursor: move;
+        width: 150px;
+        height: 100%;
+        display: flex;
+        padding: 20px 0;
+
+        &:first-child {
+          margin-left: 30px;
+        }
+
+        .left {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          gap: 10px;
+
+          img {
+            width: 66px;
+            height: 80px;
+          }
+
+          span {
+            font-size: 14px;
+          }
+
+          .length {
+            width: 80px;
+          }
+        }
+
+        .right {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+
+          img {
+            width: 20px;
+            height: 20px;
+          }
+
+          .distance {
+            position: absolute;
+            bottom: 0px;
+            width: 80px;
+          }
+        }
+      }
     }
   }
 
