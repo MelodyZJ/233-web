@@ -60,9 +60,7 @@
 
 <script setup>
 import * as echarts from "echarts";
-
 import router from "@/router";
-import { onMounted, onUnmounted } from "vue";
 
 onMounted(() => {
   nextTick(() => {

@@ -11,7 +11,9 @@
       <v-card-text class="pa-0">
         <v-tabs-window v-model="tab">
           <v-tabs-window-item value="1">
-            <div class="content-box">111</div>
+            <div class="content-box">
+              <result-table></result-table>
+            </div>
           </v-tabs-window-item>
           <v-tabs-window-item value="2">
             <div class="content-box">222</div>
@@ -29,6 +31,8 @@
 </template>
 
 <script setup>
+import ResultTable from "./components/ResultTable/index.vue";
+
 const tab = ref("1");
 </script>
 
@@ -42,8 +46,9 @@ const tab = ref("1");
 
   // v-tab样式设置
   .tab-text {
+    min-width: 0;
     font-size: 15px;
-    margin-right: 15px;
+    margin-right: 30px;
   }
 
   .v-btn--size-default {
