@@ -56,6 +56,7 @@ const tab = ref("1");
   }
 
   .table-box {
+    margin-top: 15px;
     height: calc(100vh - $base-main-padding * 2 - $top-header-height - 95px);
     overflow-y: scroll;
   }
