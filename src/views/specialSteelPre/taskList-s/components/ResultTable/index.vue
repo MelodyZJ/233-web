@@ -188,6 +188,7 @@ const option2 = {
     bottom: "0%",
     data: ["铁素体", "贝氏体", "珠光体", "马氏体"],
   },
+  color: ["#2569f6", "#57c3f8", "#f08e34", "#67c185"],
   series: [
     {
       type: "pie",
@@ -374,7 +375,7 @@ const { tableData } = toRefs(data);
         .echarts {
           height: 100%;
           margin: auto;
-          background-color: #FAFAFA;
+          background-color: #fafafa;
         }
       }
     }
