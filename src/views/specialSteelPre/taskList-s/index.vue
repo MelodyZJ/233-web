@@ -6,6 +6,18 @@
         <v-tab value="2" class="tab-text">温度场变化</v-tab>
         <v-tab value="3" class="tab-text">道次参量变化</v-tab>
         <v-tab value="4" class="tab-text">组织与力学性能</v-tab>
+        <v-btn
+          variant="tonal"
+          class="position-absolute top-2 right-1 px-3 primary-btn2"
+          @click="router.push('/specialSteelWire')"
+        >
+          <img
+            src="@/assets/icons/back.png"
+            alt="返回"
+            style="margin: 1px 5px 0 0"
+          />
+          <span>返回参数输入</span>
+        </v-btn>
       </v-tabs>
 
       <v-card-text class="pa-0">
@@ -16,7 +28,9 @@
             </div>
           </v-tabs-window-item>
           <v-tabs-window-item value="2">
-            <div class="content-box">222</div>
+            <div class="content-box">
+              <temp-change></temp-change>
+            </div>
           </v-tabs-window-item>
           <v-tabs-window-item value="3">
             <div class="content-box">333</div>
@@ -32,7 +46,10 @@
 
 <script setup>
 import ResultTable from "./components/ResultTable/index.vue";
+import TempChange from "./components/TempChange/index.vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const tab = ref("1");
 </script>
 

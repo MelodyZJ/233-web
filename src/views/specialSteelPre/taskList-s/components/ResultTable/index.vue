@@ -79,32 +79,39 @@
     <div class="echarts-content">
       <div class="echarts-item">
         <div class="part-title">轧线温度场</div>
+        <div class="unit">单位：℃</div>
         <div id="rollLineGraph" class="echarts"></div>
       </div>
       <div class="echarts-item">
         <div class="part-title">风冷线温度场</div>
+        <div class="unit">单位：℃</div>
         <div id="coolLineGraph" class="echarts"></div>
       </div>
       <div class="echarts-item">
         <div class="part-title">PF线温度场</div>
+        <div class="unit">单位：℃</div>
         <div id="PFLineGraph" class="echarts"></div>
       </div>
 
       <div class="left">
         <div class="echarts-item">
           <div class="part-title">抗拉强度对比</div>
+          <div class="unit">单位：MPa</div>
           <div id="tensileStrengthGraph" class="echarts"></div>
         </div>
         <div class="echarts-item">
           <div class="part-title">屈服强度对比</div>
+          <div class="unit">单位：MPa</div>
           <div id="yieldStrengthGraph" class="echarts"></div>
         </div>
         <div class="echarts-item">
           <div class="part-title">伸长率对比</div>
+          <div class="unit">单位：%</div>
           <div id="elongationGraph" class="echarts"></div>
         </div>
         <div class="echarts-item">
           <div class="part-title">断面收缩率对比</div>
+          <div class="unit">单位：%</div>
           <div id="shrinkageGraph" class="echarts"></div>
         </div>
       </div>
@@ -156,8 +163,8 @@ const option1 = {
   grid: {
     left: "5%",
     right: "5%",
-    top: "5%",
-    bottom: "5%",
+    top: "10%",
+    bottom: "0%",
     containLabel: true,
   },
   xAxis: [
@@ -292,7 +299,7 @@ const initChart = () => {
     if (myCharts.value[id]) {
       myCharts.value[id].dispose();
     }
-    myCharts.value[id] = echarts.init(document.getElementById(id));
+    myCharts.value[id] = markRaw(echarts.init(document.getElementById(id)));
     myCharts.value[id].setOption(option, true);
   });
 
@@ -327,7 +334,8 @@ const { tableData } = toRefs(data);
 
     .echarts-item {
       width: 33.3%;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      position: relative;
 
       .part-title {
         height: 50px;
@@ -345,6 +353,14 @@ const { tableData } = toRefs(data);
           background-color: #f89623;
           margin-right: 10px;
         }
+      }
+
+      .unit {
+        position: absolute;
+        top: 50px;
+        left: 22px;
+        font-size: 12px;
+        color: #4c4c4c;
       }
 
       .echarts {
@@ -366,7 +382,7 @@ const { tableData } = toRefs(data);
 
     .right {
       width: 33.3%;
-      height: 550px;
+      height: 560px;
 
       .echarts-item {
         width: 100%;
