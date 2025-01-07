@@ -33,10 +33,14 @@
             </div>
           </v-tabs-window-item>
           <v-tabs-window-item value="3">
-            <div class="content-box">333</div>
+            <div class="content-box">
+              <para-change></para-change>
+            </div>
           </v-tabs-window-item>
           <v-tabs-window-item value="4">
-            <div class="content-box">444</div>
+            <div class="content-box">
+              <organization></organization>
+            </div>
           </v-tabs-window-item>
         </v-tabs-window>
       </v-card-text>
@@ -47,6 +51,8 @@
 <script setup>
 import ResultTable from "./components/ResultTable/index.vue";
 import TempChange from "./components/TempChange/index.vue";
+import ParaChange from "./components/ParaChange/index.vue";
+import Organization from "./components/Organization/index.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();

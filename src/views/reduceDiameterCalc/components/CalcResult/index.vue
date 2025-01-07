@@ -76,7 +76,6 @@
 
 <script setup>
 import * as echarts from "echarts";
-import { onMounted, onUnmounted } from "vue";
 
 onMounted(() => {
   nextTick(() => {
@@ -218,7 +217,7 @@ const option2 = {
       itemStyle: {
         color: "#489EFC",
       },
-      barWidth: '50%'
+      barWidth: "50%",
     },
   ],
 };
