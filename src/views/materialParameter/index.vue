@@ -24,7 +24,7 @@ const tab = ref(null);
 
 <style lang="scss" scoped>
 .materialParameter-container {
-  padding: 15px 30px;
+  padding: 12px 30px;
   background-color: #fff;
   border-radius: $base-border-radius;
   height: calc(100vh - $base-main-padding * 2 - $top-header-height - 10px);

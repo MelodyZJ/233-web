@@ -24,7 +24,7 @@ const tab = ref(null);
 
 <style lang="scss" scoped>
 .taskList-container {
-  padding: 15px 30px;
+  padding: 12px 30px;
 
   // v-tab样式设置
   .tab-text {
