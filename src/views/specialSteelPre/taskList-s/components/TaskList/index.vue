@@ -6,14 +6,14 @@
           v-model="queryParams.startTime"
           type="date"
           placeholder="开始时间"
-          style="height: 36px;"
+          style="height: 36px"
         />
 
         <el-date-picker
           v-model="queryParams.endTime"
           type="date"
           placeholder="结束时间"
-          style="height: 36px;"
+          style="height: 36px"
         />
 
         <div class="btn">
@@ -36,54 +36,72 @@
         :header-cell-style="{ background: '#fafafa' }"
         border
       >
-        <el-table-column
-          label="序号"
-          min-width="50"
-          align="center"
-          type="index"
-        />
+        <el-table-column label="序号" width="100" align="center" type="index" />
         <el-table-column
           label="任务名称"
           align="center"
-          max-width="150"
+          width="200"
           prop="taskName"
         />
         <el-table-column
-          label="工艺概况"
+          label="钢种"
           align="center"
           min-width="120"
-          prop="processOverview"
+          prop="steelGrade"
         />
         <el-table-column
-          label="扎线类型"
+          label="产品类型"
           align="center"
-          max-width="150"
-          prop="type"
+          min-width="150"
+          prop="productType"
         />
         <el-table-column
-          label="扎线形式"
+          label="钢坯类型"
           align="center"
-          max-width="150"
-          prop="pattern"
+          min-width="120"
+          prop="billetType"
         />
         <el-table-column
-          label="状态"
+          label="规格(mm)"
           align="center"
-          max-width="150"
-          prop="status"
+          min-width="120"
+          prop="size"
         />
         <el-table-column
-          label="创建时间"
+          label="开轧温度(℃)"
           align="center"
-          max-width="150"
-          prop="creatTime"
+          min-width="120"
+          prop="rollTemper"
         />
-
+        <el-table-column
+          label="铁素体(%)"
+          align="center"
+          min-width="120"
+          prop="ferrite"
+        />
+        <el-table-column
+          label="珠光体(%)"
+          align="center"
+          min-width="120"
+          prop="pearlite"
+        />
+        <el-table-column
+          label="贝氏体(%)"
+          align="center"
+          min-width="120"
+          prop="bainite"
+        />
+        <el-table-column
+          label="马氏体(%)"
+          align="center"
+          min-width="120"
+          prop="martensite"
+        />
         <el-table-column
           fixed="right"
           label="操作"
           align="center"
-          min-width="100"
+          min-width="150"
         >
           <template #default="scope">
             <el-button
@@ -125,43 +143,75 @@ const data = reactive({
   tableData: [
     {
       taskName: "我是任务",
-      processOverview: "222",
-      type: "类型1",
-      pattern: "形式1",
-      status: "已完成",
-      creatTime: "2024-11-08",
+      steelGrade: "ZTCDZZP",
+      productType: "高速线材",
+      billetType: "直轧坯",
+      size: "17",
+      rollTemper: "17",
+      ferrite: "17",
+      pearlite: "17",
+      bainite: "17",
+      martensite: "17",
     },
     {
       taskName: "我是任务",
-      processOverview: "222",
-      type: "类型1",
-      pattern: "形式1",
-      status: "已完成",
-      creatTime: "2024-11-08",
+      steelGrade: "ZTCDZZP",
+      productType: "高速线材",
+      billetType: "直轧坯",
+      size: "17",
+      rollTemper: "17",
+      ferrite: "17",
+      pearlite: "17",
+      bainite: "17",
+      martensite: "17",
     },
     {
       taskName: "我是任务",
-      processOverview: "222",
-      type: "类型1",
-      pattern: "形式1",
-      status: "已完成",
-      creatTime: "2024-11-08",
+      steelGrade: "ZTCDZZP",
+      productType: "高速线材",
+      billetType: "直轧坯",
+      size: "17",
+      rollTemper: "17",
+      ferrite: "17",
+      pearlite: "17",
+      bainite: "17",
+      martensite: "17",
     },
     {
       taskName: "我是任务",
-      processOverview: "222",
-      type: "类型1",
-      pattern: "形式1",
-      status: "已完成",
-      creatTime: "2024-11-08",
+      steelGrade: "ZTCDZZP",
+      productType: "高速线材",
+      billetType: "直轧坯",
+      size: "17",
+      rollTemper: "17",
+      ferrite: "17",
+      pearlite: "17",
+      bainite: "17",
+      martensite: "17",
     },
     {
       taskName: "我是任务",
-      processOverview: "222",
-      type: "类型1",
-      pattern: "形式1",
-      status: "已完成",
-      creatTime: "2024-11-08",
+      steelGrade: "ZTCDZZP",
+      productType: "高速线材",
+      billetType: "直轧坯",
+      size: "17",
+      rollTemper: "17",
+      ferrite: "17",
+      pearlite: "17",
+      bainite: "17",
+      martensite: "17",
+    },
+    {
+      taskName: "我是任务",
+      steelGrade: "ZTCDZZP",
+      productType: "高速线材",
+      billetType: "直轧坯",
+      size: "17",
+      rollTemper: "17",
+      ferrite: "17",
+      pearlite: "17",
+      bainite: "17",
+      martensite: "17",
     },
   ],
   queryParams: {
@@ -242,7 +292,6 @@ const calculateStateList = ref([
     }
 
     .right {
-      
     }
   }
 
