@@ -101,7 +101,7 @@
           fixed="right"
           label="操作"
           align="center"
-          min-width="150"
+          min-width="180"
         >
           <template #default="scope">
             <el-button
@@ -114,10 +114,9 @@
 
             <el-button
               link
-              type="danger"
-              @click.prevent="deleteItem(scope.$index)"
+              type="primary"
             >
-              删除
+              数据导出
             </el-button>
           </template>
         </el-table-column>
@@ -232,10 +231,6 @@ const toResult = (index) => {
   // router.push({
   //   path: "/taskList-a/resultShow",
   // });
-};
-// 删除操作
-const deleteItem = (index) => {
-  tableData.value.splice(index, 1);
 };
 
 const belongProjectList = ref([

@@ -1,24 +1,39 @@
 <template>
   <div class="Organization-container">
-    <div class="left">
-      <div class="part-title">非搭接点和搭接点</div>
-      <div class="content">
-        <img src="@/assets/imgs/mystery.png" alt="不明神秘图片" />
-      </div>
-    </div>
-    <div class="mid">
-      <div class="part-title">动态相析出曲线</div>
-      <div class="content">
-        <div class="echarts-item">
-          非搭接点
-          <div id="nonBondPointGraph" class="echarts"></div>
-        </div>
-        <div class="echarts-item">
-          搭接点
-          <div id="bondPointGraph" class="echarts"></div>
+    <template v-if="route.path === '/specialSteelWire/calcResult'">
+      <div class="left-wire">
+        <div class="part-title">非搭接点和搭接点</div>
+        <div class="content">
+          <img src="@/assets/imgs/mystery.png" alt="不明神秘图片" />
         </div>
       </div>
-    </div>
+      <div class="mid-wire">
+        <div class="part-title">动态相析出曲线</div>
+        <div class="content">
+          <div class="echarts-item">
+            非搭接点
+            <div id="nonBondPointGraph" class="echarts"></div>
+          </div>
+          <div class="echarts-item">
+            搭接点
+            <div id="bondPointGraph" class="echarts"></div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template v-if="route.path === '/specialSteelBar/calcResult'">
+      <div class="left-bar">
+        <div class="part-title">动态相析出曲线</div>
+        <div class="content">
+          <div class="echarts-item">
+            <div id="separateCurveGraph" class="echarts"></div>
+          </div>
+          <img src="@/assets/imgs/mystery2.png" alt="神秘图片2">
+        </div>
+      </div>
+    </template>
+
     <div class="right">
       <div class="part-title">组织和力学性能</div>
       <div class="echarts-item">
@@ -39,6 +54,9 @@
 
 <script setup>
 import * as echarts from "echarts";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 
 onMounted(() => {
   nextTick(() => {
@@ -246,14 +264,20 @@ const initChart = () => {
     { id: "nonBondPointGraph", option: option1 },
     { id: "bondPointGraph", option: option1 },
     { id: "organization", option: option2 },
+    { id: "separateCurveGraph", option: option1 },
   ];
 
   chartConfigs.forEach(({ id, option }) => {
-    if (myCharts.value[id]) {
-      myCharts.value[id].dispose();
+    const domElement = document.getElementById(id);
+    if (domElement) {
+      if (myCharts.value[id]) {
+        myCharts.value[id].dispose();
+      }
+      myCharts.value[id] = echarts.init(domElement);
+      myCharts.value[id].setOption(option, true);
+    } else {
+      console.log(`没有这个id:"${id}"`);
     }
-    myCharts.value[id] = echarts.init(document.getElementById(id));
-    myCharts.value[id].setOption(option, true);
   });
 
   // 调整窗口大小时的处理
@@ -282,7 +306,7 @@ onUnmounted(() => {
   display: flex;
   gap: 20px;
 
-  .left {
+  .left-wire {
     flex: 1;
 
     .content {
@@ -296,7 +320,7 @@ onUnmounted(() => {
     }
   }
 
-  .mid {
+  .mid-wire {
     flex: 1;
 
     .content {
@@ -335,6 +359,59 @@ onUnmounted(() => {
           width: 100%;
           height: 280px;
         }
+      }
+    }
+  }
+
+  .left-bar {
+    flex: 2;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 100px;
+
+      .echarts-item {
+        width: 100%;
+        margin-bottom: 20px;
+        position: relative;
+
+        .part-title {
+          height: 50px;
+          display: flex;
+          align-items: center;
+          font-size: 15px;
+          margin-bottom: 10px;
+
+          &::before {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 14px;
+            border-radius: 10px;
+            background-color: #f89623;
+            margin-right: 10px;
+          }
+        }
+
+        .unit {
+          position: absolute;
+          top: 70px;
+          left: 32px;
+          font-size: 12px;
+          color: #4c4c4c;
+        }
+
+        .echarts {
+          width: 100%;
+          height: 280px;
+        }
+      }
+
+      img{
+        width: 800px;
       }
     }
   }
