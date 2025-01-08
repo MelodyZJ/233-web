@@ -60,7 +60,7 @@ const routes = [
           {
             path: "/taskList-a/resultShow",
             component: Layout,
-            name: "resultShow1",
+            name: "taskList-a-resultShow",
             meta: { title: "结果展示" },
           },
         ],
@@ -87,7 +87,7 @@ const routes = [
           {
             path: "/taskList-p/resultShow",
             component: Layout,
-            name: "resultShow2",
+            name: "taskList-p-resultShow",
             meta: { title: "结果展示" },
           },
         ],
@@ -117,6 +117,14 @@ const routes = [
           import("@/views/specialSteelPre/specialSteelWire/index.vue"),
         name: "specialSteelWire",
         meta: { title: "特殊钢线材" },
+        children: [
+          {
+            path: "/specialSteelWire/calcResult",
+            component: Layout,
+            name: "specialSteelWire-calcResult",
+            meta: { title: "计算结果" },
+          },
+        ],
       },
       {
         path: "/specialSteelBar",
@@ -124,6 +132,14 @@ const routes = [
           import("@/views/specialSteelPre/specialSteelBar/index.vue"),
         name: "specialSteelBar",
         meta: { title: "特殊钢棒材" },
+        children: [
+          {
+            path: "/specialSteelBar/calcResult",
+            component: Layout,
+            name: "specialSteelBar-calcResult",
+            meta: { title: "计算结果" },
+          },
+        ],
       },
       {
         path: "/taskList-s",
