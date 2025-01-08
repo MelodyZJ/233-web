@@ -185,6 +185,7 @@ const option1 = {
   ],
 };
 
+// 环形图配置
 const option2 = {
   tooltip: {
     trigger: "item",
