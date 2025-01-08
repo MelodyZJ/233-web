@@ -1,5 +1,5 @@
 <template>
-  <div class="EvolutionTaskList-container">
+  <div class="TaskList-container">
     <div class="top-search">
       <div class="left">
         <el-date-picker
@@ -227,7 +227,7 @@ const calculateStateList = ref([
 </script>
 
 <style lang="scss" scoped>
-.EvolutionTaskList-container {
+.TaskList-container {
   margin-top: 20px;
   flex-grow: 1;
 

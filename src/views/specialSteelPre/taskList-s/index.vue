@@ -1,62 +1,45 @@
 <template>
   <div class="taskList-s-container">
-    <v-card variant="flat">
-      <v-tabs v-model="tab" color="#0C5FFF">
-        <v-tab value="1" class="tab-text">结果汇总</v-tab>
-        <v-tab value="2" class="tab-text">温度场变化</v-tab>
-        <v-tab value="3" class="tab-text">道次参量变化</v-tab>
-        <v-tab value="4" class="tab-text">组织与力学性能</v-tab>
-        <v-btn
-          variant="tonal"
-          class="position-absolute top-2 right-1 px-3 primary-btn2"
-          @click="router.push('/specialSteelWire')"
-        >
-          <img
-            src="@/assets/icons/back.png"
-            alt="返回"
-            style="margin: 1px 5px 0 0"
-          />
-          <span>返回参数输入</span>
-        </v-btn>
-      </v-tabs>
+    <el-scrollbar height="100%">
+      <!-- 演变任务列表 -->
+      <v-card variant="flat" v-if="routePath == '/taskList-s'">
+        <v-tabs v-model="tab" color="#0C5FFF">
+          <v-tab value="1" class="tab-text">特钢任务列表</v-tab>
+        </v-tabs>
 
-      <v-card-text class="pa-0">
-        <v-tabs-window v-model="tab">
-          <v-tabs-window-item value="1">
-            <div class="content-box">
-              <result-table></result-table>
-            </div>
-          </v-tabs-window-item>
-          <v-tabs-window-item value="2">
-            <div class="content-box">
-              <temp-change></temp-change>
-            </div>
-          </v-tabs-window-item>
-          <v-tabs-window-item value="3">
-            <div class="content-box">
-              <para-change></para-change>
-            </div>
-          </v-tabs-window-item>
-          <v-tabs-window-item value="4">
-            <div class="content-box">
-              <organization></organization>
-            </div>
-          </v-tabs-window-item>
-        </v-tabs-window>
-      </v-card-text>
-    </v-card>
+        <v-card-text class="pa-0">
+          <v-tabs-window v-model="tab">
+            <v-tabs-window-item value="1">
+              <task-list></task-list>
+            </v-tabs-window-item>
+          </v-tabs-window>
+        </v-card-text>
+      </v-card>
+    </el-scrollbar>
   </div>
 </template>
 
 <script setup>
-import ResultTable from "./components/ResultTable/index.vue";
-import TempChange from "./components/TempChange/index.vue";
-import ParaChange from "./components/ParaChange/index.vue";
-import Organization from "./components/Organization/index.vue";
-import { useRouter } from "vue-router";
+import TaskList from "./components/TaskList/index.vue";
+import { useRoute } from "vue-router";
 
-const router = useRouter();
-const tab = ref("1");
+const tab = ref(null);
+
+const route = useRoute();
+const routePath = ref(route.path);
+
+const unwatch = watch(
+  () => route.path,
+  (newPath, oldPath) => {
+    routePath.value = newPath;
+  },
+  { immediate: true }
+);
+
+// 在组件卸载时取消监听
+onUnmounted(() => {
+  unwatch();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -69,19 +52,12 @@ const tab = ref("1");
 
   // v-tab样式设置
   .tab-text {
-    min-width: 0;
     font-size: 15px;
-    margin-right: 30px;
+    margin-right: 15px;
   }
 
   .v-btn--size-default {
     padding: 0;
-  }
-
-  .content-box {
-    margin-top: 15px;
-    height: calc(100vh - $base-main-padding * 2 - $top-header-height - 95px);
-    overflow-y: scroll;
   }
 }
 </style>

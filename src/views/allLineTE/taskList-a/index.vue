@@ -10,7 +10,7 @@
         <v-card-text class="pa-0">
           <v-tabs-window v-model="tab">
             <v-tabs-window-item value="1">
-              <evolution-task-list></evolution-task-list>
+              <task-list></task-list>
             </v-tabs-window-item>
           </v-tabs-window>
         </v-card-text>
@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import EvolutionTaskList from "./components/EvolutionTaskList/index.vue";
+import TaskList from "./components/TaskList/index.vue";
 import ResultShow from "./components/ResultShow/index.vue";
 import { useRoute } from "vue-router";
 
