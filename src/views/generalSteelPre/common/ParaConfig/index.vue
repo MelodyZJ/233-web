@@ -107,7 +107,7 @@
           <v-btn variant="outlined" class="custom-btn">上传参数</v-btn>
           <v-btn variant="outlined" class="custom-btn">下载模板</v-btn>
         </div>
-
+        <!-- 表格2 -->
         <el-table
           ref="tableRef2"
           :data="tableData2"
@@ -198,7 +198,7 @@
             </template>
           </el-table-column>
         </el-table>
-
+        <!-- 表格3 -->
         <el-table
           ref="tableRef3"
           :data="tableData3"
@@ -264,7 +264,7 @@
             </template>
           </el-table-column>
         </el-table>
-
+        <!-- 表格4 -->
         <el-table
           ref="tableRef4"
           :data="tableData3"
@@ -326,7 +326,7 @@
             </template>
           </el-table-column>
         </el-table>
-
+        <!-- 表格5 -->
         <el-table
           ref="tableRef5"
           :data="tableData3"
@@ -388,7 +388,7 @@
             </template>
           </el-table-column>
         </el-table>
-
+        <!-- 表格6 -->
         <el-table
           ref="tableRef6"
           :data="tableData3"

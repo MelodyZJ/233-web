@@ -83,7 +83,7 @@ const navItemList = reactive([
     path: "/reduceDiameterCalc",
     name: "减定径计算",
     icon: "ZoomOut",
-    children: [{ path: "/highSpeedWire", name: "高速线材", icon: "" }],
+    children: [{ path: "/highSpeedWire-reduceDiameterCalc", name: "高速线材", icon: "" }],
   },
   {
     path: "/specialSteelPre",
@@ -100,7 +100,7 @@ const navItemList = reactive([
     name: "普钢性能预报",
     icon: "ChatLineSquare",
     children: [
-      { path: "/highSpeedWire", name: "高速线材", icon: "" },
+      { path: "/highSpeedWire-generalSteelPre", name: "高速线材", icon: "" },
       { path: "/highSpeedBar", name: "高速棒材", icon: "" },
       { path: "/taskList-g", name: "任务列表", icon: "" },
     ],

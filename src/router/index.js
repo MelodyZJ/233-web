@@ -99,10 +99,10 @@ const routes = [
     component: Layout,
     children: [
       {
-        path: "/highSpeedWire",
+        path: "/highSpeedWire-reduceDiameterCalc",
         component: () =>
           import("@/views/reduceDiameterCalc/highSpeedWire/index.vue"),
-        name: "highSpeedWire",
+        name: "highSpeedWire-reduceDiameterCalc",
         meta: { title: "高速线材" },
       },
     ],
@@ -154,9 +154,9 @@ const routes = [
     component: Layout,
     children: [
       {
-        path: "/highSpeedWire",
+        path: "/highSpeedWire-generalSteelPre",
         component: () => import("@/views/generalSteelPre/common/index.vue"),
-        name: "highSpeedWire",
+        name: "highSpeedWire-generalSteelPre",
         meta: { title: "高速线材" },
       },
       {

@@ -98,7 +98,7 @@ function handleCurrentChange(val) {
 <style lang="scss" scoped>
 .pagination-container {
   background: #fff;
-  padding: 32px 16px;
+  padding: 32px 0 10px 0;
 }
 .pagination-container.hidden {
   display: none;
