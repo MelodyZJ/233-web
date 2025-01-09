@@ -14,6 +14,7 @@
         <power-predict></power-predict>
       </el-tab-pane>
       <el-tab-pane label="各道次各参量变化">Task</el-tab-pane>
+      <el-tab-pane label="屈服强度及组织比例预测">Task</el-tab-pane>
     </el-tabs>
   </div>
 </template>

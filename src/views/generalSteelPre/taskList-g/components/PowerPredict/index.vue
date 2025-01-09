@@ -7,70 +7,69 @@
       :header-cell-style="{ background: '#fafafa' }"
       border
     >
-      <el-table-column label="编号" align="center" width="250" prop="num" />
-      <el-table-column
-        label="规格(o,mm)"
-        align="center"
-        width="150"
-        prop="size"
-      />
-      <el-table-column
-        label="产线类型"
-        align="center"
-        width="150"
-        prop="productLineType"
-      />
-      <el-table-column label="吐丝温度(℃)" align="center">
+      <el-table-column label="任务名" align="center" width="250" prop="num" />
+      <el-table-column label="力学性能计算结果" align="center">
         <el-table-column
-          label="表面"
+          label="σs(MPa)"
           align="center"
           width="120"
           prop="surface"
         />
         <el-table-column
-          label="中心"
+          label="σb(MPa)"
           align="center"
           width="120"
           prop="center"
         />
         <el-table-column
-          label="平均"
+          label="A(%)"
+          align="center"
+          width="120"
+          prop="average"
+        />
+        <el-table-column
+          label="延伸率(%)"
           align="center"
           width="120"
           prop="average"
         />
       </el-table-column>
-      <el-table-column label="强度(MPa)" align="center">
-        <el-table-column label="屈服" align="center" width="120" prop="yield" />
+      <el-table-column label="相关计算结果" align="center">
+        <el-table-column label="F(%)" align="center" width="120" prop="yield" />
         <el-table-column
-          label="抗拉"
+          label="B(%)"
           align="center"
           width="120"
           prop="tensile"
         />
+        <el-table-column
+          label="M(%)"
+          align="center"
+          width="120"
+          prop="elongationRate"
+        />
+        <el-table-column
+          label="P(%)"
+          align="center"
+          width="120"
+          prop="grainSize"
+        />
+        <el-table-column
+          label="Ps(μm)"
+          align="center"
+          width="120"
+          prop="ferriteRatio"
+        />
+        <el-table-column
+          label="轧后y(um)"
+          align="center"
+          width="120"
+          prop="ferriteRatio"
+        />
       </el-table-column>
-      <el-table-column
-        label="延伸率(%)"
-        align="center"
-        width="120"
-        prop="elongationRate"
-      />
-      <el-table-column
-        label="晶粒度"
-        align="center"
-        width="120"
-        prop="grainSize"
-      />
-      <el-table-column
-        label="铁素体比例(%)"
-        align="center"
-        width="120"
-        prop="ferriteRatio"
-      />
-      <el-table-column fixed="right" label="操作" align="center" width="150">
-        <template #default="scope">
-          <el-button link type="primary"> 选择 </el-button>
-        </template>
+
+      <el-table-column label="各相变温度计算结果" align="center">
+        <el-table-column label="Ae3(%)" align="center" width="200" prop="yield" />
       </el-table-column>
     </el-table>
 
