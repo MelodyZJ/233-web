@@ -152,7 +152,26 @@ const routes = [
   {
     path: "/generalSteelPre",
     component: Layout,
-    meta: { title: "普钢性能预报" },
+    children: [
+      {
+        path: "/highSpeedWire",
+        component: () => import("@/views/generalSteelPre/common/index.vue"),
+        name: "highSpeedWire",
+        meta: { title: "高速线材" },
+      },
+      {
+        path: "/highSpeedBar",
+        component: () => import("@/views/generalSteelPre/common/index.vue"),
+        name: "highSpeedBar",
+        meta: { title: "高速棒材" },
+      },
+      {
+        path: "/taskList-g",
+        component: () => import("@/views/generalSteelPre/taskList-g/index.vue"),
+        name: "taskList-g",
+        meta: { title: "任务列表" },
+      },
+    ],
   },
   {
     path: "/materialParameter",

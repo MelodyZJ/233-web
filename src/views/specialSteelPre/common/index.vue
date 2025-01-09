@@ -9,7 +9,7 @@
         <v-btn
           variant="tonal"
           class="position-absolute top-2 right-1 px-3 primary-btn2"
-          @click="router.push('/specialSteelWire')"
+          @click="router.go(-1)"
         >
           <img
             src="@/assets/icons/back.png"
