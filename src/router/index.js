@@ -154,22 +154,48 @@ const routes = [
     component: Layout,
     children: [
       {
-        path: "/highSpeedWire-generalSteelPre",
-        component: () => import("@/views/generalSteelPre/common/index.vue"),
-        name: "highSpeedWire-generalSteelPre",
+        path: "/highSpeedWire-g",
+        component: () =>
+          import("@/views/generalSteelPre/highSpeedWire/index.vue"),
+        name: "highSpeedWire-g",
         meta: { title: "高速线材" },
+        children: [
+          {
+            path: "/highSpeedWire-g/calcResult",
+            component: Layout,
+            name: "highSpeedWire-g-calcResult",
+            meta: { title: "计算结果" },
+          },
+        ],
       },
       {
         path: "/highSpeedBar",
-        component: () => import("@/views/generalSteelPre/common/index.vue"),
+        component: () =>
+          import("@/views/generalSteelPre/highSpeedBar/index.vue"),
         name: "highSpeedBar",
         meta: { title: "高速棒材" },
+        children: [
+          {
+            path: "/highSpeedBar/calcResult",
+            component: Layout,
+            name: "highSpeedBar-calcResult",
+            meta: { title: "计算结果" },
+          },
+        ],
       },
       {
         path: "/taskList-g",
         component: () => import("@/views/generalSteelPre/taskList-g/index.vue"),
         name: "taskList-g",
         meta: { title: "任务列表" },
+        children: [
+          {
+            path: "/taskList-g/calcResult",
+            component: Layout,
+            name: "taskList-g-calcResult",
+            meta: { title: "计算结果" },
+          },
+        ],
       },
     ],
   },

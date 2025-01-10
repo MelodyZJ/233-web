@@ -431,7 +431,9 @@
     />
 
     <div class="btn">
-      <v-btn variant="tonal" class="submit-btn">开始计算</v-btn>
+      <v-btn variant="tonal" class="submit-btn" @click="startCalc"
+        >开始计算</v-btn
+      >
       <v-btn variant="outlined" class="reset-btn">重置</v-btn>
     </div>
   </div>
@@ -439,6 +441,10 @@
 
 <script setup>
 import dayjs from "dayjs";
+import { useRouter, useRoute } from "vue-router";
+
+const router = useRouter();
+const route = useRoute();
 
 const props = defineProps({
   tab: {
@@ -633,6 +639,15 @@ const onAddItem = () => {
     ringDiameter: "",
     rollSpeed: "",
   });
+};
+
+// 跳转到计算结果
+const startCalc = () => {
+  if (route.path == "/highSpeedWire-g") {
+    router.push("/highSpeedWire-g/calcResult");
+  } else if (route.path == "/highSpeedBar") {
+    router.push("/highSpeedBar/calcResult");
+  }
 };
 </script>
 

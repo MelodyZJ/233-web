@@ -100,7 +100,7 @@ const navItemList = reactive([
     name: "普钢性能预报",
     icon: "ChatLineSquare",
     children: [
-      { path: "/highSpeedWire-generalSteelPre", name: "高速线材", icon: "" },
+      { path: "/highSpeedWire-g", name: "高速线材", icon: "" },
       { path: "/highSpeedBar", name: "高速棒材", icon: "" },
       { path: "/taskList-g", name: "任务列表", icon: "" },
     ],

@@ -1,8 +1,15 @@
 <template>
   <div class="AllTemper-container">
     <div class="left">
-      <div class="part-title">头部数据</div>
+      <div class="part-title">
+        <span>{{ isHead ? "头部数据" : "尾部数据" }}</span>
+        <div class="switch-icon" @click="handleSwitch">
+          <img src="@/assets/icons/switch.png" alt="切换" />
+        </div>
+      </div>
       <div class="echarts-item">
+        <p class="x-unit">轧线距离(m)</p>
+        <p class="y-unit">温度(℃)</p>
         <div id="headDataGraph" class="echarts"></div>
       </div>
     </div>
@@ -23,6 +30,8 @@
         </div>
       </div>
       <div class="echarts-item">
+        <p class="x-unit">风冷线距离(m)</p>
+        <p class="y-unit">温度(℃)</p>
         <div id="coldLineGraph" class="echarts"></div>
       </div>
     </div>
@@ -31,7 +40,7 @@
 
 <script setup>
 import * as echarts from "echarts";
-import { nextTick } from "vue";
+import { handleError, nextTick } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
@@ -190,6 +199,12 @@ onUnmounted(() => {
     }
   }
 });
+
+const isHead = ref(true);
+// 切换头部和尾部
+const handleSwitch = () => {
+  isHead.value = !isHead.value;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -214,11 +229,56 @@ onUnmounted(() => {
         border-radius: 10px;
         background-color: #f89623;
         margin-right: 10px;
+
+        img {
+          width: 10px;
+          height: 10px;
+        }
+      }
+
+      .switch-icon {
+        width: 23px;
+        height: 23px;
+        background-color: #ebeef0;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 8px;
+        margin-top: 2px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #dcdee0;
+        }
+
+        img {
+          width: 12px;
+          height: 12px;
+        }
       }
     }
 
     .echarts-item {
       width: 100%;
+      position: relative;
+
+      .x-unit,
+      .y-unit {
+        position: absolute;
+        font-size: 13px;
+        color: #595959;
+      }
+
+      .x-unit {
+        left: 48%;
+        bottom: -5px;
+      }
+
+      .y-unit {
+        top: 5px;
+        left: 26px;
+      }
 
       .echarts {
         width: 100%;
@@ -288,6 +348,24 @@ onUnmounted(() => {
 
     .echarts-item {
       width: 100%;
+      position: relative;
+
+      .x-unit,
+      .y-unit {
+        position: absolute;
+        font-size: 13px;
+        color: #595959;
+      }
+
+      .x-unit {
+        left: 48%;
+        bottom: -15px;
+      }
+
+      .y-unit {
+        top: 20px;
+        left: 12px;
+      }
 
       .echarts {
         width: 100%;

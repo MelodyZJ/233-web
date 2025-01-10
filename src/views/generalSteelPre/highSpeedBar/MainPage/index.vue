@@ -22,8 +22,8 @@
 </template>
 
 <script setup>
-import BaseInfo from "./BaseInfo/index.vue";
-import ParaConfig from "./ParaConfig/index.vue";
+import BaseInfo from "../../common/BaseInfo/index.vue";
+import ParaConfig from "../../common/ParaConfig/index.vue";
 
 const tab = ref("1");
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="SummaryPage-container">
+  <div class="HighSpeedBar-container">
     <el-table
       ref="tableRef"
       :data="tableData"
@@ -69,7 +69,9 @@
       />
       <el-table-column fixed="right" label="操作" align="center" width="150">
         <template #default="scope">
-          <el-button link type="primary"> 选择 </el-button>
+          <el-button link type="primary" @click="toCalcResult">
+            计算结果
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -85,6 +87,10 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
 const data = reactive({
   tableData: [
     {
@@ -103,7 +109,7 @@ const data = reactive({
     {
       num: "ZTCDZZP20241014172127",
       size: "22.0",
-      productLineType: "高速棒材",
+      productLineType: "高速线材",
       surface: "22.0",
       center: "22.0",
       average: "22.0",
@@ -116,7 +122,7 @@ const data = reactive({
     {
       num: "ZTCDZZP20241014172127",
       size: "22.0",
-      productLineType: "高速棒材",
+      productLineType: "高速线材",
       surface: "22.0",
       center: "22.0",
       average: "22.0",
@@ -167,6 +173,11 @@ const tableRef = ref(null);
 
 // 获取列表
 const getList = () => {};
+
+// 去往计算结果
+const toCalcResult = (row) => {
+  router.push("/taskList-g/calcResult");
+};
 </script>
 
 <style lang="scss" scoped></style>
