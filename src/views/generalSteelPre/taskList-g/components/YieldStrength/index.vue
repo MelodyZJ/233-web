@@ -33,7 +33,7 @@ const option1 = {
   series: [
     {
       type: "pie",
-      radius: "60%",
+      radius: "55%",
       data: [
         { value: 1048, name: "铁素体体积分数" },
         { value: 735, name: "珠光体体积分数" },
