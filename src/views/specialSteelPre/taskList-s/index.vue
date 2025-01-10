@@ -1,8 +1,7 @@
 <template>
   <div class="taskList-s-container">
     <el-scrollbar height="100%">
-      <!-- 演变任务列表 -->
-      <v-card variant="flat" v-if="routePath == '/taskList-s'">
+      <v-card variant="flat" class="main-page" v-if="routePath == '/taskList-s'">
         <v-tabs v-model="tab" color="#0C5FFF">
           <v-tab value="1" class="tab-text">特钢任务列表</v-tab>
         </v-tabs>
@@ -15,6 +14,8 @@
           </v-tabs-window>
         </v-card-text>
       </v-card>
+
+      <router-view v-else></router-view>
     </el-scrollbar>
   </div>
 </template>
@@ -44,11 +45,14 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .taskList-s-container {
-  padding: 12px 30px;
   background-color: #fff;
   border-radius: $base-border-radius;
   height: calc(100vh - $base-main-padding * 2 - $top-header-height - 10px);
   box-shadow: $box-shadow;
+
+  .main-page{
+    padding: 12px 30px;
+  }
 
   // v-tab样式设置
   .tab-text {

@@ -107,7 +107,7 @@
             <el-button
               link
               type="primary"
-              @click.prevent="toResult(scope.$index)"
+              @click.prevent="toCalcResult(scope.$index)"
             >
               查看
             </el-button>
@@ -226,11 +226,11 @@ const tableRef = ref(null);
 
 // 获取列表
 const getList = () => {};
-// 跳转查看结果
-const toResult = (index) => {
-  // router.push({
-  //   path: "/taskList-a/resultShow",
-  // });
+// 跳转到计算结果页面
+const toCalcResult = () => {
+  router.push({
+    path: "/taskList-s/calcResult",
+  });
 };
 
 const belongProjectList = ref([

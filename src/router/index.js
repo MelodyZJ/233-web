@@ -120,7 +120,7 @@ const routes = [
         children: [
           {
             path: "/specialSteelWire/calcResult",
-            component: Layout,
+            component: () => import("@/views/specialSteelPre/common/index.vue"),
             name: "specialSteelWire-calcResult",
             meta: { title: "计算结果" },
           },
@@ -135,7 +135,7 @@ const routes = [
         children: [
           {
             path: "/specialSteelBar/calcResult",
-            component: Layout,
+            component: () => import("@/views/specialSteelPre/common/index.vue"),
             name: "specialSteelBar-calcResult",
             meta: { title: "计算结果" },
           },
@@ -146,6 +146,14 @@ const routes = [
         component: () => import("@/views/specialSteelPre/taskList-s/index.vue"),
         name: "taskList-s",
         meta: { title: "任务列表" },
+        children: [
+          {
+            path: "/taskList-s/calcResult",
+            component: () => import("@/views/specialSteelPre/common/index.vue"),
+            name: "taskList-s-calcResult",
+            meta: { title: "计算结果" },
+          },
+        ],
       },
     ],
   },
@@ -162,7 +170,8 @@ const routes = [
         children: [
           {
             path: "/highSpeedWire-g/calcResult",
-            component: Layout,
+            component: () =>
+              import("@/views/generalSteelPre/common/CalcResult/index.vue"),
             name: "highSpeedWire-g-calcResult",
             meta: { title: "计算结果" },
           },
@@ -177,7 +186,8 @@ const routes = [
         children: [
           {
             path: "/highSpeedBar/calcResult",
-            component: Layout,
+            component: () =>
+              import("@/views/generalSteelPre/common/CalcResult/index.vue"),
             name: "highSpeedBar-calcResult",
             meta: { title: "计算结果" },
           },
@@ -191,7 +201,8 @@ const routes = [
         children: [
           {
             path: "/taskList-g/calcResult",
-            component: Layout,
+            component: () =>
+              import("@/views/generalSteelPre/common/CalcResult/index.vue"),
             name: "taskList-g-calcResult",
             meta: { title: "计算结果" },
           },

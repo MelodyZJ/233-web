@@ -14,7 +14,7 @@
       </el-tabs>
     </div>
 
-    <calc-result v-if="routePath == '/taskList-g/calcResult'"></calc-result>
+    <router-view v-else></router-view>
   </div>
 </template>
 
@@ -22,7 +22,6 @@
 import { useRoute } from "vue-router";
 import HighSpeedLine from "./components/HighSpeedLine/index.vue";
 import HighSpeedBar from "./components/HighSpeedBar/index.vue";
-import CalcResult from "../common/CalcResult/index.vue";
 
 const route = useRoute();
 const routePath = ref(route.path);

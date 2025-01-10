@@ -3,13 +3,12 @@
     <!-- 特殊钢线材 -->
     <main-page v-if="routePath == '/highSpeedWire-g'"></main-page>
     <!-- 计算结果 -->
-    <calc-result v-if="routePath == '/highSpeedWire-g/calcResult'"></calc-result>
+    <router-view v-else></router-view>
   </div>
 </template>
 
 <script setup>
 import MainPage from "./MainPage/index.vue";
-import CalcResult from "../common/CalcResult/index.vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
