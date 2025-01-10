@@ -1,7 +1,7 @@
 <template>
   <div class="taskList-g-container">
     <div v-if="routePath == '/taskList-g'" class="main-page">
-      <p>温度演变及组织性能预报</p>
+      <p>任务列表</p>
 
       <el-tabs type="border-card" style="margin-top: 30px">
         <el-tab-pane label="高速线材" :lazy="true">
