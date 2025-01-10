@@ -180,4 +180,8 @@ const toCalcResult = (row) => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.HighSpeedBar-container{
+  margin-top: 20px;
+}
+</style>

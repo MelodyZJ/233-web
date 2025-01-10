@@ -1,18 +1,23 @@
 <template>
   <div class="taskList-g-container">
-    <div v-if="routePath == '/taskList-g'" class="main-page">
-      <p>任务列表</p>
+    <!-- 演变任务列表 -->
+    <v-card variant="flat" v-if="routePath == '/taskList-g'" class="main-page">
+      <v-tabs v-model="tab" color="#0C5FFF">
+        <v-tab value="1" class="tab-text">高速线材</v-tab>
+        <v-tab value="2" class="tab-text">高速棒材</v-tab>
+      </v-tabs>
 
-      <el-tabs type="border-card" style="margin-top: 30px">
-        <el-tab-pane label="高速线材" :lazy="true">
-          <high-speed-line></high-speed-line>
-        </el-tab-pane>
-
-        <el-tab-pane label="高速棒材" :lazy="true">
-          <high-speed-bar></high-speed-bar>
-        </el-tab-pane>
-      </el-tabs>
-    </div>
+      <v-card-text class="pa-0">
+        <v-tabs-window v-model="tab">
+          <v-tabs-window-item value="1">
+            <high-speed-line></high-speed-line>
+          </v-tabs-window-item>
+          <v-tabs-window-item value="2">
+            <high-speed-bar></high-speed-bar>
+          </v-tabs-window-item>
+        </v-tabs-window>
+      </v-card-text>
+    </v-card>
 
     <router-view v-else></router-view>
   </div>
@@ -25,6 +30,8 @@ import HighSpeedBar from "./components/HighSpeedBar/index.vue";
 
 const route = useRoute();
 const routePath = ref(route.path);
+
+const tab = ref(null);
 
 const unwatch = watch(
   () => route.path,
@@ -47,8 +54,19 @@ onUnmounted(() => {
   box-shadow: $box-shadow;
   margin-bottom: 55px;
 
+  // v-tab样式设置
+  .tab-text {
+    min-width: 0;
+    font-size: 15px;
+    margin-right: 25px;
+  }
+
+  .v-btn--size-default {
+    padding: 0;
+  }
+
   .main-page {
-    padding: 23px 30px;
+    padding: 12px 30px;
   }
 }
 </style>
