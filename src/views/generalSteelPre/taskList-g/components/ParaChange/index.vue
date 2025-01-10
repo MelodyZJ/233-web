@@ -1,26 +1,24 @@
 <template>
-  <div class="ParaChange-containr">
-    <div class="title">各道次参数变化</div>
-
+  <div class="ParaChange-container">
     <div class="echarts-content">
       <div class="echarts-item">
-        <div class="part-title">晶粒尺寸</div>
-        <div class="unit">单位：℃</div>
+        <div class="part-title">流变应力</div>
+        <div class="unit">单位：MPa</div>
         <div id="rollTemperatureGraph" class="echarts"></div>
       </div>
       <div class="echarts-item">
-        <div class="part-title">再结晶分数</div>
-        <div class="unit">单位：℃</div>
+        <div class="part-title">再结晶比率</div>
+        <div class="unit">单位：% </div>
         <div id="rollForceGraph" class="echarts"></div>
       </div>
       <div class="echarts-item">
-        <div class="part-title">残余应变</div>
-        <div class="unit">单位：%</div>
+        <div class="part-title">晶粒尺寸</div>
+        <div class="unit">单位：μm</div>
         <div id="remnantGraph" class="echarts"></div>
       </div>
       <div class="echarts-item">
-        <div class="part-title">变形抗力</div>
-        <div class="unit">单位：MPa</div>
+        <div class="part-title">残余应变比率</div>
+        <div class="unit">单位：无</div>
         <div id="deformationGraph" class="echarts"></div>
       </div>
     </div>
@@ -135,7 +133,7 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.ParaChange-containr {
+.ParaChange-container {
   .title {
     font-size: 16px;
   }

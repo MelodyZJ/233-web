@@ -1,5 +1,5 @@
 <template>
-  <div class="table-data">
+  <div class="PowerPredict-container">
     <el-table
       ref="tableRef"
       :data="tableData"

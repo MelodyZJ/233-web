@@ -1,5 +1,5 @@
 <template>
-  <div class="table-data">
+  <div class="SummaryPage-container">
     <el-table
       ref="tableRef"
       :data="tableData"
@@ -103,7 +103,7 @@ const data = reactive({
     {
       num: "ZTCDZZP20241014172127",
       size: "22.0",
-      productLineType: "高速线材",
+      productLineType: "高速棒材",
       surface: "22.0",
       center: "22.0",
       average: "22.0",
@@ -116,7 +116,7 @@ const data = reactive({
     {
       num: "ZTCDZZP20241014172127",
       size: "22.0",
-      productLineType: "高速线材",
+      productLineType: "高速棒材",
       surface: "22.0",
       center: "22.0",
       average: "22.0",

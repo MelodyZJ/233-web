@@ -1,5 +1,5 @@
 <template>
-  <div class="table-data">
+  <div class="AllTemper-container">
     <div class="left">
       <div class="part-title">头部数据</div>
       <div class="echarts-item">
@@ -193,7 +193,7 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.table-data {
+.AllTemper-container {
   display: flex;
 
   .left {
