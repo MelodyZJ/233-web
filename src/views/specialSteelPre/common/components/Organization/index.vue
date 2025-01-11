@@ -1,6 +1,6 @@
 <template>
   <div class="Organization-container">
-    <template v-if="route.path === '/specialSteelWire/calcResult'">
+    <template v-if="route.path === '/specialSteelWire/calcResult' || route.path === '/taskList-s/calcResult'">
       <div class="left-wire">
         <div class="part-title">非搭接点和搭接点</div>
         <div class="content">
