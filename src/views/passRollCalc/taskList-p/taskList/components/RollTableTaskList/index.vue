@@ -5,7 +5,7 @@
         v-model="queryParams.belongProject"
         placeholder="所属项目"
         clearable
-        style="width: 180px"
+        class="select"
       >
         <el-option
           v-for="item in belongProjectList"
@@ -19,7 +19,7 @@
         v-model="queryParams.tableType"
         placeholder="轧制表类型"
         clearable
-        style="width: 180px"
+        class="select"
       >
         <el-option
           v-for="item in tableTypeList"
@@ -33,7 +33,7 @@
         v-model="queryParams.calculateState"
         placeholder="计算状态"
         clearable
-        style="width: 180px"
+        class="select"
       >
         <el-option
           v-for="item in calculateStateList"
@@ -263,6 +263,15 @@ const calculateStateList = ref([
     display: flex;
     align-items: center;
     gap: 10px;
+
+    .select {
+      width: 180px;
+      height: 36px;
+    }
+
+    :deep(.el-select__wrapper){
+      height: 36px;
+    }
   }
 
   .table-data {
