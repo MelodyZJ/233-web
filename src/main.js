@@ -1,11 +1,10 @@
 import { createApp } from "vue";
-import { createPinia } from "pinia";
-import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import router from "@/router/index";
 import "@/assets/styles/reset.scss";
 import "@/assets/styles/theme.scss";
 import { lazyPlugin } from "@/directives/index";
 import App from "./App.vue";
+import store from "./store";
 
 // element-plus
 import ElementPlus from "element-plus";
@@ -38,16 +37,12 @@ const vuetify = createVuetify({
   },
 });
 
-const pinia = createPinia();
 const app = createApp(App);
 
 // 引入elements-plus图标
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
-
-// pinia持久化
-pinia.use(piniaPluginPersistedstate);
 
 // 全局组件挂载
 app.component("Pagination", Pagination);
@@ -56,6 +51,6 @@ app
   .use(router)
   .use(ElementPlus, { locale: zhCn })
   .use(vuetify)
-  .use(pinia)
+  .use(store)
   .use(lazyPlugin)
   .mount("#app");
