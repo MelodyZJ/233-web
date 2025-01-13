@@ -37,283 +37,11 @@
     </div>
     <div class="form-content">
       <!-- 表头格式1 -->
-      <el-form
-        :inline="true"
-        :model="formData1"
-        label-width="120px"
-        class="ml-[-20px]"
-        v-if="queryParams.belongProject === 'CISDI-1'"
-      >
-        <el-row>
-          <el-col :span="6">
-            <el-form-item label="表号">
-              <el-input
-                v-model="formData1.tableNum"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="胚料(mm)">
-              <el-input
-                v-model="formData1.preform"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="轧制速度(m/s)">
-              <el-input
-                v-model="formData1.rollSpeed"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="产品规格(mm)">
-              <el-input
-                v-model="formData1.productStandard"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="钢种">
-              <el-input
-                v-model="formData1.steelGrade"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="胚重(kg)">
-              <el-input
-                v-model="formData1.weight"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="间隔时间(s)">
-              <el-input
-                v-model="formData1.intervalTtime"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
-
+      <form1 v-if="queryParams.belongProject === 'CISDI-1'"></form1>
       <!-- 表头格式2 -->
-      <el-form
-        :inline="true"
-        :model="formData2"
-        label-width="120px"
-        class="ml-[-10px]"
-        v-if="queryParams.belongProject === 'CISDI-2'"
-      >
-        <el-row>
-          <el-col :span="6">
-            <el-form-item label="小时产量(t/h)">
-              <el-input
-                v-model="formData2.tableNum"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="胚料形状">
-              <el-input
-                v-model="formData2.preform"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="还料长度">
-              <el-input
-                v-model="formData2.rollSpeed"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="还料面积(mm²)">
-              <el-input
-                v-model="formData2.productStandard"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="胚料温度(℃)">
-              <el-input
-                v-model="formData2.steelGrade"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="间隔时间(s)">
-              <el-input
-                v-model="formData2.weight"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="成品形状">
-              <el-input
-                v-model="formData2.intervalTtime"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="成品尺寸(mm)">
-              <el-input
-                v-model="formData2.intervalTtime"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="成品速度(m/s)">
-              <el-input
-                v-model="formData2.intervalTtime"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="轧烤温度(℃)">
-              <el-input
-                v-model="formData2.intervalTtime"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
-
+      <form2 v-if="queryParams.belongProject === 'CISDI-2'"></form2>
       <!-- 表头格式3 -->
-      <el-form
-        :inline="true"
-        :model="formData3"
-        label-width="120px"
-        class="ml-[-20px]"
-        v-if="queryParams.belongProject === 'CISDI-3'"
-      >
-        <el-row>
-          <el-col :span="6">
-            <el-form-item label="工作序号">
-              <el-input
-                v-model="formData3.tableNum"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="轧制形状">
-              <el-input
-                v-model="formData3.preform"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="钢种">
-              <el-input
-                v-model="formData3.rollSpeed"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="轧制速度(m/s)">
-              <el-input
-                v-model="formData3.productStandard"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="AXV(mm²/s)">
-              <el-input
-                v-model="formData3.steelGrade"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="胚料尺寸(mm)">
-              <el-input
-                v-model="formData3.weight"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="胚料重量(kg)">
-              <el-input
-                v-model="formData3.intervalTtime"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="最大轧制产量(t/h)" label-width="140px">
-              <el-input
-                v-model="formData3.intervalTtime"
-                placeholder="请输入"
-                style="width: 180px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="轧制时间(s)">
-              <el-input
-                v-model="formData3.intervalTtime"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="间隔时间(s)">
-              <el-input
-                v-model="formData3.intervalTtime"
-                placeholder="请输入"
-                style="width: 200px"
-              />
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
+      <form3 v-if="queryParams.belongProject === 'CISDI-3'"></form3>
     </div>
     <!-- 表格 -->
     <div class="table-data">
@@ -386,38 +114,14 @@
 <script setup>
 import { VueDraggable } from "vue-draggable-plus";
 import DialogCustom from "@/components/DialogCustom/index.vue";
+import Form1 from "./Form1/index.vue";
+import Form2 from "./Form2/index.vue";
+import Form3 from "./Form3/index.vue";
 import router from "@/router";
 
 const now = new Date();
 
 const data = reactive({
-  formData1: {
-    tableNum: "",
-    preform: "",
-    rollSpeed: "",
-    productStandard: "",
-    steelGrade: "",
-    weight: "",
-    intervalTtime: "",
-  },
-  formData2: {
-    tableNum: "",
-    preform: "",
-    rollSpeed: "",
-    productStandard: "",
-    steelGrade: "",
-    weight: "",
-    intervalTtime: "",
-  },
-  formData3: {
-    tableNum: "",
-    preform: "",
-    rollSpeed: "",
-    productStandard: "",
-    steelGrade: "",
-    weight: "",
-    intervalTtime: "",
-  },
   // 表头
   headers: [
     {
@@ -526,8 +230,7 @@ const data = reactive({
     calculateState: "",
   },
 });
-const { formData1, formData2, formData3, headers, tablelist, queryParams } =
-  toRefs(data);
+const { headers, tablelist, queryParams } = toRefs(data);
 const total = ref(20);
 const tableRef = ref(null);
 
