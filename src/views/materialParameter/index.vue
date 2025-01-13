@@ -32,6 +32,7 @@ const tab = ref(null);
 
   // v-tab样式设置
   .tab-text {
+    min-width: 0;
     font-size: 15px;
     margin-right: 15px;
   }

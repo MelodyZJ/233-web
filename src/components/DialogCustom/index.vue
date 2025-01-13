@@ -14,10 +14,7 @@
             @click="showDialog = false"
             >取消</v-btn
           >
-          <v-btn
-            variant="tonal"
-            class="bg-primary text-white ml-3"
-            @click="showDialog = false"
+          <v-btn variant="outlined" class="primary-btn2 ml-3" @click="showDialog = false"
             >确定</v-btn
           >
         </div>
@@ -41,7 +38,7 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-.v-card{
+.v-card {
   padding: 8px 4px;
   min-width: 400px;
 }
