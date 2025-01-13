@@ -17,14 +17,13 @@
       </v-card>
 
       <!-- 结果展示 -->
-      <result-show v-if="routePath == '/taskList-a/resultShow'"></result-show>
+      <router-view v-else></router-view>
     </el-scrollbar>
   </div>
 </template>
 
 <script setup>
 import TaskList from "./components/TaskList/index.vue";
-import ResultShow from "./components/ResultShow/index.vue";
 import { useRoute } from "vue-router";
 
 const tab = ref(null);

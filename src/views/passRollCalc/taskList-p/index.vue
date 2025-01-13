@@ -4,14 +4,13 @@
       <!-- 任务列表 -->
       <taskList v-if="routePath == '/taskList-p'"></taskList>
       <!-- 结果展示 -->
-      <result-show v-if="routePath == '/taskList-p/resultShow'"></result-show>
+      <router-view v-else"></router-view>
     </el-scrollbar>
   </div>
 </template>
 
 <script setup>
 import taskList from "./taskList/index.vue";
-import resultShow from "./resultShow/index.vue";
 import { useRoute } from "vue-router";
 
 const tab = ref(null);

@@ -59,7 +59,10 @@ const routes = [
         children: [
           {
             path: "/taskList-a/resultShow",
-            component: Layout,
+            component: () =>
+              import(
+                "@/views/allLineTE/taskList-a/components/ResultShow/index.vue"
+              ),
             name: "taskList-a-resultShow",
             meta: { title: "结果展示" },
           },
@@ -86,7 +89,9 @@ const routes = [
         children: [
           {
             path: "/taskList-p/resultShow",
-            component: Layout,
+            component: () =>
+              import("@/views/passRollCalc/taskList-p/resultShow/index.vue"),
+
             name: "taskList-p-resultShow",
             meta: { title: "结果展示" },
           },
