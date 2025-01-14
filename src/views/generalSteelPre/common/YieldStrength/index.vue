@@ -28,6 +28,14 @@ const option1 = {
   },
   legend: {
     top: "bottom",
+    itemWidth: 12,
+    itemHeight: 12,
+    textStyle: {
+      fontSize: 13,
+      lineHeight: 13,
+      rich: {},
+      padding: [0, 0, -2, 0],
+    },
   },
   color: ["#538eff", "#01db9d", "#4c79b8", "#f4bb00"],
   series: [
@@ -61,6 +69,14 @@ const option2 = {
   },
   legend: {
     top: "bottom",
+    itemWidth: 12,
+    itemHeight: 12,
+    textStyle: {
+      fontSize: 13,
+      lineHeight: 13,
+      rich: {},
+      padding: [0, 0, -2, 0],
+    },
   },
   color: ["#01dca1", "#01d2b4", "#01c6c8", "#01bade", "#01aef4", "#41a1ff"],
   series: [
