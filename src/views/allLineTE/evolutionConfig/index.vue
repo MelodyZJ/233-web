@@ -36,54 +36,54 @@
         </div>
       </div>
     </div>
-    <div class="container-right">
-      <!-- 建立生产线 -->
-      <div class="product-line-container">
-        <div class="title">建立生产线</div>
-        <div class="tip">请将组件拖入下框中建立生产线</div>
-        <div class="content">
-          <el-scrollbar>
-            <VueDraggable
-              v-model="list2"
-              :animation="150"
-              group="component"
-              ghostClass="ghost"
-              class="product-drag"
-              :style="{ width: computeDragWidth(list2.length) }"
-            >
-              <div
-                v-for="(item, index) in list2"
-                :key="item.id"
-                class="product-item"
+    <el-scrollbar style="border-radius: 8px;">
+      <div class="container-right">
+        <div class="product-line-container">
+          <div class="title">建立生产线</div>
+          <div class="tip">请将组件拖入下框中建立生产线</div>
+          <div class="content">
+            <el-scrollbar>
+              <VueDraggable
+                v-model="list2"
+                :animation="150"
+                group="component"
+                ghostClass="ghost"
+                class="product-drag"
+                :style="{ width: computeDragWidth(list2.length) }"
               >
-                <div class="left">
-                  <img src="@/assets/imgs/component.png" alt="组件" />
-                  <span>{{ item.name }}</span>
-                  <el-input
-                    v-model="item.length"
-                    placeholder="长度(m)"
-                    class="length"
-                  ></el-input>
-                </div>
-                <div class="right">
-                  <template v-if="index != list2.length - 1">
-                    <img src="@/assets/imgs/line-arrow.png" alt="箭头" />
+                <div
+                  v-for="(item, index) in list2"
+                  :key="item.id"
+                  class="product-item"
+                >
+                  <div class="left">
+                    <img src="@/assets/imgs/component.png" alt="组件" />
+                    <span>{{ item.name }}</span>
                     <el-input
-                      v-model="item.distance"
-                      placeholder="距离(m)"
-                      class="distance"
+                      v-model="item.length"
+                      placeholder="长度(m)"
+                      class="length"
                     ></el-input>
-                  </template>
-                  <v-btn class="primary-btn" v-else>完成</v-btn>
+                  </div>
+                  <div class="right">
+                    <template v-if="index != list2.length - 1">
+                      <img src="@/assets/imgs/line-arrow.png" alt="箭头" />
+                      <el-input
+                        v-model="item.distance"
+                        placeholder="距离(m)"
+                        class="distance"
+                      ></el-input>
+                    </template>
+                    <v-btn class="primary-btn" v-else>完成</v-btn>
+                  </div>
                 </div>
-              </div>
-            </VueDraggable>
-          </el-scrollbar>
+              </VueDraggable>
+            </el-scrollbar>
+          </div>
         </div>
+        <product-detail></product-detail>
       </div>
-      <!-- 产品详情 -->
-      <product-detail></product-detail>
-    </div>
+    </el-scrollbar>
   </div>
 </template>
 
@@ -268,19 +268,19 @@ const computeDragWidth = (length) => {
 
   .container-right {
     flex: 1;
+    height: 1000px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    overflow: hidden;
 
     .product-line-container {
       width: 100%;
       height: 305px;
-      background-color: #fff;
-      border-radius: $base-border-radius;
       display: flex;
       flex-direction: column;
+      background-color: #fff;
       box-shadow: $box-shadow;
+      border-radius: $base-border-radius;
 
       .title {
         padding: 15px 20px 5px 20px;

@@ -126,7 +126,6 @@ const handleClick = (e) => {
   background-color: #fff;
   border-radius: $base-border-radius;
   padding: 20px;
-  overflow: scroll;
   box-shadow: $box-shadow;
 
   .form-container {
