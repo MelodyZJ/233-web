@@ -57,6 +57,7 @@
                   v-for="header in headers"
                   :key="header.value"
                   class="table-header"
+                  :class="getTableHeaderClass(queryParams.tableType)"
                 >
                   {{ header.text }}
                 </th>
@@ -226,7 +227,7 @@ const data = reactive({
     pageNum: 1,
     pageSize: 10,
     belongProject: "CISDI-1",
-    tableType: "",
+    tableType: "全边框",
     calculateState: "",
   },
 });
@@ -443,6 +444,20 @@ const headTypeList = ref([
 // 选中的表头
 const selected = ref([]);
 
+// 选择表头样式
+const getTableHeaderClass = (value) => {
+  switch (value) {
+    case "全边框":
+      return "full-border";
+    case "三线格":
+      return "three-line";
+    case "标题三线格":
+      return "title-three-line";
+    default:
+      return "full-border";
+  }
+};
+
 // 计算生产线长度
 const computeDragWidth = (length) => {
   return `${length * 150}px`;
@@ -472,20 +487,33 @@ const computeDragWidth = (length) => {
 
       .table-header {
         width: 150px;
-        background-color: #42434b;
-        color: #ffffff;
         font-weight: bold;
         padding: 10px;
         cursor: move;
+      }
+
+      .full-border {
         border-right: 1px solid #ddd;
+        background-color: #42434b;
+        color: #ffffff;
+      }
+
+      .three-line {
+        border: 1px solid #000;
 
         &:last-child {
-          border: none;
+          border-right: 1px solid #000;
         }
+      }
+
+      .title-three-line{
+        border: 1px dashed #000;
+        border-right: 1px solid #fff;
       }
 
       .table-row td {
         border: 1px solid #ddd;
+        border-top: none;
         padding: 8px;
         text-align: center;
       }

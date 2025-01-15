@@ -2,7 +2,7 @@
   <div class="calculateConfig-container">
     <el-scrollbar height="100%">
       <!-- 任务列表 -->
-      <taskList v-if="routePath == '/taskList-p'"></taskList>
+      <task-list v-if="routePath == '/taskList-p'"></task-list>
       <!-- 结果展示 -->
       <router-view v-else"></router-view>
     </el-scrollbar>
