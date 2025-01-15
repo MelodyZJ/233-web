@@ -27,6 +27,8 @@
           />
         </el-form-item>
       </el-form>
+
+      <v-btn variant="outlined" class="white-btn"> 导出成JPG </v-btn>
     </div>
 
     <div class="echarts-content">
@@ -279,6 +281,9 @@ onUnmounted(() => {
   flex-grow: 1;
 
   .top-input {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
   }
 
   .echarts-content {
