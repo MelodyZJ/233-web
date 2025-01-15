@@ -22,9 +22,15 @@
         </div>
       </div>
       <div class="right">
-        <v-btn variant="outlined" class="white-btn">近7天</v-btn>
-        <v-btn variant="outlined" class="white-btn">近1个月</v-btn>
-        <v-btn variant="outlined" class="white-btn">近3个月</v-btn>
+        <v-btn
+          variant="outlined"
+          class="white-btn"
+          v-for="(item, index) in dateRangeList"
+          :key="index"
+          @click="handleDateRange(item)"
+        >
+          {{ item.label }}
+        </v-btn>
       </div>
     </div>
 
@@ -112,12 +118,7 @@
               查看
             </el-button>
 
-            <el-button
-              link
-              type="primary"
-            >
-              数据导出
-            </el-button>
+            <el-button link type="primary"> 数据导出 </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -134,9 +135,8 @@
 </template>
 
 <script setup>
+import moment from "moment";
 import router from "@/router";
-
-const now = new Date();
 
 const data = reactive({
   tableData: [
@@ -269,6 +269,34 @@ const calculateStateList = ref([
     label: "状态2",
   },
 ]);
+
+const dateRangeList = reactive([
+  {
+    label: "近7天",
+    amount: "7",
+    unit: "days",
+  },
+  {
+    label: "近1月",
+    amount: "1",
+    unit: "months",
+  },
+  {
+    label: "近3月",
+    amount: "3",
+    unit: "months",
+  },
+]);
+
+// 点击时间跨度
+const handleDateRange = (val) => {
+  const { amount, unit } = val;
+  let currentDate = moment().format("YYYY-MM-DD");
+  let pastDate = moment().subtract(amount, unit).format("YYYY-MM-DD");
+
+  queryParams.value.startTime = pastDate;
+  queryParams.value.endTime = currentDate;
+};
 </script>
 
 <style lang="scss" scoped>
