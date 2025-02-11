@@ -487,7 +487,6 @@ const computeDragWidth = (length) => {
 
       .table-header {
         width: 150px;
-        font-weight: bold;
         padding: 10px;
         cursor: move;
       }
@@ -508,7 +507,6 @@ const computeDragWidth = (length) => {
 
       .title-three-line{
         border: 1px dashed #000;
-        border-right: 1px solid #fff;
       }
 
       .table-row td {
