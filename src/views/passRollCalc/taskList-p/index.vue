@@ -4,7 +4,7 @@
       <!-- 任务列表 -->
       <task-list v-if="routePath == '/taskList-p'"></task-list>
       <!-- 结果展示 -->
-      <router-view v-else"></router-view>
+      <router-view v-else></router-view>
     </el-scrollbar>
   </div>
 </template>
