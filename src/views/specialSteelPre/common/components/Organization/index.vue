@@ -1,6 +1,11 @@
 <template>
   <div class="Organization-container">
-    <template v-if="route.path === '/specialSteelWire/calcResult' || route.path === '/taskList-s/calcResult'">
+    <template
+      v-if="
+        route.path === '/specialSteelWire/calcResult' ||
+        route.path === '/taskList-s/calcResult'
+      "
+    >
       <div class="left-wire">
         <div class="part-title">非搭接点和搭接点</div>
         <div class="content">
@@ -29,7 +34,7 @@
           <div class="echarts-item">
             <div id="separateCurveGraph" class="echarts"></div>
           </div>
-          <img src="@/assets/imgs/mystery2.png" alt="神秘图片2">
+          <img src="@/assets/imgs/mystery2.png" alt="神秘图片2" />
         </div>
       </div>
     </template>
@@ -410,7 +415,7 @@ onUnmounted(() => {
         }
       }
 
-      img{
+      img {
         width: 800px;
       }
     }

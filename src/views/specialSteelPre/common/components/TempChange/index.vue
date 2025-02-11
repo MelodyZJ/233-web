@@ -215,7 +215,7 @@ onUnmounted(() => {
           }
         }
 
-        .temper-list{
+        .temper-list {
           padding: 0 30px;
         }
 

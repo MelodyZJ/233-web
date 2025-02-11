@@ -1,13 +1,13 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useThemeStore = defineStore('theme', {
+export const useThemeStore = defineStore("theme", {
   state: () => ({
-    theme: 'light'
+    theme: "light",
   }),
   getters: {
     getTheme: (state) => {
       return state.theme;
-    }
+    },
   },
   actions: {
     setTheme(value) {
@@ -24,4 +24,4 @@ export const useThemeStore = defineStore('theme', {
       },
     ],
   },
-})
+});

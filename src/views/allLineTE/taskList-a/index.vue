@@ -36,7 +36,7 @@ const unwatch = watch(
   (newPath, oldPath) => {
     routePath.value = newPath;
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 // 在组件卸载时取消监听

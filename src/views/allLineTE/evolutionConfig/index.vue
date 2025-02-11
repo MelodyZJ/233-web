@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    <el-scrollbar style="border-radius: 8px;">
+    <el-scrollbar style="border-radius: 8px">
       <div class="container-right">
         <div class="product-line-container">
           <div class="title">建立生产线</div>
@@ -173,7 +173,7 @@ const list2 = ref(
   list1.value.map((item) => ({
     name: `${item.name}`,
     id: `${item.id}`,
-  }))
+  })),
 );
 
 function clone(element) {

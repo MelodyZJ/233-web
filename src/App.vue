@@ -46,7 +46,7 @@ watch(
         break;
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 </script>
 

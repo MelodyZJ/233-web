@@ -69,7 +69,12 @@
       </el-table-column>
 
       <el-table-column label="各相变温度计算结果" align="center">
-        <el-table-column label="Ae3(%)" align="center" width="200" prop="yield" />
+        <el-table-column
+          label="Ae3(%)"
+          align="center"
+          width="200"
+          prop="yield"
+        />
       </el-table-column>
     </el-table>
 

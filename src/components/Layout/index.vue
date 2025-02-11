@@ -85,7 +85,7 @@ const breadcrumbItems = computed(() => {
   .top-header {
     background-color: var(--theme-header);
   }
- 
+
   .fixed-aside {
     height: calc(100vh - $top-header-height);
     background-color: var(--theme-aside);

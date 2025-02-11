@@ -85,7 +85,8 @@ const contactList = ref([
 
     .left {
       flex: 3;
-      background: linear-gradient(
+      background:
+        linear-gradient(
           to bottom right,
           rgba(255, 255, 255, 1),
           rgba(255, 255, 255, 0.5)

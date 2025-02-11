@@ -269,7 +269,7 @@ const calculateStateList = ref([
       height: 36px;
     }
 
-    :deep(.el-select__wrapper){
+    :deep(.el-select__wrapper) {
       height: 36px;
     }
   }

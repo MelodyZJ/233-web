@@ -505,7 +505,7 @@ const computeDragWidth = (length) => {
         }
       }
 
-      .title-three-line{
+      .title-three-line {
         border: 1px dashed #000;
       }
 

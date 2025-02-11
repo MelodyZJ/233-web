@@ -223,16 +223,16 @@ const handleExceed = (files, uploadFiles) => {
   ElMessage.warning(
     `The limit is 3, you selected ${files.length} files this time, add up to ${
       files.length + uploadFiles.length
-    } totally`
+    } totally`,
   );
 };
 
 const beforeRemove = (uploadFile, uploadFiles) => {
   return ElMessageBox.confirm(
-    `Cancel the transfer of ${uploadFile.name} ?`
+    `Cancel the transfer of ${uploadFile.name} ?`,
   ).then(
     () => true,
-    () => false
+    () => false,
   );
 };
 </script>

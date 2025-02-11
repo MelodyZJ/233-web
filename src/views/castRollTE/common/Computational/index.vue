@@ -40,7 +40,6 @@
 </template>
 
 <script setup>
-
 const computationalForm = reactive({
   interceptGridNum: "",
   axialGridNum: "",
@@ -73,7 +72,6 @@ const computationalForm = reactive({
   }
 
   .part-content {
-    
     .unit {
       width: fit-content;
       height: 22px;

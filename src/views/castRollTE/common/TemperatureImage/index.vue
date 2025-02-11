@@ -5,8 +5,7 @@
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 .part-box {
@@ -33,7 +32,6 @@
   }
 
   .part-content {
-    
     .unit {
       width: fit-content;
       height: 22px;

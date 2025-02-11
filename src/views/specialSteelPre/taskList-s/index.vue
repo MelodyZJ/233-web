@@ -1,7 +1,11 @@
 <template>
   <div class="taskList-s-container">
     <el-scrollbar height="100%">
-      <v-card variant="flat" class="main-page" v-if="routePath == '/taskList-s'">
+      <v-card
+        variant="flat"
+        class="main-page"
+        v-if="routePath == '/taskList-s'"
+      >
         <v-tabs v-model="tab" color="#0C5FFF">
           <v-tab value="1" class="tab-text">特钢任务列表</v-tab>
         </v-tabs>
@@ -34,7 +38,7 @@ const unwatch = watch(
   (newPath, oldPath) => {
     routePath.value = newPath;
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 // 在组件卸载时取消监听
@@ -50,7 +54,7 @@ onUnmounted(() => {
   height: calc(100vh - $base-main-padding * 2 - $top-header-height - 10px);
   box-shadow: $box-shadow;
 
-  .main-page{
+  .main-page {
     padding: 12px 30px;
   }
 

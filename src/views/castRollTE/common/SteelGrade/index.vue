@@ -83,8 +83,6 @@ const brandList = ref([
     value: "牌号2",
   },
 ]);
-
-
 </script>
 
 <style lang="scss" scoped>
@@ -112,7 +110,6 @@ const brandList = ref([
   }
 
   .part-content {
-    
     .unit {
       width: fit-content;
       height: 22px;

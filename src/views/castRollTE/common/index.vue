@@ -51,7 +51,7 @@ const containerRef = ref(null);
 const windowWidth = ref(
   window.innerWidth ||
     document.documentElement.clientWidth ||
-    document.body.clientWidth
+    document.body.clientWidth,
 );
 
 onMounted(() => {
@@ -73,7 +73,7 @@ watch(
     if (newPath !== oldPath) {
       updateFun();
     }
-  }
+  },
 );
 
 // 根据视口大小调整锚点栏显示与隐藏

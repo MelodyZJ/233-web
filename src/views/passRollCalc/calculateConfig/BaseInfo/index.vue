@@ -101,7 +101,6 @@ const addProject = () => {
 
 <style lang="scss" scoped>
 .part-box {
-
   .part-title {
     height: 50px;
     display: flex;

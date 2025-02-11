@@ -14,7 +14,10 @@
             @click="showDialog = false"
             >取消</v-btn
           >
-          <v-btn variant="outlined" class="primary-btn2 ml-3" @click="showDialog = false"
+          <v-btn
+            variant="outlined"
+            class="primary-btn2 ml-3"
+            @click="showDialog = false"
             >确定</v-btn
           >
         </div>

@@ -8,7 +8,7 @@
       </div>
       <div class="echarts-item">
         <div class="part-title">再结晶比率</div>
-        <div class="unit">单位：% </div>
+        <div class="unit">单位：%</div>
         <div id="rollForceGraph" class="echarts"></div>
       </div>
       <div class="echarts-item">
