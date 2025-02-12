@@ -9,6 +9,7 @@
         prepend-inner-icon="mdi-email-outline"
         variant="outlined"
         color="primary"
+        v-model="state.account"
       ></v-text-field>
 
       <v-text-field
@@ -21,6 +22,7 @@
         @click:append-inner="visible = !visible"
         hide-details
         color="primary"
+        v-model="state.password"
       ></v-text-field>
 
       <div class="d-flex justify-space-between align-center py-2">
@@ -39,7 +41,8 @@
         size="large"
         variant="tonal"
         block
-        @click="login"
+        @click="handleLogin"
+        :loading="loading"
       >
         登 录
       </v-btn>
@@ -49,12 +52,49 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import { login } from "@/api/user.js";
+import { ElMessage } from "element-plus";
 
 const router = useRouter();
+
+const initialState = {
+  account: "15777777777",
+  password: "123456",
+  // account: '',
+  // password: ''
+};
+
+const state = reactive({
+  ...initialState,
+});
+
+// 密码可见
 const visible = ref(false);
 
-const login = () => {
-  router.push("/home");
+const loading = ref(false);
+// 登录
+const handleLogin = async () => {
+  try {
+    loading.value = true;
+    const res = await login(state);
+    // console.log(res, "登录结果");
+    if (res.code === 200) {
+      localStorage.setItem("token", res.data.token);
+      router.push("/home");
+    } else {
+      ElMessage({
+        message: res.data.msg || "接口请求出错！",
+        type: "success",
+      });
+      loading.value = false;
+    }
+  } catch (error) {
+    ElMessage({
+      message: error,
+      type: "error",
+    });
+    loading.value = false;
+  }
 };
 </script>
 
