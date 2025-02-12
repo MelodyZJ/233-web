@@ -41,7 +41,7 @@ instance.interceptors.response.use(
     // 过期登录
     if (response.data.code === 401 || response.data.code === 403) {
       console.log("登录已过期，请重新登录");
-      Cookies.remove("manageToken");
+      Cookies.remove("Token");
     } else if (
       response.data.code !== 200
       // && response.data.code !== 400
