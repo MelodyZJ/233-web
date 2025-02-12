@@ -7,7 +7,7 @@ import { tansParams } from "@/utils/common";
 // 创建axios实例
 const instance = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
-  timeout: 10000,
+  timeout: 300000,
 });
 
 // 请求拦截器的添加

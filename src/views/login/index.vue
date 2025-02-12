@@ -77,6 +77,7 @@ const handleLogin = async () => {
   try {
     loading.value = true;
     const res = await login(state);
+    // const res = await register(state); // 注册
     // console.log(res, "登录结果");
     if (res.code === 200) {
       localStorage.setItem("token", res.data.token);
