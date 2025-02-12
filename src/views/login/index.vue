@@ -9,7 +9,7 @@
         prepend-inner-icon="mdi-email-outline"
         variant="outlined"
         color="primary"
-        v-model="state.account"
+        v-model="state.email"
       ></v-text-field>
 
       <v-text-field
@@ -58,9 +58,9 @@ import { ElMessage } from "element-plus";
 const router = useRouter();
 
 const initialState = {
-  account: "15777777777",
+  email: "15777777777",
   password: "123456",
-  // account: '',
+  // email: '',
   // password: ''
 };
 
