@@ -54,6 +54,7 @@
 import { useRouter } from "vue-router";
 import { login } from "@/api/user.js";
 import { ElMessage } from "element-plus";
+import Cookies from "js-cookie";
 
 const router = useRouter();
 
@@ -80,7 +81,7 @@ const handleLogin = async () => {
     // const res = await register(state); // 注册
     // console.log(res, "登录结果");
     if (res.code === 200) {
-      localStorage.setItem("token", res.data.token);
+      Cookies.set("Token", res.data.token);
       router.push("/home");
     } else {
       ElMessage({

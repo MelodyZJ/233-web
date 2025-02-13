@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useThrottleFn } from "@vueuse/core";
 import Cookies from "js-cookie";
 import { getCookie } from "@/utils/getCookie";
 import { tansParams } from "@/utils/common";
@@ -58,15 +57,6 @@ instance.interceptors.response.use(
     Promise.reject(err);
   }
 );
-
-const showToast = useThrottleFn((response) => {
-  // console.log('response.data.msg', response.data.msg);
-  ElMessage({
-    message: response.data.msg || "请求出错",
-    type: "error",
-    duration: 700,
-  });
-}, 700);
 
 export const request = ({ method, url, data, config = {} }) => {
   method = method.toLowerCase();
