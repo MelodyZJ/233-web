@@ -27,6 +27,8 @@
         :error-messages="v1$.email.$errors.map((e) => e.$message)"
         @input="v1$.email.$touch"
         @blur="v1$.email.$touch"
+        name="email"
+        autocomplete="email"
       ></v-text-field>
 
       <v-text-field
@@ -43,6 +45,8 @@
         required
         :error-messages="v1$.password.$errors.map((e) => e.$message)"
         @blur="v1$.password.$touch"
+        name="password"
+        autocomplete="current-password"
       ></v-text-field>
 
       <div class="d-flex justify-space-between align-center py-2 mt-[-20px]">
