@@ -28,7 +28,7 @@
         @input="v1$.email.$touch"
         @blur="v1$.email.$touch"
         name="email"
-        autocomplete="email"
+        auto-complete="on"
       ></v-text-field>
 
       <v-text-field
@@ -46,11 +46,12 @@
         :error-messages="v1$.password.$errors.map((e) => e.$message)"
         @blur="v1$.password.$touch"
         name="password"
-        autocomplete="current-password"
+        auto-complete="on"
       ></v-text-field>
 
       <div class="d-flex justify-space-between align-center py-2 mt-[-20px]">
         <v-checkbox
+          v-model="rememberPsw"
           label="记住密码"
           color="#0c5fff"
           hide-details
@@ -167,15 +168,28 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { login, register } from "@/api/user.js";
 import { ElMessage } from "element-plus";
-import Cookies from "js-cookie";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, minLength } from "@vuelidate/validators";
 import { useHomeStore } from "@/store/home.js";
+import { login, register } from "@/api/user.js";
+import { onMounted } from "vue";
+import Cookies from "js-cookie";
+import { getCookie } from "@/utils/getCookie";
 
 const router = useRouter();
 const homeStore = useHomeStore();
+
+onMounted(() => {
+  // 记住密码
+  let Email = getCookie("Email");
+
+  if (Email) {
+    loginForm.email = Email;
+    loginForm.password = getCookie("Password");
+    rememberPsw.value = true;
+  }
+});
 
 // 表单数据
 const initialLoginForm = {
@@ -229,6 +243,7 @@ const switchRegister = () => {
 };
 // 按钮加载
 const loading = ref(false);
+const rememberPsw = ref(false);
 
 // 登录
 const handleLogin = async () => {
@@ -242,6 +257,16 @@ const handleLogin = async () => {
     if (res.data.code === 0) {
       Cookies.set("Token", res.data.data.token);
       homeStore.setUserInfo(res.data.data);
+
+      // 记住密码
+      if (rememberPsw.value) {
+        Cookies.set("Email", loginForm.email);
+        Cookies.set("Password", loginForm.password);
+      } else {
+        Cookies.remove("Email");
+        Cookies.remove("Password");
+      }
+
       router.push("/home");
     } else {
       ElMessage({
