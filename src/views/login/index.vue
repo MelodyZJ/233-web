@@ -168,8 +168,10 @@ import { ElMessage } from "element-plus";
 import Cookies from "js-cookie";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, minLength } from "@vuelidate/validators";
+import { useHomeStore } from "@/store/home.js";
 
 const router = useRouter();
+const homeStore = useHomeStore();
 
 // 表单数据
 const initialLoginForm = {
@@ -197,7 +199,7 @@ const loginRules = {
   email: { required: helpers.withMessage("请输入邮箱", required) },
   password: {
     required: helpers.withMessage("请输入密码", required),
-    minLength: helpers.withMessage("密码长度不能少于7个字符", minLength(7)),
+    minLength: helpers.withMessage("密码长度不能少于8个字符", minLength(8)),
   },
 };
 const registerRules = {
@@ -205,7 +207,7 @@ const registerRules = {
   email: { required: helpers.withMessage("请输入邮箱", required) },
   password: {
     required: helpers.withMessage("请输入密码", required),
-    minLength: helpers.withMessage("密码长度不能少于7个字符", minLength(7)),
+    minLength: helpers.withMessage("密码长度不能少于8个字符", minLength(8)),
   },
   worknumber: { required: helpers.withMessage("请输入工号", required) },
 };
@@ -235,6 +237,7 @@ const handleLogin = async () => {
     // console.log(res, "登录结果");
     if (res.data.code === 0) {
       Cookies.set("Token", res.data.data.token);
+      homeStore.setUserInfo(res.data.data);
       router.push("/home");
     } else {
       ElMessage({

@@ -5,7 +5,7 @@ import Layout from "@/components/Layout/index.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/home",
+    redirect: "/login",
   },
   {
     path: "/login",
@@ -252,7 +252,6 @@ const router = createRouter({
     }
   },
 });
-
 
 // 检测是否有token
 router.beforeEach((to, from, next) => {

@@ -15,9 +15,7 @@ instance.interceptors.request.use(
     let token = getCookie("Token");
 
     if (token) {
-      config.headers.Authorization = "Bearer " + token;
-    } else {
-      config.headers.Authorization = null;
+      config.headers["x-token"] = token;
     }
 
     // get请求映射params参数
