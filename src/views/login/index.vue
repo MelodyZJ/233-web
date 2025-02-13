@@ -103,6 +103,7 @@
         variant="outlined"
         color="primary"
         v-model="registerForm.password"
+        :rules="passwordRules"
       ></v-text-field>
 
       <v-text-field
@@ -139,7 +140,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { login } from "@/api/user.js";
+import { login, register } from "@/api/user.js";
 import { ElMessage } from "element-plus";
 import Cookies from "js-cookie";
 
@@ -155,15 +156,26 @@ const loginForm = reactive({
 });
 
 const initialRegisterForm = {
-  username: "",
-  email: "",
-  password: "",
-  worknumber: "",
+  username: "admin",
+  email: "1739593209@qq.com",
+  password: "123456789",
+  worknumber: "123456789",
 };
 
 const registerForm = reactive({
   ...initialRegisterForm,
 });
+
+const passwordRules = [
+  (value) => {
+    if (value) return true;
+    return "Name is required.";
+  },
+  (value) => {
+    if (value?.length <= 10) return true;
+    return "Name must be less than 10 characters.";
+  },
+];
 
 // 密码是否可见
 const visible = ref(false);
@@ -182,7 +194,7 @@ const handleLogin = async () => {
     loading.value = true;
     const res = await login(loginForm);
     // console.log(res, "登录结果");
-    if (res.code === 200) {
+    if (res.code === 0) {
       Cookies.set("Token", res.data.token);
       router.push("/home");
     } else {
@@ -213,7 +225,7 @@ const handleRegister = async () => {
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",
-        type: "success",
+        type: "error",
       });
       loading.value = false;
     }

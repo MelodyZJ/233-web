@@ -38,18 +38,18 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     // 过期登录
-    if (response.data.code === 401 || response.data.code === 403) {
-      console.log("登录已过期，请重新登录");
-      Cookies.remove("Token");
-    } else if (
-      response.data.code !== 200
-      // && response.data.code !== 400
-    ) {
-      ElMessage({
-        message: response || "接口请求出错！",
-        type: "error",
-      });
-    }
+    // if (response.data.code === 401 || response.data.code === 403) {
+    //   console.log("登录已过期，请重新登录");
+    //   Cookies.remove("Token");
+    // } else if (
+    //   response.data.code !== 200
+    //   // && response.data.code !== 400
+    // ) {
+    //   ElMessage({
+    //     message: response || "接口请求出错！",
+    //     type: "error",
+    //   });
+    // }
 
     return response;
   },
