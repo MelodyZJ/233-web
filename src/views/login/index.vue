@@ -42,7 +42,6 @@
         @click:append-inner="visible = !visible"
         required
         :error-messages="v1$.password.$errors.map((e) => e.$message)"
-        @input="v1$.password.$touch"
         @blur="v1$.password.$touch"
       ></v-text-field>
 
@@ -97,7 +96,6 @@
         class="has--label"
         required
         :error-messages="v2$.username.$errors.map((e) => e.$message)"
-        @input="v2$.username.$touch"
         @blur="v2$.username.$touch"
       ></v-text-field>
 
@@ -111,7 +109,6 @@
         class="has--label"
         required
         :error-messages="v2$.email.$errors.map((e) => e.$message)"
-        @input="v2$.email.$touch"
         @blur="v2$.email.$touch"
       ></v-text-field>
 
@@ -125,7 +122,6 @@
         class="has--label"
         required
         :error-messages="v2$.password.$errors.map((e) => e.$message)"
-        @input="v2$.password.$touch"
         @blur="v2$.password.$touch"
       ></v-text-field>
 
@@ -139,7 +135,6 @@
         class="has--label"
         required
         :error-messages="v2$.worknumber.$errors.map((e) => e.$message)"
-        @input="v2$.worknumber.$touch"
         @blur="v2$.worknumber.$touch"
       ></v-text-field>
 
@@ -172,7 +167,7 @@ import { login, register } from "@/api/user.js";
 import { ElMessage } from "element-plus";
 import Cookies from "js-cookie";
 import { useVuelidate } from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
+import { required, helpers, minLength } from "@vuelidate/validators";
 
 const router = useRouter();
 
@@ -200,12 +195,18 @@ const registerForm = reactive({
 // 校验规则
 const loginRules = {
   email: { required: helpers.withMessage("请输入邮箱", required) },
-  password: { required: helpers.withMessage("请输入密码", required) },
+  password: {
+    required: helpers.withMessage("请输入密码", required),
+    minLength: helpers.withMessage("密码长度不能少于7个字符", minLength(7)),
+  },
 };
 const registerRules = {
   username: { required: helpers.withMessage("请输入用户名", required) },
   email: { required: helpers.withMessage("请输入邮箱", required) },
-  password: { required: helpers.withMessage("请输入密码", required) },
+  password: {
+    required: helpers.withMessage("请输入密码", required),
+    minLength: helpers.withMessage("密码长度不能少于7个字符", minLength(7)),
+  },
   worknumber: { required: helpers.withMessage("请输入工号", required) },
 };
 
@@ -216,15 +217,18 @@ const v2$ = useVuelidate(registerRules, registerForm);
 const visible = ref(false);
 // 是否是注册页
 const isRegister = ref(false);
-// 点击注册
+// 切换登录与注册
 const switchRegister = () => {
   isRegister.value = !isRegister.value;
 };
-
+// 按钮加载
 const loading = ref(false);
 
 // 登录
 const handleLogin = async () => {
+  const result = await v1$.value.$validate();
+  if (!result) return;
+
   try {
     loading.value = true;
     const res = await login(loginForm);
@@ -250,6 +254,9 @@ const handleLogin = async () => {
 
 // 注册
 const handleRegister = async () => {
+  const result = await v2$.value.$validate();
+  if (!result) return;
+
   try {
     loading.value = true;
     const res = await register(registerForm); // 注册
@@ -259,6 +266,7 @@ const handleRegister = async () => {
         message: "注册成功！",
         type: "success",
       });
+      isRegister.value = false;
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",
