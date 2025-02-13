@@ -46,6 +46,8 @@
       >
         登 录
       </v-btn>
+
+      <div class="text-center text-sm">创建账号</div>
     </v-card>
   </div>
 </template>
