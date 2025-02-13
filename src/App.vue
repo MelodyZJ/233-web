@@ -46,7 +46,7 @@ watch(
         break;
     }
   },
-  { immediate: true },
+  { immediate: true }
 );
 </script>
 
@@ -87,5 +87,13 @@ watch(
 
 .search-input {
   width: 180px !important;
+}
+
+.has--label {
+  padding-bottom: 8px;
+
+  .v-input__details {
+    text-align: end;
+  }
 }
 </style>

@@ -16,28 +16,37 @@
       <div class="text-2xl mb-8">用户登录</div>
 
       <v-text-field
-        label="账号"
-        placeholder="请输入账号"
+        v-model="loginForm.email"
+        label="邮箱"
+        placeholder="请输入邮箱"
         prepend-inner-icon="mdi-email-outline"
         variant="outlined"
         color="primary"
-        v-model="loginForm.email"
+        class="has--label"
+        required
+        :error-messages="v1$.email.$errors.map((e) => e.$message)"
+        @input="v1$.email.$touch"
+        @blur="v1$.email.$touch"
       ></v-text-field>
 
       <v-text-field
+        v-model="loginForm.password"
+        class="has--label"
         :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
         :type="visible ? 'text' : 'password'"
         label="密码"
         placeholder="请输入密码"
         prepend-inner-icon="mdi-lock-outline"
         variant="outlined"
-        @click:append-inner="visible = !visible"
-        hide-details
         color="primary"
-        v-model="loginForm.password"
+        @click:append-inner="visible = !visible"
+        required
+        :error-messages="v1$.password.$errors.map((e) => e.$message)"
+        @input="v1$.password.$touch"
+        @blur="v1$.password.$touch"
       ></v-text-field>
 
-      <div class="d-flex justify-space-between align-center py-2">
+      <div class="d-flex justify-space-between align-center py-2 mt-[-20px]">
         <v-checkbox
           label="记住密码"
           color="#0c5fff"
@@ -48,7 +57,7 @@
       </div>
 
       <v-btn
-        class="mt-2 mb-8"
+        class="mb-8"
         color="#0c5fff"
         size="x-large"
         variant="tonal"
@@ -79,44 +88,63 @@
       <div class="text-2xl mb-8">新用户注册</div>
 
       <v-text-field
+        v-model="registerForm.username"
         label="用户名"
         placeholder="请输入用户名"
         prepend-inner-icon="mdi-account-outline"
         variant="outlined"
         color="primary"
-        v-model="registerForm.username"
+        class="has--label"
+        required
+        :error-messages="v2$.username.$errors.map((e) => e.$message)"
+        @input="v2$.username.$touch"
+        @blur="v2$.username.$touch"
       ></v-text-field>
 
       <v-text-field
+        v-model="registerForm.email"
         label="邮箱"
         placeholder="请输入邮箱"
         prepend-inner-icon="mdi-email-outline"
         variant="outlined"
         color="primary"
-        v-model="registerForm.email"
+        class="has--label"
+        required
+        :error-messages="v2$.email.$errors.map((e) => e.$message)"
+        @input="v2$.email.$touch"
+        @blur="v2$.email.$touch"
       ></v-text-field>
 
       <v-text-field
+        v-model="registerForm.password"
         label="密码"
         placeholder="请输入密码"
         prepend-inner-icon="mdi-lock-outline"
         variant="outlined"
         color="primary"
-        v-model="registerForm.password"
-        :rules="passwordRules"
+        class="has--label"
+        required
+        :error-messages="v2$.password.$errors.map((e) => e.$message)"
+        @input="v2$.password.$touch"
+        @blur="v2$.password.$touch"
       ></v-text-field>
 
       <v-text-field
+        v-model="registerForm.worknumber"
         label="工号"
         placeholder="请输入工号"
         prepend-inner-icon="mdi-card-text-outline"
         variant="outlined"
         color="primary"
-        v-model="registerForm.worknumber"
+        class="has--label"
+        required
+        :error-messages="v2$.worknumber.$errors.map((e) => e.$message)"
+        @input="v2$.worknumber.$touch"
+        @blur="v2$.worknumber.$touch"
       ></v-text-field>
 
       <v-btn
-        class="mt-5 mb-8"
+        class="mt-2 mb-8"
         color="#0c5fff"
         size="x-large"
         variant="tonal"
@@ -143,39 +171,46 @@ import { useRouter } from "vue-router";
 import { login, register } from "@/api/user.js";
 import { ElMessage } from "element-plus";
 import Cookies from "js-cookie";
+import { useVuelidate } from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
 
 const router = useRouter();
 
+// 表单数据
 const initialLoginForm = {
   email: "",
   password: "",
+};
+
+const initialRegisterForm = {
+  username: "",
+  email: "",
+  password: "",
+  worknumber: "",
 };
 
 const loginForm = reactive({
   ...initialLoginForm,
 });
 
-const initialRegisterForm = {
-  username: "admin",
-  email: "1739593209@qq.com",
-  password: "123456789",
-  worknumber: "123456789",
-};
-
 const registerForm = reactive({
   ...initialRegisterForm,
 });
 
-const passwordRules = [
-  (value) => {
-    if (value) return true;
-    return "Name is required.";
-  },
-  (value) => {
-    if (value?.length <= 10) return true;
-    return "Name must be less than 10 characters.";
-  },
-];
+// 校验规则
+const loginRules = {
+  email: { required: helpers.withMessage("请输入邮箱", required) },
+  password: { required: helpers.withMessage("请输入密码", required) },
+};
+const registerRules = {
+  username: { required: helpers.withMessage("请输入用户名", required) },
+  email: { required: helpers.withMessage("请输入邮箱", required) },
+  password: { required: helpers.withMessage("请输入密码", required) },
+  worknumber: { required: helpers.withMessage("请输入工号", required) },
+};
+
+const v1$ = useVuelidate(loginRules, loginForm);
+const v2$ = useVuelidate(registerRules, registerForm);
 
 // 密码是否可见
 const visible = ref(false);
