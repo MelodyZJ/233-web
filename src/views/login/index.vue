@@ -229,16 +229,16 @@ const handleLogin = async () => {
     loading.value = true;
     const res = await login(loginForm);
     // console.log(res, "登录结果");
-    if (res.code === 0) {
-      Cookies.set("Token", res.data.token);
+    if (res.data.code === 0) {
+      Cookies.set("Token", res.data.data.token);
       router.push("/home");
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",
-        type: "success",
+        type: "error",
       });
-      loading.value = false;
     }
+    loading.value = false;
   } catch (error) {
     ElMessage({
       message: error,
@@ -254,16 +254,18 @@ const handleRegister = async () => {
     loading.value = true;
     const res = await register(registerForm); // 注册
     // console.log(res, "注册结果");
-    if (res.code === 200) {
-      Cookies.set("Token", res.data.token);
-      router.push("/home");
+    if (res.data.code === 0) {
+      ElMessage({
+        message: "注册成功！",
+        type: "success",
+      });
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",
         type: "error",
       });
-      loading.value = false;
     }
+    loading.value = false;
   } catch (error) {
     ElMessage({
       message: error,
