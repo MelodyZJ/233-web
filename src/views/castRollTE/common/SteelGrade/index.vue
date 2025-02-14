@@ -12,8 +12,12 @@
                 clearable
                 style="width: 200px"
               >
-                <el-option v-for="item in steelGradeList" :key="item.id"
-                :label="item.grade"" :value="item.uuid" />
+                <el-option
+                  v-for="item in steelGradeList"
+                  :key="item.id"
+                  :label="item.grade"
+                  :value="item.uuid"
+                />
               </el-select>
             </el-form-item>
           </el-col>
@@ -36,12 +40,13 @@
             placeholder="请选择"
             clearable
             style="width: 200px"
+            @focus="getGradeMarkFn"
           >
             <el-option
               v-for="item in brandList"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
+              :key="item.id"
+              :label="item.mark"
+              :value="item.id"
             />
           </el-select>
         </el-form-item>
@@ -51,7 +56,7 @@
 </template>
 
 <script setup>
-import { getGrade } from "@/api/rollcast.js";
+import { getGrade, getGradeMark } from "@/api/rollcast.js";
 
 onMounted(() => {
   getGradeFn();
@@ -63,19 +68,8 @@ const steelGradeForm = reactive({
   brand: "",
 });
 
-const steelGrade = ref("");
 const steelGradeList = ref([]);
-
-const brandList = ref([
-  {
-    label: "牌号1",
-    value: "牌号1",
-  },
-  {
-    label: "牌号2",
-    value: "牌号2",
-  },
-]);
+const brandList = ref([]);
 
 // 获取钢种列表
 const getGradeFn = async () => {
@@ -83,6 +77,28 @@ const getGradeFn = async () => {
     const res = await getGrade();
     if (res.data.code === 0) {
       steelGradeList.value = res.data.data;
+      // console.log(steelGradeList.value, "------");
+    } else {
+      ElMessage({
+        message: res.data.msg || "接口请求出错！",
+        type: "error",
+      });
+    }
+  } catch (error) {
+    ElMessage({
+      message: error,
+      type: "error",
+    });
+  }
+};
+
+// 获取钢种对应牌号列表
+const getGradeMarkFn = async () => {
+  try {
+    const res = await getGradeMark(steelGradeForm.steelGrade);
+    if (res.data.code === 0) {
+      brandList.value = res.data.data;
+      // console.log(brandList.value, "------");
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",
