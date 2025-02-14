@@ -45,7 +45,6 @@ import CastInterval from "./CastInterval/index.vue";
 import TemperatureImage from "./TemperatureImage/index.vue";
 import Finish from "./Finish/index.vue";
 import { useRoute } from "vue-router";
-import { getGrade } from "@/api/rollcast.js";
 
 const containerRef = ref(null);
 // 视口宽度
@@ -59,8 +58,6 @@ onMounted(() => {
   // 监听窗口大小变化事件
   window.addEventListener("resize", handleResize);
   handleResize();
-
-  getGradeFn();
 });
 
 // 监听路由变化重新刷新页面
@@ -92,26 +89,6 @@ const handleResize = () => {
 
 const handleClick = (e) => {
   e.preventDefault();
-};
-
-// 登录
-const getGradeFn = async () => {
-  try {
-    const res = await getGrade();
-    if (res.data.code === 0) {
-      console.log(res.data.data, "----");
-    } else {
-      ElMessage({
-        message: res.data.msg || "接口请求出错！",
-        type: "error",
-      });
-    }
-  } catch (error) {
-    ElMessage({
-      message: error,
-      type: "error",
-    });
-  }
 };
 
 // 在离开当前路由之前清空数据

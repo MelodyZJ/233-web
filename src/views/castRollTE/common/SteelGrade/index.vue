@@ -12,12 +12,8 @@
                 clearable
                 style="width: 200px"
               >
-                <el-option
-                  v-for="item in steelGradeList"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                />
+                <el-option v-for="item in steelGradeList" :key="item.id"
+                :label="item.grade"" :value="item.uuid" />
               </el-select>
             </el-form-item>
           </el-col>
@@ -55,6 +51,12 @@
 </template>
 
 <script setup>
+import { getGrade } from "@/api/rollcast.js";
+
+onMounted(() => {
+  getGradeFn();
+});
+
 const steelGradeForm = reactive({
   steelGrade: "",
   temperature: "",
@@ -62,16 +64,7 @@ const steelGradeForm = reactive({
 });
 
 const steelGrade = ref("");
-const steelGradeList = ref([
-  {
-    label: "钢种1",
-    value: "钢种1",
-  },
-  {
-    label: "钢种2",
-    value: "钢种2",
-  },
-]);
+const steelGradeList = ref([]);
 
 const brandList = ref([
   {
@@ -83,6 +76,26 @@ const brandList = ref([
     value: "牌号2",
   },
 ]);
+
+// 获取钢种列表
+const getGradeFn = async () => {
+  try {
+    const res = await getGrade();
+    if (res.data.code === 0) {
+      steelGradeList.value = res.data.data;
+    } else {
+      ElMessage({
+        message: res.data.msg || "接口请求出错！",
+        type: "error",
+      });
+    }
+  } catch (error) {
+    ElMessage({
+      message: error,
+      type: "error",
+    });
+  }
+};
 </script>
 
 <style lang="scss" scoped>
