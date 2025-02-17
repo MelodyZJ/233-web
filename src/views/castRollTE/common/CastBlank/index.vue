@@ -7,13 +7,13 @@
           <el-col :span="11">
             <el-form-item label="铸坯形状">
               <el-select
-                v-model="billetForm.billetShape"
+                v-model="billetForm.shape"
                 placeholder="请选择"
                 clearable
                 style="width: 200px"
               >
                 <el-option
-                  v-for="item in billetShapeList"
+                  v-for="item in shapeList"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
@@ -70,7 +70,7 @@
             <el-form-item label="铸坯倒角">
               <div class="input-unit">
                 <el-input
-                  v-model="billetForm.billetChamfer"
+                  v-model="billetForm.chamfer"
                   placeholder="请输入"
                   class="input"
                   style="width: 200px"
@@ -178,7 +178,9 @@ const route = useRoute();
 const routePath = ref(route.path);
 
 const billetForm = reactive({
-  billetShape: "",
+  shape: "",
+  size: [],
+  temperature: [],
   billetSize: {
     length: "",
     width: "",
@@ -188,7 +190,7 @@ const billetForm = reactive({
     head: "",
     tail: "",
   },
-  billetChamfer: "",
+  chamfer: "",
   angularTemperature: {
     head: "",
     tail: "",
@@ -201,7 +203,7 @@ const billetForm = reactive({
   speed: "",
 });
 
-const billetShapeList = ref([
+const shapeList = ref([
   {
     label: "方坯",
     value: "1",
@@ -230,16 +232,16 @@ const handleExceed = (files, uploadFiles) => {
   ElMessage.warning(
     `The limit is 3, you selected ${files.length} files this time, add up to ${
       files.length + uploadFiles.length
-    } totally`,
+    } totally`
   );
 };
 
 const beforeRemove = (uploadFile, uploadFiles) => {
   return ElMessageBox.confirm(
-    `Cancel the transfer of ${uploadFile.name} ?`,
+    `Cancel the transfer of ${uploadFile.name} ?`
   ).then(
     () => true,
-    () => false,
+    () => false
   );
 };
 </script>

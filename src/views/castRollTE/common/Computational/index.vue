@@ -2,12 +2,12 @@
   <div class="part-box" style="height: 190px">
     <div class="part-title">计算属性</div>
     <div class="part-content">
-      <el-form :inline="true" :model="computationalForm" label-width="220px">
+      <el-form :inline="true" :model="calculation" label-width="220px">
         <el-row>
           <el-col :span="11">
             <el-form-item label="铸坯高度网格数量">
               <el-input
-                v-model="computationalForm.interceptGridNum"
+                v-model="calculation.gridNumberX"
                 placeholder="请输入"
                 style="width: 200px"
               />
@@ -17,7 +17,7 @@
           <el-col :span="13">
             <el-form-item label="铸坯宽度网格数量">
               <el-input
-                v-model="computationalForm.axialGridNum"
+                v-model="calculation.gridNumberY"
                 placeholder="请输入"
                 style="width: 200px"
               />
@@ -28,7 +28,7 @@
 
         <el-form-item label="空冷计算步长">
           <el-input
-            v-model="computationalForm.stepSize"
+            v-model="calculation.calculateStep"
             placeholder="请输入"
             style="width: 200px"
           />
@@ -40,10 +40,10 @@
 </template>
 
 <script setup>
-const computationalForm = reactive({
-  interceptGridNum: "",
-  axialGridNum: "",
-  stepSize: "",
+const calculation = reactive({
+  gridNumberX: "",
+  gridNumberY: "",
+  calculateStep: "",
 });
 </script>
 

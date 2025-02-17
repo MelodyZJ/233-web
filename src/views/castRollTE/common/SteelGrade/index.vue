@@ -7,13 +7,13 @@
           <el-col :span="11">
             <el-form-item label="钢种">
               <el-select
-                v-model="steelGradeForm.steelGrade"
+                v-model="steelGradeForm.grade"
                 placeholder="请选择"
                 clearable
                 style="width: 200px"
               >
                 <el-option
-                  v-for="item in steelGradeList"
+                  v-for="item in gradeList"
                   :key="item.id"
                   :label="item.grade"
                   :value="item.uuid"
@@ -36,14 +36,14 @@
 
         <el-form-item label="牌号">
           <el-select
-            v-model="steelGradeForm.brand"
+            v-model="steelGradeForm.mark"
             placeholder="请选择"
             clearable
             style="width: 200px"
             @focus="getGradeMarkFn"
           >
             <el-option
-              v-for="item in brandList"
+              v-for="item in markList"
               :key="item.id"
               :label="item.mark"
               :value="item.id"
@@ -63,21 +63,21 @@ onMounted(() => {
 });
 
 const steelGradeForm = reactive({
-  steelGrade: "",
+  grade: "",
   temperature: "",
-  brand: "",
+  mark: "",
 });
 
-const steelGradeList = ref([]);
-const brandList = ref([]);
+const gradeList = ref([]);
+const markList = ref([]);
 
 // 获取钢种列表
 const getGradeFn = async () => {
   try {
     const res = await getGrade();
     if (res.data.code === 0) {
-      steelGradeList.value = res.data.data;
-      // console.log(steelGradeList.value, "------");
+      gradeList.value = res.data.data;
+      // console.log(gradeList.value, "------");
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",
