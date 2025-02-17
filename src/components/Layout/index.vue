@@ -69,7 +69,7 @@ const breadcrumbItems = computed(() => {
   if (items.length > 0 && items[0].name !== "首页") {
     items.unshift({
       name: "首页",
-      to: "/",
+      to: "/home",
     });
   }
   return items;

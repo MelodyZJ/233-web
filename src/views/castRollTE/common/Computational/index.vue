@@ -5,7 +5,7 @@
       <el-form :inline="true" :model="computationalForm" label-width="220px">
         <el-row>
           <el-col :span="11">
-            <el-form-item label="截距网格数量(半个边长)">
+            <el-form-item label="铸坯高度网格数量">
               <el-input
                 v-model="computationalForm.interceptGridNum"
                 placeholder="请输入"
@@ -15,7 +15,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="13">
-            <el-form-item label="轴向网格数量">
+            <el-form-item label="铸坯宽度网格数量">
               <el-input
                 v-model="computationalForm.axialGridNum"
                 placeholder="请输入"

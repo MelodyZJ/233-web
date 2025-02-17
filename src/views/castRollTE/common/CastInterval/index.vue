@@ -223,7 +223,7 @@
                 v-model="castingIntervalForm.dephosphorizationPropertie.type1"
                 placeholder="请选择"
                 clearable
-                style="width: 150px; margin-right: 10px"
+                style="width: 150px"
               >
                 <el-option
                   v-for="item in typeList1"
@@ -237,16 +237,18 @@
                   v-model="
                     castingIntervalForm.dephosphorizationPropertie.type1Value
                   "
-                  placeholder="水量"
+                  :placeholder="isWaterYield ? '水量' : '水压'"
                   style="width: 150px"
                 />
-                <span class="unit">m³/h</span>
+                <span class="unit">
+                  {{ isWaterYield ? "m³/h" : "MPa" }}
+                </span>
               </div>
               <el-select
                 v-model="castingIntervalForm.dephosphorizationPropertie.type2"
                 placeholder="请选择"
                 clearable
-                style="width: 150px; margin-right: 10px"
+                style="width: 150px"
               >
                 <el-option
                   v-for="item in typeList2"
@@ -256,16 +258,37 @@
                 />
               </el-select>
               <div class="input-unit">
-                <el-input
-                  v-model="
-                    castingIntervalForm.dephosphorizationPropertie.type2Value
-                  "
-                  placeholder="换热系数"
-                  style="width: 150px"
-                />
-                <span class="unit">W/(m³K)</span>
+
+                <template v-if="isHeatModel">
+                  <el-select
+                    v-model="
+                      castingIntervalForm.dephosphorizationPropertie.type2Value
+                    "
+                    placeholder="请选择模型"
+                    clearable
+                    style="width: 150px"
+                  >
+                    <el-option
+                      v-for="item in modelList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    />
+                  </el-select>
+                </template>
+
+                <template v-else>
+                  <el-input
+                    v-model="
+                      castingIntervalForm.dephosphorizationPropertie.type2Value
+                    "
+                    placeholder="换热系数"
+                    style="width: 150px"
+                  />
+                  <span class="unit">W/(m³·K)</span>
+                </template>
               </div>
-              <div class="input-unit next-row">
+              <div class="input-unit">
                 <el-input
                   v-model="
                     castingIntervalForm.dephosphorizationPropertie
@@ -276,7 +299,7 @@
                 />
                 <span class="unit">m</span>
               </div>
-              <div class="input-unit next-row">
+              <div class="input-unit">
                 <el-input
                   v-model="
                     castingIntervalForm.dephosphorizationPropertie
@@ -287,7 +310,7 @@
                 />
                 <span class="unit">mm</span>
               </div>
-              <div class="input-unit next-row">
+              <div class="input-unit">
                 <el-input
                   v-model="
                     castingIntervalForm.dephosphorizationPropertie
@@ -388,25 +411,56 @@ const value = ref(true);
 
 const typeList1 = ref([
   {
-    label: "类型1",
-    value: "1",
+    label: "水量",
+    value: "水量",
   },
   {
-    label: "类型2",
-    value: "2",
+    label: "水压",
+    value: "水压",
   },
 ]);
 
 const typeList2 = ref([
   {
-    label: "类型1",
-    value: "1",
+    label: "换热模型",
+    value: "换热模型",
   },
   {
-    label: "类型2",
-    value: "2",
+    label: "换热系数",
+    value: "换热系数",
   },
 ]);
+
+const modelList = ref([
+  {
+    label: "ZTCD模型",
+    value: "ZTCD模型",
+  },
+  {
+    label: "经典模型",
+    value: "经典模型",
+  },
+]);
+
+// type1是否选择的是水量
+const isWaterYield = ref(true);
+// type2否选择的是换热模型
+const isHeatModel = ref(true);
+
+watch(
+  () => castingIntervalForm.dephosphorizationPropertie.type1,
+  (newValue, oldValue) => {
+    isWaterYield.value = newValue === "水量" ? true : false;
+  }
+);
+
+watch(
+  () => castingIntervalForm.dephosphorizationPropertie.type2,
+  (newValue, oldValue) => {
+    isHeatModel.value = newValue === "换热模型" ? true : false;
+    castingIntervalForm.dephosphorizationPropertie.type2Value = "";
+  }
+);
 
 const deleteRow = (index) => {
   tableData.value.splice(index, 1);
@@ -452,7 +506,6 @@ const onAddItem = () => {
 
     .input-unit {
       position: relative;
-      margin-right: 10px;
     }
 
     .unit {
@@ -468,14 +521,14 @@ const onAddItem = () => {
       color: #606266;
     }
 
-    .next-row {
-      margin-top: 10px;
-    }
-
     .custom-btn {
       background-color: #fff;
       color: #0c5fff;
     }
+  }
+
+  :deep(.el-form-item__content) {
+    gap: 10px;
   }
 }
 </style>

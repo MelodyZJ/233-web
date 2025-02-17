@@ -23,25 +23,23 @@
           </el-col>
           <el-col :span="13">
             <el-form-item label="铸坯尺寸(mm)">
-              <div class="mr-2">
-                <el-input
-                  v-model="billetForm.billetSize.length"
-                  placeholder="长"
-                  style="width: 67px"
-                />
-              </div>
-              <div class="mr-2">
-                <el-input
-                  v-model="billetForm.billetSize.width"
-                  placeholder="宽"
-                  style="width: 67px"
-                />
-              </div>
-              <div class="mr-2">
+              <div class="mr-2 w-[67px]">
                 <el-input
                   v-model="billetForm.billetSize.height"
                   placeholder="高"
-                  style="width: 67px"
+                />
+              </div>
+              <div class="mr-2 w-[67px]">
+                <el-input
+                  v-model="billetForm.billetSize.width"
+                  placeholder="宽"
+                />
+              </div>
+              <div class="mr-2 w-[67px]">
+                <el-input
+                  v-model="billetForm.billetSize.length"
+                  placeholder="长"
+                  :disabled="routePath == '/continuousCastRoll'"
                 />
               </div>
             </el-form-item>
@@ -174,6 +172,11 @@
 </template>
 
 <script setup>
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+const routePath = ref(route.path);
+
 const billetForm = reactive({
   billetShape: "",
   billetSize: {
@@ -200,12 +203,16 @@ const billetForm = reactive({
 
 const billetShapeList = ref([
   {
-    label: "大大大",
-    value: "大大大",
+    label: "方坯",
+    value: "1",
   },
   {
-    label: "小小小",
-    value: "小小小",
+    label: "矩形坯",
+    value: "2",
+  },
+  {
+    label: "圆坯",
+    value: "3",
   },
 ]);
 
