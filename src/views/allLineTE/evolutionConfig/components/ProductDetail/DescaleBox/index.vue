@@ -1,6 +1,6 @@
 <template>
   <div class="part-box" style="height: 140px">
-    <div class="part-title">除磷箱</div>
+    <div class="part-title">除鳞箱</div>
     <div class="part-content">
       <el-form :inline="true" :model="descaleBoxForm" label-width="120px">
         <el-row>

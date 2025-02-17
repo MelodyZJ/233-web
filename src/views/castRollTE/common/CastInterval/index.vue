@@ -54,37 +54,27 @@
                   type="index"
                 ></el-table-column>
                 <el-table-column
-                  prop="date"
                   label="输送距离(m)"
                   align="center"
                   max-width="150"
                 >
                   <template #default="scope">
                     <el-input
-                      v-model="scope.row.transportDistance"
+                      v-model="scope.row.distance"
                       placeholder="请输入"
                     />
                   </template>
                 </el-table-column>
                 <el-table-column
-                  prop="name"
                   label="输送速度(m/min)"
                   align="center"
                   max-width="120"
                 >
                   <template #default="scope">
-                    <el-input
-                      v-model="scope.row.transportSpeed"
-                      placeholder="请输入"
-                    />
+                    <el-input v-model="scope.row.speed" placeholder="请输入" />
                   </template>
                 </el-table-column>
-                <el-table-column
-                  prop="state"
-                  label="系数"
-                  align="center"
-                  max-width="120"
-                >
+                <el-table-column label="系数" align="center" max-width="120">
                   <template #default="scope">
                     <el-input
                       v-model="scope.row.coefficient"
@@ -100,7 +90,7 @@
                 >
                   <template #default="scope">
                     <el-switch
-                      v-model="value"
+                      v-model="scope.row.isKeepWarm"
                       class="ml-2"
                       style="
                         --el-switch-on-color: #13ce66;
@@ -142,7 +132,7 @@
           <el-col>
             <el-form-item label="是否补热">
               <el-switch
-                v-model="value"
+                v-model="castingIntervalForm.isReplenishment"
                 class="ml-2"
                 style="
                   --el-switch-on-color: #13ce66;
@@ -152,12 +142,12 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <!-- 是否除磷 -->
+        <!-- 是否除鳞 -->
         <el-row>
           <el-col>
-            <el-form-item label="是否除磷">
+            <el-form-item label="是否除鳞">
               <el-switch
-                v-model="value"
+                v-model="castingIntervalForm.isDescaling"
                 class="ml-2"
                 style="
                   --el-switch-on-color: #13ce66;
@@ -172,7 +162,7 @@
           <el-col>
             <el-form-item label="是否待温">
               <el-switch
-                v-model="value"
+                v-model="castingIntervalForm.isWaitWarm"
                 class="ml-2"
                 style="
                   --el-switch-on-color: #13ce66;
@@ -225,10 +215,10 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <!-- 除磷段属性 -->
+        <!-- 除鳞段属性 -->
         <el-row>
           <el-col>
-            <el-form-item label="除磷段属性">
+            <el-form-item label="除鳞段属性">
               <el-select
                 v-model="castingIntervalForm.dephosphorizationPropertie.type1"
                 placeholder="请选择"
@@ -347,6 +337,9 @@ import dayjs from "dayjs";
 const castingIntervalForm = reactive({
   spacingTotalLength: "",
   enteredLength: "",
+  isReplenishment: true,
+  isDescaling: false,
+  isWaitWarm: true,
   transportList: "",
   heatProperties: {
     absolutePosition: "",
@@ -372,22 +365,22 @@ const now = new Date();
 const tableRef = ref(null);
 const tableData = ref([
   {
-    date: "11",
-    name: "Tom",
-    state: "California",
-    city: "Los Angeles",
+    distance: "",
+    speed: "",
+    coefficient: "",
+    isKeepWarm: true,
   },
   {
-    date: "22",
-    name: "Tom",
-    state: "California",
-    city: "Los Angeles",
+    distance: "",
+    speed: "",
+    coefficient: "",
+    isKeepWarm: true,
   },
   {
-    date: "333",
-    name: "Tom",
-    state: "California",
-    city: "Los Angeles",
+    distance: "",
+    speed: "",
+    coefficient: "",
+    isKeepWarm: false,
   },
 ]);
 

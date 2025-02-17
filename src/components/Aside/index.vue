@@ -133,6 +133,10 @@ const handleNavItemClick = (path) => {
   position: relative;
   height: calc(100vh - $top-header-height);
 
+  .el-menu {
+    border-right: none;
+  }
+
   .el-menu-vertical {
     padding-top: 10px;
 

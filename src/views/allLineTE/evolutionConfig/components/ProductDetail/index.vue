@@ -9,7 +9,7 @@
         >
           <!-- 初始配置 -->
           <init-config id="part1"></init-config>
-          <!-- 除磷箱 -->
+          <!-- 除鳞箱 -->
           <descale-box id="part2"></descale-box>
           <!-- 脱头 -->
           <take-off-head id="part3"></take-off-head>
@@ -57,7 +57,7 @@
             @click="handleClick"
           >
             <el-anchor-link href="#part1" title="初始配置" />
-            <el-anchor-link href="#part2" title="除磷箱" />
+            <el-anchor-link href="#part2" title="除鳞箱" />
             <el-anchor-link href="#part3" title="脱头" />
             <el-anchor-link href="#part4" title="模块轧机" />
             <el-anchor-link href="#part5" title="加热炉" />
