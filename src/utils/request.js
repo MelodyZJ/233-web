@@ -14,6 +14,12 @@ instance.interceptors.request.use(
   (config) => {
     let token = getCookie("Token");
 
+    // 判断是不是模型接口，如果是则替换baseURL
+    if (config.url.startsWith("/wbds")) {
+      config.baseURL = import.meta.env.VITE_MODEL_API;
+    }
+
+    // 携带token
     if (token) {
       config.headers["x-token"] = token;
     }
