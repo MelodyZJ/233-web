@@ -4,17 +4,21 @@
       <el-col :span="showAnchor ? 18 : 23">
         <div ref="containerRef" class="form-container">
           <!-- 计算属性 -->
-          <computational id="part1"></computational>
+          <computational id="part1" ref="computationalRef"></computational>
           <!-- 钢种属性 -->
-          <steel-grade id="part2"></steel-grade>
+          <steel-grade id="part2" ref="steelGradeRef"></steel-grade>
           <!-- 铸坯属性 -->
-          <cast-blank id="part3"></cast-blank>
+          <cast-blank id="part3" ref="castBlankRef"></cast-blank>
           <!-- 铸轧间距属性 -->
-          <cast-interval id="part4"></cast-interval>
+          <cast-interval id="part4" ref="castIntervalRef"></cast-interval>
           <!-- 铸轧温度图像 -->
-          <temperature-image id="part5"></temperature-image>
+          <temp-img id="part5"></temp-img>
           <!-- 完成 -->
-          <finish id="part6"></finish>
+          <finish
+            id="part6"
+            @submitFn="submit"
+            :submitLoading="submitLoading"
+          ></finish>
         </div>
       </el-col>
       <el-col :span="1"></el-col>
@@ -42,9 +46,10 @@ import Computational from "./Computational/index.vue";
 import SteelGrade from "./SteelGrade/index.vue";
 import CastBlank from "./CastBlank/index.vue";
 import CastInterval from "./CastInterval/index.vue";
-import TemperatureImage from "./TemperatureImage/index.vue";
+import TempImg from "./TempImg/index.vue";
 import Finish from "./Finish/index.vue";
 import { useRoute } from "vue-router";
+import { direct_rolling_func } from "@/api/rollcast.js";
 
 const containerRef = ref(null);
 // 视口宽度
@@ -87,8 +92,70 @@ const handleResize = () => {
   }
 };
 
+// 锚点点击
 const handleClick = (e) => {
   e.preventDefault();
+};
+
+const computationalRef = ref(null);
+const steelGradeRef = ref(null);
+const castBlankRef = ref(null);
+const castIntervalRef = ref(null);
+
+const submitLoading = ref(false);
+
+// 表单提交
+const submit = async () => {
+  // 组装子表单数据
+  const calculation_data = computationalRef.value.getCalculation();
+  const steelGrade_data = steelGradeRef.value.getSteelGrade();
+  const billet_data = castBlankRef.value.getBillet();
+  const electromagnetic_data = castIntervalRef.value.getElectromagnetic();
+  const castRollingSpace_data = castIntervalRef.value.getCastRollingSpace();
+
+  let obj = {
+    calculation: {
+      ...calculation_data,
+    },
+    steelGrade: {
+      ...steelGrade_data,
+    },
+    billet: {
+      ...billet_data,
+    },
+    electromagnetic: {
+      ...electromagnetic_data,
+    },
+    castRollingSpace: {
+      ...castRollingSpace_data,
+    },
+  };
+  // console.log(obj, "obj-----");
+
+  // 发送提交请求
+  try {
+    submitLoading.value = true;
+    const res = await direct_rolling_func(obj);
+    console.log(res, "提交结果");
+    if (res.data.code === 0) {
+      ElMessage({
+        message: "提交成功！",
+        type: "success",
+      });
+    } else {
+      ElMessage({
+        message: res.data.msg || "接口请求出错！",
+        type: "error",
+      });
+    }
+  } catch (error) {
+    ElMessage({
+      message: error,
+      type: "error",
+    });
+  } finally {
+    submitLoading.value = false;
+  }
 };
 
 // 在离开当前路由之前清空数据

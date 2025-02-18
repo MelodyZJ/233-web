@@ -9,6 +9,7 @@
               <el-input
                 v-model="calculation.gridNumberX"
                 placeholder="请输入"
+                type="number"
                 style="width: 200px"
               />
               <span class="unit">个</span>
@@ -19,6 +20,7 @@
               <el-input
                 v-model="calculation.gridNumberY"
                 placeholder="请输入"
+                type="number"
                 style="width: 200px"
               />
               <span class="unit">个</span>
@@ -30,6 +32,7 @@
           <el-input
             v-model="calculation.calculateStep"
             placeholder="请输入"
+            type="number"
             style="width: 200px"
           />
           <span class="unit">步</span>
@@ -44,6 +47,15 @@ const calculation = reactive({
   gridNumberX: "",
   gridNumberY: "",
   calculateStep: "",
+});
+
+// 返回给父组件的数据
+const getCalculation = () => {
+  return calculation;
+};
+
+defineExpose({
+  getCalculation,
 });
 </script>
 

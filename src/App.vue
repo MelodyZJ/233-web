@@ -65,6 +65,7 @@ watch(
   display: none;
 }
 
+// 按钮颜色设置
 .primary-btn {
   background-color: #5084ff !important;
   color: #fff !important;
@@ -89,11 +90,25 @@ watch(
   width: 180px !important;
 }
 
+// vuetify样式修改
 .has--label {
   padding-bottom: 8px;
 
   .v-input__details {
     text-align: end;
   }
+}
+
+// 取消input的上下箭头
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+}
+
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+}
+
+input[type="number"] {
+  appearance: textfield;
 }
 </style>

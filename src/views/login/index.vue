@@ -274,12 +274,12 @@ const handleLogin = async () => {
         type: "error",
       });
     }
-    loading.value = false;
   } catch (error) {
     ElMessage({
       message: error,
       type: "error",
     });
+  } finally {
     loading.value = false;
   }
 };
@@ -305,12 +305,12 @@ const handleRegister = async () => {
         type: "error",
       });
     }
-    loading.value = false;
   } catch (error) {
     ElMessage({
       message: error,
       type: "error",
     });
+  } finally {
     loading.value = false;
   }
 };

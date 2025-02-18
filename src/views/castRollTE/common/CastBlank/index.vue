@@ -27,18 +27,21 @@
                 <el-input
                   v-model="billetForm.billetSize.height"
                   placeholder="高"
+                  type="number"
                 />
               </div>
               <div class="mr-2 w-[67px]">
                 <el-input
                   v-model="billetForm.billetSize.width"
                   placeholder="宽"
+                  type="number"
                 />
               </div>
               <div class="mr-2 w-[67px]">
                 <el-input
                   v-model="billetForm.billetSize.length"
                   placeholder="长"
+                  type="number"
                   :disabled="routePath == '/continuousCastRoll'"
                 />
               </div>
@@ -52,6 +55,7 @@
                 <el-input
                   v-model="billetForm.surfaceCenterTemperature.head"
                   placeholder="头部"
+                  type="number"
                   style="width: 95px"
                 />
                 <span class="unit">°C</span>
@@ -60,6 +64,7 @@
                 <el-input
                   v-model="billetForm.surfaceCenterTemperature.tail"
                   placeholder="尾部"
+                  type="number"
                   style="width: 95px"
                 />
                 <span class="unit">°C</span>
@@ -73,6 +78,7 @@
                   v-model="billetForm.chamfer"
                   placeholder="请输入"
                   class="input"
+                  type="number"
                   style="width: 200px"
                 />
                 <span class="unit" style="top: 6px; right: 20px">mm</span>
@@ -87,6 +93,7 @@
                 <el-input
                   v-model="billetForm.angularTemperature.head"
                   placeholder="头部"
+                  type="number"
                   style="width: 95px"
                 />
                 <span class="unit">°C</span>
@@ -95,6 +102,7 @@
                 <el-input
                   v-model="billetForm.angularTemperature.tail"
                   placeholder="尾部"
+                  type="number"
                   style="width: 95px"
                 />
                 <span class="unit">°C</span>
@@ -107,6 +115,7 @@
                 <el-input
                   v-model="billetForm.density"
                   placeholder="请输入"
+                  type="number"
                   style="width: 200px"
                 />
                 <span class="unit">kg/m³</span>
@@ -121,6 +130,7 @@
                 <el-input
                   v-model="billetForm.centerTemperature.head"
                   placeholder="头部"
+                  type="number"
                   style="width: 95px"
                 />
                 <span class="unit">°C</span>
@@ -129,6 +139,7 @@
                 <el-input
                   v-model="billetForm.centerTemperature.tail"
                   placeholder="尾部"
+                  type="number"
                   style="width: 95px"
                 />
                 <span class="unit">°C</span>
@@ -141,6 +152,7 @@
                 <el-input
                   v-model="billetForm.speed"
                   placeholder="请输入"
+                  type="number"
                   style="width: 200px"
                 />
                 <span class="unit">m/min</span>
@@ -179,8 +191,6 @@ const routePath = ref(route.path);
 
 const billetForm = reactive({
   shape: "",
-  size: [],
-  temperature: [],
   billetSize: {
     length: "",
     width: "",
@@ -218,6 +228,8 @@ const shapeList = ref([
   },
 ]);
 
+
+// 文件上传
 const fileList = ref([]);
 
 const handleRemove = (file, uploadFiles) => {
@@ -244,6 +256,42 @@ const beforeRemove = (uploadFile, uploadFiles) => {
     () => false
   );
 };
+
+// 返回给父组件的数据
+const getBillet = () => {
+  const {
+    shape,
+    chamfer,
+    density,
+    speed,
+    billetSize,
+    surfaceCenterTemperature,
+    centerTemperature,
+    angularTemperature,
+  } = billetForm;
+
+  let data = {
+    shape,
+    chamfer,
+    density,
+    speed,
+    size: [billetSize.height, billetSize.width, billetSize.length],
+    temperature: [
+      surfaceCenterTemperature.head, // 表面
+      surfaceCenterTemperature.tail,
+      centerTemperature.head, // 中心
+      centerTemperature.tail,
+      angularTemperature.head, // 尾部
+      angularTemperature.tail,
+    ],
+  };
+
+  return data;
+};
+
+defineExpose({
+  getBillet,
+});
 </script>
 
 <style lang="scss" scoped>

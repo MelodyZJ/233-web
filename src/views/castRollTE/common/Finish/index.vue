@@ -3,14 +3,35 @@
     <div class="part-title">完成</div>
     <div class="part-content">
       <div class="btn">
-        <v-btn variant="tonal" class="submit-btn">提交</v-btn>
-        <v-btn variant="outlined" class="reset-btn">重置</v-btn>
+        <v-btn
+          variant="tonal"
+          class="submit-btn"
+          @click="submit"
+          :loading="submitLoading"
+          >提交</v-btn
+        >
+        <v-btn variant="outlined" class="reset-btn" @click="reset">重置</v-btn>
       </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps({
+  submitLoading: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const emit = defineEmits(["submitFn"]);
+
+const submit = () => {
+  emit("submitFn");
+};
+
+const reset = () => {};
+</script>
 
 <style lang="scss" scoped>
 .part-box {

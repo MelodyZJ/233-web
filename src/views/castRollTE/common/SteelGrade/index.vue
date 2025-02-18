@@ -26,7 +26,7 @@
               <el-input
                 v-model="steelGradeForm.temperature"
                 placeholder="请输入"
-                clearable
+                type="number"
                 style="width: 200px"
               />
               <span class="unit">°C</span>
@@ -112,6 +112,15 @@ const getGradeMarkFn = async () => {
     });
   }
 };
+
+// 返回给父组件的数据
+const getSteelGrade = () => {
+  return steelGradeForm;
+};
+
+defineExpose({
+  getSteelGrade,
+});
 </script>
 
 <style lang="scss" scoped>
