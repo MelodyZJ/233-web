@@ -110,28 +110,8 @@ const initConfigForm = reactive({
   waterTemperature: "",
 });
 
-const steelGrade = ref("");
-const steelGradeList = ref([
-  {
-    label: "钢种1",
-    value: "钢种1",
-  },
-  {
-    label: "钢种2",
-    value: "钢种2",
-  },
-]);
-
-const brandList = ref([
-  {
-    label: "牌号1",
-    value: "牌号1",
-  },
-  {
-    label: "牌号2",
-    value: "牌号2",
-  },
-]);
+const steelGradeList = ref([]);
+const brandList = ref([]);
 </script>
 
 <style lang="scss" scoped>

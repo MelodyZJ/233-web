@@ -103,7 +103,6 @@ const castBlankRef = ref(null);
 const castIntervalRef = ref(null);
 
 const submitLoading = ref(false);
-
 // 表单提交
 const submit = async () => {
   // 组装子表单数据
@@ -142,7 +141,7 @@ const submit = async () => {
       : cast_rolling_func(obj));
 
     console.log(res, "提交结果");
-    
+
     if (res.data.code === 0) {
       ElMessage({
         message: "提交成功！",
@@ -163,9 +162,6 @@ const submit = async () => {
     submitLoading.value = false;
   }
 };
-
-// 在离开当前路由之前清空数据
-onBeforeRouteLeave((to, from) => {});
 </script>
 
 <style lang="scss" scoped>

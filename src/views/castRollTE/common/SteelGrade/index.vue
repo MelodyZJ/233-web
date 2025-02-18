@@ -97,8 +97,8 @@ const getGradeMarkFn = async () => {
   try {
     const res = await getGradeMark(steelGradeForm.steelGrade);
     if (res.data.code === 0) {
-      brandList.value = res.data.data;
-      // console.log(brandList.value, "------");
+      markList.value = res.data.data;
+      // console.log(markList.value, "------");
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",
