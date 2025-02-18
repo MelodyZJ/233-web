@@ -26,7 +26,7 @@ export default defineConfig({
     host: "0.0.0.0",
     proxy: {
       "/wbds": {
-        target: "'http://10.66.2.10:8080",
+        target: "http://10.66.2.10:8080",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/wbds/, ""),
       },
