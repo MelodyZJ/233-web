@@ -49,7 +49,7 @@ import CastInterval from "./CastInterval/index.vue";
 import TempImg from "./TempImg/index.vue";
 import Finish from "./Finish/index.vue";
 import { useRoute } from "vue-router";
-import { direct_rolling_func } from "@/api/rollcast.js";
+import { direct_rolling_func, cast_rolling_func } from "@/api/rollcast.js";
 
 const containerRef = ref(null);
 // 视口宽度
@@ -135,8 +135,14 @@ const submit = async () => {
   // 发送提交请求
   try {
     submitLoading.value = true;
-    const res = await direct_rolling_func(obj);
+
+    // 直接铸轧和连续铸轧
+    const res = await (route.path === "/directCastRoll"
+      ? direct_rolling_func(obj)
+      : cast_rolling_func(obj));
+
     console.log(res, "提交结果");
+    
     if (res.data.code === 0) {
       ElMessage({
         message: "提交成功！",
