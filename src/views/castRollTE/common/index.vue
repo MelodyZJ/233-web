@@ -105,15 +105,15 @@ const castIntervalRef = ref(null);
 const submitLoading = ref(false);
 // 表单提交
 const submit = async () => {
-  // 组装子表单数据
+  // 组装及校验子表单数据
   const calculation_data = await computationalRef.value.getCalculation();
   if (!calculation_data) return;
 
-  const steelGrade_data = steelGradeRef.value.getSteelGrade();
-  // if (!steelGrade_data) return;
+  const steelGrade_data = await steelGradeRef.value.getSteelGrade();
+  if (!steelGrade_data) return;
 
-  const billet_data = castBlankRef.value.getBillet();
-  // if (!billet_data) return;
+  const billet_data = await castBlankRef.value.getBillet();
+  if (!billet_data) return;
 
   const electromagnetic_data = castIntervalRef.value.getElectromagnetic();
   // if (!electromagnetic_data) return;

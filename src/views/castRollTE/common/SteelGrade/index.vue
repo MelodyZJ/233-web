@@ -2,10 +2,16 @@
   <div class="part-box" style="height: 190px">
     <div class="part-title">钢种属性</div>
     <div class="part-content">
-      <el-form :inline="true" :model="steelGradeForm" label-width="220px">
+      <el-form
+        ref="formRef"
+        :inline="true"
+        :model="steelGradeForm"
+        :rules="rules"
+        label-width="220px"
+      >
         <el-row>
           <el-col :span="11">
-            <el-form-item label="钢种">
+            <el-form-item label="钢种" prop="grade">
               <el-select
                 v-model="steelGradeForm.grade"
                 placeholder="请选择"
@@ -22,7 +28,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="13">
-            <el-form-item label="环境温度">
+            <el-form-item label="环境温度" prop="temperature">
               <el-input
                 v-model="steelGradeForm.temperature"
                 placeholder="请输入"
@@ -34,7 +40,7 @@
           </el-col>
         </el-row>
 
-        <el-form-item label="牌号">
+        <el-form-item label="牌号" prop="mark">
           <el-select
             v-model="steelGradeForm.mark"
             placeholder="请选择"
@@ -66,6 +72,15 @@ const steelGradeForm = reactive({
   grade: "",
   temperature: "",
   mark: "",
+});
+
+// 校验规则
+const rules = reactive({
+  grade: [{ required: true, message: "请选择钢种", trigger: "change" }],
+  temperature: [
+    { required: true, message: "请输入环境温度", trigger: "change" },
+  ],
+  mark: [{ required: true, message: "请选择牌号", trigger: "change" }],
 });
 
 const gradeList = ref([]);
@@ -113,9 +128,32 @@ const getGradeMarkFn = async () => {
   }
 };
 
+const formRef = ref(null);
+// 校验表单
+const validateForm = () => {
+  return new Promise((resolve, reject) => {
+    // formRef.value.validate((valid) => {
+    //   if (valid) {
+    //     resolve(true);
+    //   } else {
+    //     ElMessage.error("请完善钢种属性表单！");
+    //     reject(false);
+    //   }
+    // });
+
+    resolve(true);
+  });
+};
+
 // 返回给父组件的数据
-const getSteelGrade = () => {
-  return steelGradeForm;
+const getSteelGrade = async () => {
+  const isValid = await validateForm();
+  if (isValid) {
+    return steelGradeForm;
+  } else {
+    // return false;
+    return steelGradeForm;
+  }
 };
 
 defineExpose({

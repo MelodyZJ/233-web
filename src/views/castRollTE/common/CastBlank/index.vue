@@ -2,10 +2,16 @@
   <div class="part-box" style="height: 350px">
     <div class="part-title">铸坯属性</div>
     <div class="part-content">
-      <el-form :inline="true" :model="billetForm" label-width="220px">
+      <el-form
+        ref="formRef"
+        :inline="true"
+        :model="billetForm"
+        :rules="rules"
+        label-width="220px"
+      >
         <el-row>
           <el-col :span="11">
-            <el-form-item label="铸坯形状">
+            <el-form-item label="铸坯形状" prop="shape">
               <el-select
                 v-model="billetForm.shape"
                 placeholder="请选择"
@@ -22,7 +28,11 @@
             </el-form-item>
           </el-col>
           <el-col :span="13">
-            <el-form-item label="铸坯尺寸(mm)">
+            <el-form-item
+              label="铸坯尺寸(mm)"
+              prop="billetSizeValidate"
+              class="is-required"
+            >
               <div class="mr-2 w-[67px]">
                 <el-input
                   v-model="billetForm.billetSize.height"
@@ -50,10 +60,15 @@
         </el-row>
         <el-row>
           <el-col :span="11">
-            <el-form-item label="铸坯表面中心温度" style="width: 500px">
+            <el-form-item
+              label="铸坯表面中心温度"
+              style="width: 500px"
+              prop="surfaceCenterTempValidate"
+              class="is-required"
+            >
               <div class="input-unit">
                 <el-input
-                  v-model="billetForm.surfaceCenterTemperature.head"
+                  v-model="billetForm.surfaceCenterTemp.head"
                   placeholder="头部"
                   type="number"
                   style="width: 95px"
@@ -62,7 +77,7 @@
               </div>
               <div class="input-unit">
                 <el-input
-                  v-model="billetForm.surfaceCenterTemperature.tail"
+                  v-model="billetForm.surfaceCenterTemp.tail"
                   placeholder="尾部"
                   type="number"
                   :disabled="route.path == '/continuousCastRoll'"
@@ -73,7 +88,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="13">
-            <el-form-item label="铸坯倒角">
+            <el-form-item label="铸坯倒角" prop="chamfer">
               <div class="input-unit">
                 <el-input
                   v-model="billetForm.chamfer"
@@ -89,7 +104,12 @@
         </el-row>
         <el-row>
           <el-col :span="11">
-            <el-form-item label="铸坯角度温度" style="width: 500px">
+            <el-form-item
+              label="铸坯角度温度"
+              style="width: 500px"
+              prop="angularTempValidate"
+              class="is-required"
+            >
               <div class="input-unit">
                 <el-input
                   v-model="billetForm.angularTemperature.head"
@@ -112,7 +132,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="13">
-            <el-form-item label="铸坯密度">
+            <el-form-item label="铸坯密度" prop="density">
               <div class="input-unit">
                 <el-input
                   v-model="billetForm.density"
@@ -127,7 +147,12 @@
         </el-row>
         <el-row>
           <el-col :span="11">
-            <el-form-item label="铸坯中心温度" style="width: 500px">
+            <el-form-item
+              label="铸坯中心温度"
+              style="width: 500px"
+              prop="centerTempValidate"
+              class="is-required"
+            >
               <div class="input-unit">
                 <el-input
                   v-model="billetForm.centerTemperature.head"
@@ -150,7 +175,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="13">
-            <el-form-item label="连铸拉速">
+            <el-form-item label="连铸拉速" prop="speed">
               <div class="input-unit">
                 <el-input
                   v-model="billetForm.speed"
@@ -194,25 +219,78 @@ const route = useRoute();
 const billetForm = reactive({
   shape: "",
   billetSize: {
-    length: "",
-    width: "",
-    height: "",
-  },
-  surfaceCenterTemperature: {
-    head: "",
-    tail: "",
+    length: null,
+    width: null,
+    height: null,
   },
   chamfer: "",
-  angularTemperature: {
-    head: "",
-    tail: "",
-  },
   density: "",
-  centerTemperature: {
-    head: "",
-    tail: "",
-  },
   speed: "",
+  surfaceCenterTemp: {
+    head: null,
+    tail: null,
+  },
+  angularTemperature: {
+    head: null,
+    tail: null,
+  },
+  centerTemperature: {
+    head: null,
+    tail: null,
+  },
+});
+
+// 自定义校验规则
+const validateCustom = (rule, value, callback, formObject, requiredFields) => {
+  const missingFields = requiredFields.filter((field) => !formObject[field]);
+
+  if (missingFields.length > 0) {
+    callback(new Error(`缺少参数`));
+  } else {
+    callback();
+  }
+};
+
+// 校验铸坯尺寸参数
+const validateBilletSize = (rule, value, callback) => {
+  let arr =
+    route.path == "/directCastRoll"
+      ? ["height", "width", "length"]
+      : ["height", "width"];
+
+  validateCustom(rule, value, callback, billetForm.billetSize, arr);
+};
+
+// 校验表面温度
+const validateSurfaceCenterTemp = (rule, value, callback) => {
+  let arr = route.path == "/directCastRoll" ? ["head", "tail"] : ["head"];
+  validateCustom(rule, value, callback, billetForm.surfaceCenterTemp, arr);
+};
+
+// 校验角度温度
+const validateAngularTemp = (rule, value, callback) => {
+  let arr = route.path == "/directCastRoll" ? ["head", "tail"] : ["head"];
+  validateCustom(rule, value, callback, billetForm.angularTemperature, arr);
+};
+
+// 校验中心温度
+const validateCenterTemp = (rule, value, callback) => {
+  let arr = route.path == "/directCastRoll" ? ["head", "tail"] : ["head"];
+  validateCustom(rule, value, callback, billetForm.centerTemperature, arr);
+};
+
+// 校验规则
+const rules = reactive({
+  shape: [{ required: true, message: "请选择铸坯形状", trigger: "change" }],
+  chamfer: [{ required: true, message: "请输入铸坯倒角", trigger: "change" }],
+  density: [{ required: true, message: "请输入铸坯密度", trigger: "change" }],
+  speed: [{ required: true, message: "请输入连铸拉速", trigger: "change" }],
+  billetSizeValidate: [{ validator: validateBilletSize, trigger: "change" }],
+  surfaceCenterTempValidate: [
+    { validator: validateSurfaceCenterTemp, trigger: "change" },
+  ],
+  angularTempValidate: [{ validator: validateAngularTemp, trigger: "change" }],
+  centerTempValidate: [{ validator: validateCenterTemp, trigger: "change" }],
 });
 
 const shapeList = ref([
@@ -258,43 +336,60 @@ const beforeRemove = (uploadFile, uploadFiles) => {
   );
 };
 
+const formRef = ref(null);
+// 校验表单
+const validateForm = () => {
+  return new Promise((resolve, reject) => {
+    formRef.value.validate((valid) => {
+      if (valid) {
+        resolve(true);
+      } else {
+        ElMessage.error("请完善钢种属性表单！");
+        reject(false);
+      }
+    });
+  });
+};
+
 // 返回给父组件的数据
-const getBillet = () => {
-  const {
-    shape,
-    chamfer,
-    density,
-    speed,
-    billetSize,
-    surfaceCenterTemperature,
-    centerTemperature,
-    angularTemperature,
-  } = billetForm;
+const getBillet = async () => {
+  const isValid = await validateForm();
+  if (isValid) {
+    const {
+      shape,
+      chamfer,
+      density,
+      speed,
+      billetSize,
+      surfaceCenterTemp,
+      centerTemperature,
+      angularTemperature,
+    } = billetForm;
 
-  // 连续铸轧尾部温度默认传-1
-  if (route.path == "/continuousCastRoll") {
-    surfaceCenterTemperature.tail = -1;
-    centerTemperature.tail = -1;
-    angularTemperature.tail = -1;
+    let data = {
+      shape,
+      chamfer,
+      density,
+      speed,
+      size: [
+        Number(billetSize.height),
+        Number(billetSize.width),
+        Number(billetSize.length),
+      ],
+      temperature: [
+        Number(surfaceCenterTemp.head), // 表面
+        Number(surfaceCenterTemp.tail) || -1, // 连续铸轧尾部温度默认传-1
+        Number(centerTemperature.head), // 中心
+        Number(centerTemperature.tail) || -1,
+        Number(angularTemperature.head), // 尾部
+        Number(angularTemperature.tail) || -1,
+      ],
+    };
+
+    return data;
+  } else {
+    return false;
   }
-
-  let data = {
-    shape,
-    chamfer,
-    density,
-    speed,
-    size: [billetSize.height, billetSize.width, billetSize.length],
-    temperature: [
-      surfaceCenterTemperature.head, // 表面
-      surfaceCenterTemperature.tail,
-      centerTemperature.head, // 中心
-      centerTemperature.tail,
-      angularTemperature.head, // 尾部
-      angularTemperature.tail,
-    ],
-  };
-
-  return data;
 };
 
 defineExpose({
