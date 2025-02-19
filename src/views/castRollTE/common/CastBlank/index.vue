@@ -42,7 +42,7 @@
                   v-model="billetForm.billetSize.length"
                   placeholder="长"
                   type="number"
-                  :disabled="routePath == '/continuousCastRoll'"
+                  :disabled="route.path == '/continuousCastRoll'"
                 />
               </div>
             </el-form-item>
@@ -65,6 +65,7 @@
                   v-model="billetForm.surfaceCenterTemperature.tail"
                   placeholder="尾部"
                   type="number"
+                  :disabled="route.path == '/continuousCastRoll'"
                   style="width: 95px"
                 />
                 <span class="unit">°C</span>
@@ -103,6 +104,7 @@
                   v-model="billetForm.angularTemperature.tail"
                   placeholder="尾部"
                   type="number"
+                  :disabled="route.path == '/continuousCastRoll'"
                   style="width: 95px"
                 />
                 <span class="unit">°C</span>
@@ -140,6 +142,7 @@
                   v-model="billetForm.centerTemperature.tail"
                   placeholder="尾部"
                   type="number"
+                  :disabled="route.path == '/continuousCastRoll'"
                   style="width: 95px"
                 />
                 <span class="unit">°C</span>
@@ -187,7 +190,6 @@
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-const routePath = ref(route.path);
 
 const billetForm = reactive({
   shape: "",
@@ -227,7 +229,6 @@ const shapeList = ref([
     value: "3",
   },
 ]);
-
 
 // 文件上传
 const fileList = ref([]);
@@ -269,6 +270,13 @@ const getBillet = () => {
     centerTemperature,
     angularTemperature,
   } = billetForm;
+
+  // 连续铸轧尾部温度默认传-1
+  if (route.path == "/continuousCastRoll") {
+    surfaceCenterTemperature.tail = -1;
+    centerTemperature.tail = -1;
+    angularTemperature.tail = -1;
+  }
 
   let data = {
     shape,
@@ -334,7 +342,7 @@ defineExpose({
       right: 10px;
       text-align: center;
       line-height: 22px;
-      background-color: #fff;
+      background-color: transparent;
       z-index: 1;
       color: #606266;
     }

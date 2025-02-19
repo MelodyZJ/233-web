@@ -1,5 +1,8 @@
 <template>
-  <div class="part-box" style="height: 870px">
+  <div
+    class="part-box"
+    :style="route.path == '/directCastRoll' ? 'height: 870px' : 'height: 630px'"
+  >
     <div class="part-title">铸轧间距属性</div>
     <div class="part-content">
       <el-form :inline="true" :model="castingIntervalForm" label-width="220px">
@@ -146,7 +149,7 @@
           </el-col>
         </el-row>
         <!-- 是否除鳞 -->
-        <el-row>
+        <el-row v-if="route.path == '/directCastRoll'">
           <el-col>
             <el-form-item label="是否除鳞">
               <el-switch
@@ -161,7 +164,7 @@
           </el-col>
         </el-row>
         <!-- 是否待温 -->
-        <el-row>
+        <el-row v-if="route.path == '/directCastRoll'">
           <el-col>
             <el-form-item label="是否待温">
               <el-switch
@@ -176,7 +179,7 @@
           </el-col>
         </el-row>
         <!-- 补热段属性 -->
-        <el-row>
+        <el-row v-if="castingIntervalForm.electromagneticFlag">
           <el-col>
             <el-form-item label="补热段属性">
               <div class="input-unit">
@@ -215,7 +218,12 @@
           </el-col>
         </el-row>
         <!-- 除鳞段属性 -->
-        <el-row>
+        <el-row
+          v-if="
+            route.path == '/directCastRoll' &&
+            castingIntervalForm.phosphorusFlag
+          "
+        >
           <el-col>
             <el-form-item label="除鳞段属性">
               <el-select
@@ -305,7 +313,12 @@
           </el-col>
         </el-row>
         <!-- 待热段属性 -->
-        <el-row>
+        <el-row
+          v-if="
+            route.path == '/directCastRoll' &&
+            castingIntervalForm.waitingSteelFlag
+          "
+        >
           <el-col>
             <el-form-item label="待热段属性">
               <div class="input-unit">
@@ -334,12 +347,14 @@
 
 <script setup>
 import dayjs from "dayjs";
-import { reactive, watch } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 
 const castingIntervalForm = reactive({
   enteredLength: "",
   electromagneticFlag: true,
-  phosphorusFlag: false,
+  phosphorusFlag: true,
   waitingSteelFlag: true,
   // 补热段属性
   electromagneticAbsolute: "",
