@@ -1,5 +1,5 @@
 <template>
-  <div class="part-box" style="height: 350px">
+  <div class="part-box" style="height: 310px">
     <div class="part-title">铸坯属性</div>
     <div class="part-content">
       <el-form
@@ -189,7 +189,7 @@
           </el-col>
         </el-row>
 
-        <el-form-item label="铸坯文件上传">
+        <!-- <el-form-item label="铸坯文件上传">
           <div class="input-unit">
             <el-upload
               v-model:file-list="fileList"
@@ -205,7 +205,7 @@
               <v-btn variant="outlined" class="custom-btn">选择文件</v-btn>
             </el-upload>
           </div>
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
     </div>
   </div>
@@ -344,7 +344,7 @@ const validateForm = () => {
       if (valid) {
         resolve(true);
       } else {
-        ElMessage.error("请完善钢种属性表单！");
+        ElMessage.error("请完善铸坯属性表单！");
         reject(false);
       }
     });
