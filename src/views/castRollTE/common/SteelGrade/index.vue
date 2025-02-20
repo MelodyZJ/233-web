@@ -16,11 +16,12 @@
                 v-model="steelGradeForm.grade"
                 placeholder="请选择"
                 clearable
+                @change="gradeChanged"
                 style="width: 200px"
               >
                 <el-option
                   v-for="item in gradeList"
-                  :key="item.id"
+                  :key="item.uuid"
                   :label="item.grade"
                   :value="item.uuid"
                 />
@@ -110,10 +111,9 @@ const getGradeFn = async () => {
 // 获取钢种对应牌号列表
 const getGradeMarkFn = async () => {
   try {
-    const res = await getGradeMark(steelGradeForm.steelGrade);
+    const res = await getGradeMark({ uuid: steelGradeForm.grade });
     if (res.data.code === 0) {
       markList.value = res.data.data;
-      // console.log(markList.value, "------");
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",
@@ -128,20 +128,23 @@ const getGradeMarkFn = async () => {
   }
 };
 
+const gradeChanged = () => {
+  steelGradeForm.mark = "";
+  markList.value = [];
+};
+
 const formRef = ref(null);
 // 校验表单
 const validateForm = () => {
   return new Promise((resolve, reject) => {
-    // formRef.value.validate((valid) => {
-    //   if (valid) {
-    //     resolve(true);
-    //   } else {
-    //     ElMessage.error("请完善钢种属性表单！");
-    //     reject(false);
-    //   }
-    // });
-
-    resolve(true);
+    formRef.value.validate((valid) => {
+      if (valid) {
+        resolve(true);
+      } else {
+        ElMessage.error("请完善钢种属性表单！");
+        reject(false);
+      }
+    });
   });
 };
 
@@ -151,8 +154,7 @@ const getSteelGrade = async () => {
   if (isValid) {
     return steelGradeForm;
   } else {
-    // return false;
-    return steelGradeForm;
+    return false;
   }
 };
 

@@ -26,10 +26,13 @@ instance.interceptors.request.use(
 
     // get请求映射params参数
     if (config.method === "get" && config.params) {
-      let url = config.url + "?" + tansParams(config.params);
-      url = url.slice(0, -1);
-      config.params = {};
-      config.url = url;
+      const params = new URLSearchParams(config.params);
+      const queryString = params.toString();
+      const newUrl = config.url.includes("?")
+        ? `${config.url}&${queryString}`
+        : `${config.url}?${queryString}`;
+      config.url = newUrl;
+      delete config.params;
     }
     return config;
   },
