@@ -5,7 +5,13 @@
   >
     <div class="part-title">铸轧间距属性</div>
     <div class="part-content">
-      <el-form :inline="true" :model="castingIntervalForm" label-width="220px">
+      <el-form
+        ref="formRef"
+        :inline="true"
+        :model="castingIntervalForm"
+        :rules="rules"
+        label-width="220px"
+      >
         <!-- 铸轧间距 -->
         <el-row>
           <el-col :span="11">
@@ -181,10 +187,16 @@
         <!-- 补热段属性 -->
         <el-row v-if="castingIntervalForm.electromagneticFlag">
           <el-col>
-            <el-form-item label="补热段属性">
+            <el-form-item
+              label="补热段属性"
+              prop="heatSupplyValidate"
+              class="is-required"
+            >
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.electromagneticAbsolute"
+                  v-model="
+                    castingIntervalForm.heatSupply.electromagneticAbsolute
+                  "
                   placeholder="绝对位置"
                   style="width: 150px"
                 />
@@ -192,7 +204,7 @@
               </div>
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.heatSupplyLength"
+                  v-model="castingIntervalForm.heatSupply.heatSupplyLength"
                   placeholder="补热长度"
                   style="width: 150px"
                 />
@@ -200,7 +212,9 @@
               </div>
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.heatAverageConveyingSpeed"
+                  v-model="
+                    castingIntervalForm.heatSupply.heatAverageConveyingSpeed
+                  "
                   placeholder="辊道均速"
                   style="width: 150px"
                 />
@@ -208,7 +222,10 @@
               </div>
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.heatSupplementOutletTemperature"
+                  v-model="
+                    castingIntervalForm.heatSupply
+                      .heatSupplementOutletTemperature
+                  "
                   placeholder="补热出口温度"
                   style="width: 150px"
                 />
@@ -225,9 +242,13 @@
           "
         >
           <el-col>
-            <el-form-item label="除鳞段属性">
+            <el-form-item
+              label="除鳞段属性"
+              prop="phosphorusValidate"
+              class="is-required"
+            >
               <el-select
-                v-model="castingIntervalForm.waterType"
+                v-model="castingIntervalForm.phosphorus.waterType"
                 placeholder="请选择"
                 style="width: 150px"
               >
@@ -240,7 +261,7 @@
               </el-select>
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.waterValue"
+                  v-model="castingIntervalForm.phosphorus.waterValue"
                   :placeholder="isWaterYield ? '水量' : '水压'"
                   style="width: 150px"
                 />
@@ -249,7 +270,7 @@
                 </span>
               </div>
               <el-select
-                v-model="castingIntervalForm.heatTransferType"
+                v-model="castingIntervalForm.phosphorus.heatTransferType"
                 placeholder="请选择"
                 style="width: 150px"
               >
@@ -263,7 +284,7 @@
               <div class="input-unit">
                 <template v-if="isHeatModel">
                   <el-select
-                    v-model="castingIntervalForm.heatTransferValue"
+                    v-model="castingIntervalForm.phosphorus.heatTransferValue"
                     placeholder="请选择模型"
                     style="width: 150px"
                   >
@@ -278,7 +299,7 @@
 
                 <template v-else>
                   <el-input
-                    v-model="castingIntervalForm.heatTransferValue"
+                    v-model="castingIntervalForm.phosphorus.heatTransferValue"
                     placeholder="换热系数"
                     style="width: 150px"
                   />
@@ -287,7 +308,7 @@
               </div>
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.phosphorusAbsolute"
+                  v-model="castingIntervalForm.phosphorus.phosphorusAbsolute"
                   placeholder="绝对位置"
                   style="width: 150px"
                 />
@@ -295,7 +316,7 @@
               </div>
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.boxLength"
+                  v-model="castingIntervalForm.phosphorus.boxLength"
                   placeholder="除鳞长度"
                   style="width: 150px"
                 />
@@ -303,7 +324,10 @@
               </div>
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.phosphorusAverageConveyingSpeed"
+                  v-model="
+                    castingIntervalForm.phosphorus
+                      .phosphorusAverageConveyingSpeed
+                  "
                   placeholder="辊道均速"
                   style="width: 150px"
                 />
@@ -320,10 +344,14 @@
           "
         >
           <el-col>
-            <el-form-item label="待热段属性">
+            <el-form-item
+              label="待热段属性"
+              prop="waitingValidate"
+              class="is-required"
+            >
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.waitingSteelAbsolute"
+                  v-model="castingIntervalForm.waiting.waitingSteelAbsolute"
                   placeholder="绝对位置"
                   style="width: 150px"
                 />
@@ -331,7 +359,7 @@
               </div>
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.waitingSteelTime"
+                  v-model="castingIntervalForm.waiting.waitingSteelTime"
                   placeholder="等待时间"
                   style="width: 150px"
                 />
@@ -346,7 +374,6 @@
 </template>
 
 <script setup>
-import dayjs from "dayjs";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
@@ -357,24 +384,81 @@ const castingIntervalForm = reactive({
   phosphorusFlag: true,
   waitingSteelFlag: true,
   // 补热段属性
-  electromagneticAbsolute: "",
-  heatSupplyLength: "",
-  heatAverageConveyingSpeed: "",
-  heatSupplementOutletTemperature: "",
+  heatSupply: {
+    electromagneticAbsolute: "",
+    heatSupplyLength: "",
+    heatAverageConveyingSpeed: "",
+    heatSupplementOutletTemperature: "",
+  },
   // 除磷段属性
-  waterType: "0", // 水量水压选择，0代表水量，1代表水压
-  waterValue: "",
-  heatTransferType: "0", // 换热方式，0为换热模型，1为换热系数
-  heatTransferValue: "",
-  phosphorusAbsolute: "",
-  boxLength: "",
-  phosphorusAverageConveyingSpeed: "",
+  phosphorus: {
+    waterType: "0", // 水量水压选择，0代表水量，1代表水压
+    waterValue: "",
+    heatTransferType: "0", // 换热方式，0为换热模型，1为换热系数
+    heatTransferValue: "",
+    phosphorusAbsolute: "",
+    boxLength: "",
+    phosphorusAverageConveyingSpeed: "",
+  },
   // 待热段属性
-  waitingSteelAbsolute: "",
-  waitingSteelTime: "",
+  waiting: {
+    waitingSteelAbsolute: "",
+    waitingSteelTime: "",
+  },
 });
 
-const now = new Date();
+// 自定义校验规则
+const validateCustom = (rule, value, callback, formObject, requiredFields) => {
+  const missingFields = requiredFields.filter((field) => !formObject[field]);
+
+  if (missingFields.length > 0) {
+    callback(new Error(`缺少参数`));
+  } else {
+    callback();
+  }
+};
+
+// 校验补热段属性
+const validateHeatSupply = (rule, value, callback) => {
+  let arr = [
+    "electromagneticAbsolute",
+    "heatSupplyLength",
+    "heatAverageConveyingSpeed",
+    "heatSupplementOutletTemperature",
+  ];
+
+  validateCustom(rule, value, callback, castingIntervalForm.heatSupply, arr);
+};
+
+// 校验除鳞段属性
+const validatePhosphorus = (rule, value, callback) => {
+  let arr = [
+    "waterType",
+    "waterValue",
+    "heatTransferType",
+    "heatTransferValue",
+    "phosphorusAbsolute",
+    "boxLength",
+    "phosphorusAverageConveyingSpeed",
+  ];
+
+  validateCustom(rule, value, callback, castingIntervalForm.phosphorus, arr);
+};
+
+// 校验待热段属性
+const validateWaiting = (rule, value, callback) => {
+  let arr = ["waitingSteelAbsolute", "waitingSteelTime"];
+
+  validateCustom(rule, value, callback, castingIntervalForm.waiting, arr);
+};
+
+// 校验规则
+const rules = reactive({
+  heatSupplyValidate: [{ validator: validateHeatSupply, trigger: "change" }],
+  phosphorusValidate: [{ validator: validatePhosphorus, trigger: "change" }],
+  waitingValidate: [{ validator: validateWaiting, trigger: "change" }],
+});
+
 const tableRef = ref(null);
 // 传输段列表
 const castRollingSpace = reactive([
@@ -474,13 +558,47 @@ const deleteRow = (index) => {
   castRollingSpace.splice(index, 1);
 };
 
+const formRef = ref(null);
+// 校验表单
+const validateForm = () => {
+  return new Promise((resolve, reject) => {
+    formRef.value.validate((valid) => {
+      if (valid) {
+        resolve(true);
+      } else {
+        ElMessage.error("请完善铸轧间距属性表单！");
+        reject(false);
+      }
+    });
+  });
+};
+
 // 返回给父组件的数据
-const getElectromagnetic = () => {
-  let data = {
-    space: space.value,
-    ...castingIntervalForm,
-  };
-  return data;
+const getElectromagnetic = async () => {
+  const isValid = await validateForm();
+  if (isValid) {
+    const {
+      electromagneticFlag,
+      phosphorusFlag,
+      waitingSteelFlag,
+      heatSupply,
+      phosphorus,
+      waiting,
+    } = castingIntervalForm;
+
+    let data = {
+      space: space.value,
+      electromagneticFlag,
+      phosphorusFlag,
+      waitingSteelFlag,
+      ...heatSupply,
+      ...phosphorus,
+      ...waiting,
+    };
+    return data;
+  } else {
+    return false;
+  }
 };
 
 const getCastRollingSpace = () => {

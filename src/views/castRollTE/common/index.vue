@@ -115,8 +115,8 @@ const submit = async () => {
   const billet_data = await castBlankRef.value.getBillet();
   if (!billet_data) return;
 
-  const electromagnetic_data = castIntervalRef.value.getElectromagnetic();
-  // if (!electromagnetic_data) return;
+  const electromagnetic_data = await castIntervalRef.value.getElectromagnetic();
+  if (!electromagnetic_data) return;
 
   const castRollingSpace_data = castIntervalRef.value.getCastRollingSpace();
   // if (!castRollingSpace_data) return;
@@ -138,7 +138,6 @@ const submit = async () => {
       ...castRollingSpace_data,
     },
   };
-  // console.log(obj, "obj-----");
 
   // 发送提交请求
   try {
@@ -148,8 +147,6 @@ const submit = async () => {
     const res = await (route.path === "/directCastRoll"
       ? direct_rolling_func(obj)
       : cast_rolling_func(obj));
-
-    console.log(res, "提交结果");
 
     if (res.data.code === 0) {
       ElMessage({
