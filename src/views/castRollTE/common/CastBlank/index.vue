@@ -371,18 +371,14 @@ const getBillet = async () => {
       chamfer,
       density,
       speed,
-      size: [
-        Number(billetSize.height),
-        Number(billetSize.width),
-        Number(billetSize.length),
-      ],
+      size: [billetSize.height, billetSize.width, billetSize.length],
       temperature: [
-        Number(surfaceCenterTemp.head), // 表面
-        Number(surfaceCenterTemp.tail) || -1, // 连续铸轧尾部温度默认传-1
-        Number(centerTemperature.head), // 中心
-        Number(centerTemperature.tail) || -1,
-        Number(angularTemperature.head), // 尾部
-        Number(angularTemperature.tail) || -1,
+        surfaceCenterTemp.head, // 表面
+        surfaceCenterTemp.tail || -1, // 连续铸轧尾部温度默认传-1
+        centerTemperature.head, // 中心
+        centerTemperature.tail || -1,
+        angularTemperature.head, // 尾部
+        angularTemperature.tail || -1,
       ],
     };
 
