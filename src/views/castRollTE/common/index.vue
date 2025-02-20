@@ -121,7 +121,6 @@ const submit = async () => {
   const castRollingSpace_data = castIntervalRef.value.getCastRollingSpace();
 
   let obj = {
-    uid: 25,
     flag: route.path === "/directCastRoll" ? 0 : 1, // 0为直接轧制，1为连铸连轧
     data: {
       calculation: {
