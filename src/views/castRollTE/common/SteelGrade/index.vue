@@ -93,7 +93,6 @@ const getGradeFn = async () => {
     const res = await getGrade();
     if (res.data.code === 0) {
       gradeList.value = res.data.data;
-      // console.log(gradeList.value, "------");
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",

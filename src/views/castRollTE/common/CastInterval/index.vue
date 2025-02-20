@@ -416,7 +416,7 @@ const validateCustom = (rule, value, callback, formObject, requiredFields) => {
   const missingFields = requiredFields.filter((field) => !formObject[field]);
 
   if (missingFields.length > 0) {
-    callback(new Error(`缺少参数`));
+    callback(new Error(`请完善所有参数`));
   } else {
     callback();
   }
@@ -469,7 +469,7 @@ const validateCastList = (rule, value, callback) => {
       !item.averageConveyingSpeed.trim() ||
       !item.correctionFactor.trim()
     ) {
-      callback(new Error(`列表中有字段为空`));
+      callback(new Error(`请完善列表所有参数`));
     }
   }
   callback();
