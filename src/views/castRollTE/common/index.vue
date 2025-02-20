@@ -49,7 +49,7 @@ import CastInterval from "./CastInterval/index.vue";
 import TempImg from "./TempImg/index.vue";
 import Finish from "./Finish/index.vue";
 import { useRoute } from "vue-router";
-import { direct_rolling_func, cast_rolling_func } from "@/api/rollcast.js";
+import { entry_func } from "@/api/rollcast.js";
 
 const containerRef = ref(null);
 // 视口宽度
@@ -121,20 +121,24 @@ const submit = async () => {
   const castRollingSpace_data = castIntervalRef.value.getCastRollingSpace();
 
   let obj = {
-    calculation: {
-      ...calculation_data,
-    },
-    steelGrade: {
-      ...steelGrade_data,
-    },
-    billet: {
-      ...billet_data,
-    },
-    electromagnetic: {
-      ...electromagnetic_data,
-    },
-    castRollingSpace: {
-      ...castRollingSpace_data,
+    uid: 25,
+    flag: route.path === "/directCastRoll" ? 0 : 1, // 0为直接轧制，1为连铸连轧
+    data: {
+      calculation: {
+        ...calculation_data,
+      },
+      steelGrade: {
+        ...steelGrade_data,
+      },
+      billet: {
+        ...billet_data,
+      },
+      electromagnetic: {
+        ...electromagnetic_data,
+      },
+      castRollingSpace: {
+        ...castRollingSpace_data,
+      },
     },
   };
 
@@ -143,9 +147,7 @@ const submit = async () => {
     submitLoading.value = true;
 
     // 直接铸轧和连续铸轧
-    const res = await (route.path === "/directCastRoll"
-      ? direct_rolling_func(obj)
-      : cast_rolling_func(obj));
+    const res = await entry_func(obj);
 
     if (res.data.code === 0) {
       ElMessage({

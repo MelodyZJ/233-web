@@ -21,20 +21,12 @@ export function getGradeMark(params) {
   });
 }
 
-// 直接铸轧接口
-export function direct_rolling_func(data) {
+// 直接铸轧和连续铸轧接口
+export function entry_func(data) {
   return request({
-    url: "/wbds/cast_roll/direct_rolling_func",
+    url: "/wbds/cast_roll/entry_func",
     method: "post",
     data,
   });
 }
 
-// 连续铸轧接口
-export function cast_rolling_func(data) {
-  return request({
-    url: "/wbds/cast_roll/cast_rolling_func",
-    method: "post",
-    data,
-  });
-}
