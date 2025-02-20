@@ -119,7 +119,6 @@ const submit = async () => {
   if (!electromagnetic_data) return;
 
   const castRollingSpace_data = castIntervalRef.value.getCastRollingSpace();
-  // if (!castRollingSpace_data) return;
 
   let obj = {
     calculation: {

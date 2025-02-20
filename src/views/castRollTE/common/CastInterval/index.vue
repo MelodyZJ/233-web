@@ -46,7 +46,11 @@
         <!-- 传输段列表 -->
         <el-row>
           <el-col>
-            <el-form-item label="传输段列表">
+            <el-form-item
+              label="传输段列表"
+              prop="castListValidate"
+              class="is-required"
+            >
               <el-table
                 ref="tableRef"
                 :data="castRollingSpace"
@@ -132,7 +136,7 @@
 
               <v-btn
                 variant="outlined"
-                class="custom-btn mt-3"
+                class="custom-btn my-2"
                 @click="onAddItem"
                 >添加传输段</v-btn
               >
@@ -452,11 +456,31 @@ const validateWaiting = (rule, value, callback) => {
   validateCustom(rule, value, callback, castingIntervalForm.waiting, arr);
 };
 
+// 校验列表是否有字段为空
+const validateCastList = (rule, value, callback) => {
+  
+  if (castRollingSpace.length === 0) {
+    callback(new Error(`列表不能为空`));
+  }
+
+  for (let item of castRollingSpace) {
+    if (
+      !item.distance.trim() ||
+      !item.averageConveyingSpeed.trim() ||
+      !item.correctionFactor.trim()
+    ) {
+      callback(new Error(`列表中有字段为空`));
+    }
+  }
+  callback();
+};
+
 // 校验规则
 const rules = reactive({
   heatSupplyValidate: [{ validator: validateHeatSupply, trigger: "change" }],
   phosphorusValidate: [{ validator: validatePhosphorus, trigger: "change" }],
   waitingValidate: [{ validator: validateWaiting, trigger: "change" }],
+  castListValidate: [{ validator: validateCastList, trigger: "change" }],
 });
 
 const tableRef = ref(null);
