@@ -50,9 +50,9 @@
 
 <script setup>
 const calculation = reactive({
-  gridNumberX: "",
-  gridNumberY: "",
-  calculateStep: "",
+  gridNumberX: "20",
+  gridNumberY: "20",
+  calculateStep: "100",
 });
 
 // 校验规则

@@ -13,7 +13,7 @@
           <el-col :span="11">
             <el-form-item label="钢种" prop="grade">
               <el-select
-                v-model="steelGradeForm.grade"
+                v-model="steelGradeForm.gradeId"
                 placeholder="请选择"
                 clearable
                 @change="gradeChanged"
@@ -47,7 +47,6 @@
             placeholder="请选择"
             clearable
             style="width: 200px"
-            @focus="getGradeMarkFn"
           >
             <el-option
               v-for="item in markList"
@@ -70,9 +69,10 @@ onMounted(() => {
 });
 
 const steelGradeForm = reactive({
-  grade: "",
-  temperature: "",
-  mark: "",
+  grade: "建筑用钢",
+  gradeId: "0bfa407a-4273-11ef-80c6-0242b1070010",
+  mark: "HRB400E",
+  temperature: "25",
 });
 
 // 校验规则
@@ -110,7 +110,7 @@ const getGradeFn = async () => {
 // 获取钢种对应牌号列表
 const getGradeMarkFn = async () => {
   try {
-    const res = await getGradeMark({ uuid: steelGradeForm.grade });
+    const res = await getGradeMark({ uuid: steelGradeForm.gradeId });
     if (res.data.code === 0) {
       markList.value = res.data.data;
     } else {
@@ -127,9 +127,17 @@ const getGradeMarkFn = async () => {
   }
 };
 
-const gradeChanged = () => {
+// 钢种改变时，获取对应牌号列表
+const gradeChanged = (val) => {
+  const findGrade = gradeList.value.find((item) => {
+    return item.uuid === val;
+  });
+
+  steelGradeForm.grade = findGrade.grade;
   steelGradeForm.mark = "";
   markList.value = [];
+
+  getGradeMarkFn();
 };
 
 const formRef = ref(null);

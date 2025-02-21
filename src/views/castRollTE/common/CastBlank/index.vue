@@ -217,26 +217,26 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 
 const billetForm = reactive({
-  shape: "",
+  shape: "方坯",
   billetSize: {
-    length: null,
-    width: null,
-    height: null,
+    length: "165",
+    width: "165",
+    height: "12000",
   },
-  chamfer: "",
-  density: "",
-  speed: "",
+  chamfer: "8",
+  density: "7700",
+  speed: "4",
   surfaceCenterTemp: {
-    head: null,
-    tail: null,
+    head: "950",
+    tail: "970",
   },
   angularTemperature: {
-    head: null,
-    tail: null,
+    head: "900",
+    tail: "930",
   },
   centerTemperature: {
-    head: null,
-    tail: null,
+    head: "1000",
+    tail: "1050",
   },
 });
 
@@ -296,15 +296,15 @@ const rules = reactive({
 const shapeList = ref([
   {
     label: "方坯",
-    value: "1",
+    value: "方坯",
   },
   {
     label: "矩形坯",
-    value: "2",
+    value: "矩形坯",
   },
   {
     label: "圆坯",
-    value: "3",
+    value: "圆坯",
   },
 ]);
 

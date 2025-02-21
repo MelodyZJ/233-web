@@ -1,7 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { getCookie } from "@/utils/getCookie";
-import { tansParams } from "@/utils/common";
 
 // 创建axios实例
 const instance = axios.create({

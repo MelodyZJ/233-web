@@ -389,25 +389,25 @@ const castingIntervalForm = reactive({
   waitingSteelFlag: true,
   // 补热段属性
   heatSupply: {
-    electromagneticAbsolute: "",
-    heatSupplyLength: "",
-    heatAverageConveyingSpeed: "",
-    heatSupplementOutletTemperature: "",
+    electromagneticAbsolute: "70",
+    heatSupplyLength: "10",
+    heatAverageConveyingSpeed: "30",
+    heatSupplementOutletTemperature: "1100",
   },
   // 除磷段属性
   phosphorus: {
-    waterType: "0", // 水量水压选择，0代表水量，1代表水压
-    waterValue: "",
+    waterType: "1", // 水量水压选择，0代表水量，1代表水压
+    waterValue: "25",
     heatTransferType: "0", // 换热方式，0为换热模型，1为换热系数
-    heatTransferValue: "",
-    phosphorusAbsolute: "",
-    boxLength: "",
-    phosphorusAverageConveyingSpeed: "",
+    heatTransferValue: "0",
+    phosphorusAbsolute: "90",
+    boxLength: "500",
+    phosphorusAverageConveyingSpeed: "30",
   },
   // 待热段属性
   waiting: {
-    waitingSteelAbsolute: "",
-    waitingSteelTime: "",
+    waitingSteelAbsolute: "35",
+    waitingSteelTime: "100",
   },
 });
 
@@ -458,7 +458,6 @@ const validateWaiting = (rule, value, callback) => {
 
 // 校验列表是否有字段为空
 const validateCastList = (rule, value, callback) => {
-  
   if (castRollingSpace.length === 0) {
     callback(new Error(`列表不能为空`));
   }
@@ -487,21 +486,33 @@ const tableRef = ref(null);
 // 传输段列表
 const castRollingSpace = reactive([
   {
-    distance: "",
-    averageConveyingSpeed: "",
-    correctionFactor: "",
+    distance: "20",
+    averageConveyingSpeed: "30",
+    correctionFactor: "1",
     switch: true,
   },
   {
-    distance: "",
-    averageConveyingSpeed: "",
-    correctionFactor: "",
+    distance: "20",
+    averageConveyingSpeed: "30",
+    correctionFactor: "1",
     switch: true,
   },
   {
-    distance: "",
-    averageConveyingSpeed: "",
-    correctionFactor: "",
+    distance: "20",
+    averageConveyingSpeed: "30",
+    correctionFactor: "1",
+    switch: false,
+  },
+  {
+    distance: "20",
+    averageConveyingSpeed: "30",
+    correctionFactor: "1",
+    switch: true,
+  },
+  {
+    distance: "20",
+    averageConveyingSpeed: "30",
+    correctionFactor: "1",
     switch: true,
   },
 ]);
