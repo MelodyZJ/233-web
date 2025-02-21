@@ -135,9 +135,7 @@ const submit = async () => {
       electromagnetic: {
         ...electromagnetic_data,
       },
-      castRollingSpace: {
-        ...castRollingSpace_data,
-      },
+      castRollingSpace: [...castRollingSpace_data],
     },
   };
 
