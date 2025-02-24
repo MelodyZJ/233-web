@@ -1,7 +1,7 @@
 <template>
   <div
     class="part-box"
-    :style="route.path == '/directCastRoll' ? 'height: 870px' : 'height: 630px'"
+    :style="route.path == '/directCastRoll' ? 'height: 880px' : 'height: 630px'"
   >
     <div class="part-title">铸轧间距属性</div>
     <div class="part-content">
@@ -15,10 +15,10 @@
         <!-- 铸轧间距 -->
         <el-row>
           <el-col :span="11">
-            <el-form-item label="铸轧间距(总长度)">
+            <el-form-item label="铸轧间距(总长度)" prop="space">
               <div class="input-unit">
                 <el-input
-                  v-model="space"
+                  v-model="castingIntervalForm.space"
                   placeholder="请输入"
                   style="width: 200px"
                 />
@@ -33,7 +33,7 @@
             <el-form-item label="已输入长度">
               <div class="input-unit">
                 <el-input
-                  v-model="castingIntervalForm.enteredLength"
+                  v-model="enteredLength"
                   placeholder="0"
                   style="width: 200px"
                   disabled
@@ -383,7 +383,7 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 
 const castingIntervalForm = reactive({
-  enteredLength: "",
+  space: "100",
   electromagneticFlag: true,
   phosphorusFlag: true,
   waitingSteelFlag: true,
@@ -476,6 +476,7 @@ const validateCastList = (rule, value, callback) => {
 
 // 校验规则
 const rules = reactive({
+  space: [{ required: true, message: "请输入铸轧间距", trigger: "change" }],
   heatSupplyValidate: [{ validator: validateHeatSupply, trigger: "change" }],
   phosphorusValidate: [{ validator: validatePhosphorus, trigger: "change" }],
   waitingValidate: [{ validator: validateWaiting, trigger: "change" }],
@@ -518,7 +519,7 @@ const castRollingSpace = reactive([
 ]);
 
 // 铸轧间距(总长度)
-const space = computed(() => {
+const enteredLength = computed(() => {
   return castRollingSpace.reduce((sum, item) => {
     const distance = parseFloat(item.distance) || 0;
     return sum + distance;
@@ -613,6 +614,7 @@ const getElectromagnetic = async () => {
   const isValid = await validateForm();
   if (isValid) {
     const {
+      space,
       electromagneticFlag,
       phosphorusFlag,
       waitingSteelFlag,
@@ -621,8 +623,13 @@ const getElectromagnetic = async () => {
       waiting,
     } = castingIntervalForm;
 
+    if (Number(space) != enteredLength.value) {
+      ElMessage.error("铸轧间距与已输入长度不相等！");
+      return;
+    }
+
     let data = {
-      space: space.value,
+      space,
       electromagneticFlag,
       phosphorusFlag,
       waitingSteelFlag,

@@ -12,7 +12,7 @@
           <!-- 铸轧间距属性 -->
           <cast-interval id="part4" ref="castIntervalRef"></cast-interval>
           <!-- 铸轧温度图像 -->
-          <temp-img id="part5"></temp-img>
+          <temp-img id="part5" ref="tempImgRef"></temp-img>
           <!-- 完成 -->
           <finish
             id="part6"
@@ -101,6 +101,7 @@ const computationalRef = ref(null);
 const steelGradeRef = ref(null);
 const castBlankRef = ref(null);
 const castIntervalRef = ref(null);
+const tempImgRef = ref(null);
 
 const submitLoading = ref(false);
 // 表单提交
@@ -143,14 +144,21 @@ const submit = async () => {
   try {
     submitLoading.value = true;
 
+    ElMessage({
+      message: "正在计算，请稍等",
+      type: "warning",
+    });
     // 直接铸轧和连续铸轧
     const res = await entry_func(obj);
 
     if (res.data.code === 0) {
       ElMessage({
-        message: "提交成功！",
+        message: "计算成功！",
         type: "success",
       });
+
+      // 渲染图表
+      tempImgRef.value.initChart(res.data.data);
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",
