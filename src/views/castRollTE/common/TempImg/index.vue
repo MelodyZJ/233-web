@@ -23,8 +23,8 @@ const option = {
   },
 
   grid: {
-    left: "4%",
-    right: "4%",
+    left: "5%",
+    right: "5%",
     bottom: "8%",
     top: "5%",
     containLabel: true,
@@ -33,25 +33,6 @@ const option = {
     {
       type: "category",
       data: ["100", "200", "300", "400", "500", "600", "700"],
-    },
-    //  设置第二个x轴
-    {
-      type: "category",
-      position: "bottom",
-      offset: 25,
-      axisPointer: {
-        type: "none",
-      },
-      //  隐藏第二条x轴
-      axisLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLabel: {
-        show: false,
-      },
     },
   ],
   yAxis: {
@@ -72,16 +53,6 @@ const option = {
       name: "数据三",
       type: "line",
       data: [105, 172, 191, 234, 310, 320, 315],
-    },
-    {
-      name: "数据四",
-      type: "line",
-      data: [125, 162, 191, 244, 295, 355, 350],
-    },
-    {
-      name: "数据五",
-      type: "line",
-      data: [120, 172, 198, 223, 315, 330, 310],
     },
   ],
 };
@@ -157,7 +128,6 @@ defineExpose({
   .echarts-item {
     width: 100%;
     margin-top: -10px;
-    background: #f5f5f5;
     border-radius: 8px;
 
     .echarts-title {

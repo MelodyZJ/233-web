@@ -217,7 +217,7 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 
 const billetForm = reactive({
-  shape: "方坯",
+  shape: "圆坯",
   billetSize: {
     length: "165",
     width: "165",
@@ -371,14 +371,14 @@ const getBillet = async () => {
       chamfer,
       density,
       speed,
-      size: [billetSize.height, billetSize.width, billetSize.length],
+      size: [billetSize.width, billetSize.length, billetSize.height],
       temperature: [
         surfaceCenterTemp.head, // 表面
         surfaceCenterTemp.tail || -1, // 连续铸轧尾部温度默认传-1
+        angularTemperature.head, // 角部
+        angularTemperature.tail || -1,
         centerTemperature.head, // 中心
         centerTemperature.tail || -1,
-        angularTemperature.head, // 尾部
-        angularTemperature.tail || -1,
       ],
     };
 
