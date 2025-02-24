@@ -11,9 +11,17 @@
 
 <script setup>
 import * as echarts from "echarts";
-import { nextTick } from "vue";
+import calcResultMock from "@/assets/mock/calcResult.json";
 
-// 折线图和散点图二合一配置
+onMounted(() => {
+  initChart();
+});
+
+const averageTempsArr = ref([]);
+const coreTempsArr = ref([]);
+const surfaceTempsArr = ref([]);
+
+// 折线图配置
 const option = {
   title: {
     text: "",
@@ -21,48 +29,77 @@ const option = {
   tooltip: {
     trigger: "axis",
   },
-
+  legend: {
+    data: ["平均温度", "芯部温度", "表面温度"],
+  },
   grid: {
     left: "5%",
     right: "5%",
     bottom: "8%",
-    top: "5%",
     containLabel: true,
   },
-  xAxis: [
-    {
-      type: "category",
-      data: ["100", "200", "300", "400", "500", "600", "700"],
-    },
-  ],
+  xAxis: {
+    type: "value",
+    name: "时间",
+  },
   yAxis: {
     type: "value",
   },
   series: [
     {
-      name: "数据一",
+      name: "平均温度",
       type: "line",
-      data: [110, 192, 201, 234, 300, 320, 330],
+      data: averageTempsArr.value.map((item) => [item.time, item.averageTemp]),
     },
     {
-      name: "数据二",
+      name: "芯部温度",
       type: "line",
-      data: [120, 182, 191, 234, 290, 330, 310],
+      data: coreTempsArr.value.map((item) => [item.time, item.coreTemp]),
     },
     {
-      name: "数据三",
+      name: "表面温度",
       type: "line",
-      data: [105, 172, 191, 234, 310, 320, 315],
+      data: surfaceTempsArr.value.map((item) => [item.time, item.surfaceTemp]),
     },
   ],
 };
 
-const showGraph = ref(false);
+const showGraph = ref(true);
 
 const myCharts = ref({});
+
 // 初始化图表的函数
-const initChart = (data = {}) => {
+const initChart = () => {
   showGraph.value = true;
+
+  const { data } = calcResultMock;
+  const { calculateData } = data;
+
+  // 平均温度
+  averageTempsArr.value = calculateData[0].map((item) => ({
+    time: item.time,
+    averageTemp: item.averageTemp,
+  }));
+
+  // 芯部温度
+  coreTempsArr.value = calculateData[0].map((item) => ({
+    time: item.time,
+    coreTemp: item.coreTemp,
+  }));
+
+  // 表面温度
+  surfaceTempsArr.value = calculateData[0].map((item) => ({
+    time: item.time,
+    surfaceTemp: item.surfaceTemp,
+  }));
+
+  console.log("averageTempsArr", averageTempsArr);
+
+  option.series[0].data = averageTempsArr;
+  option.series[1].data = coreTempsArr;
+  option.series[2].data = surfaceTempsArr;
+
+  // console.log("averageTempsArr", averageTempsArr);
 
   // 等待DOM渲染完成后再初始化图表
   nextTick(() => {
