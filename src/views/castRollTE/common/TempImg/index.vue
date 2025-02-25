@@ -133,7 +133,7 @@ const calcChart = () => {
       break;
   }
 
-  console.log("chartData", chartData);
+  // console.log("chartData", chartData);
 
   // 平均温度
   option.series[0].data = chartData[index].map((item) => {
