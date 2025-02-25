@@ -1,8 +1,7 @@
 <template>
-  <div class="part-box" :style="{ height: showGraph ? '590px' : '200px' }">
+  <div class="part-box" :style="{ height: showGraph ? '530px' : '200px' }">
     <div class="part-title">铸轧温度图像</div>
     <div class="echarts-item" v-if="showGraph">
-      <div class="echarts-title">轧线温度场(℃)</div>
       <div id="graph1" class="echarts"></div>
     </div>
     <div v-else class="no-data">提交后生成图像</div>
@@ -11,23 +10,26 @@
 
 <script setup>
 import * as echarts from "echarts";
-import calcResultMock from "@/assets/mock/calcResult.json";
+// import calcResultMock from "@/assets/mock/calcResult.json";
 
 onMounted(() => {
-  initChart();
+  // initChart();
+  // renderChart();
 });
 
-const averageTempsArr = ref([]);
-const coreTempsArr = ref([]);
-const surfaceTempsArr = ref([]);
-
 // 折线图配置
-const option = {
+let option = {
   title: {
     text: "",
   },
   tooltip: {
     trigger: "axis",
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      saveAsImage: {},
+    },
   },
   legend: {
     data: ["平均温度", "芯部温度", "表面温度"],
@@ -40,101 +42,91 @@ const option = {
   },
   xAxis: {
     type: "value",
-    name: "时间",
   },
   yAxis: {
     type: "value",
+    name: "轧线温度场(℃)",
+    nameTextStyle: {
+      fontSize: 16, // 设置字体大小
+      padding: [0, 0, 25, 20], // 上右下左与原位置距离
+    },
   },
   series: [
     {
       name: "平均温度",
       type: "line",
-      data: averageTempsArr.value.map((item) => [item.time, item.averageTemp]),
+      data: [],
     },
     {
       name: "芯部温度",
       type: "line",
-      data: coreTempsArr.value.map((item) => [item.time, item.coreTemp]),
+      data: [],
     },
     {
       name: "表面温度",
       type: "line",
-      data: surfaceTempsArr.value.map((item) => [item.time, item.surfaceTemp]),
+      data: [],
     },
   ],
 };
 
-const showGraph = ref(true);
+const showGraph = ref(false);
 
 const myCharts = ref({});
 
-// 初始化图表的函数
-const initChart = () => {
+const renderChart = (calcResult) => {
   showGraph.value = true;
 
-  const { data } = calcResultMock;
+  // mock数据
+  // const { data } = calcResultMock;
+
+  // 真实数据
+  const { data } = calcResult;
   const { calculateData } = data;
 
   // 平均温度
-  averageTempsArr.value = calculateData[0].map((item) => ({
-    time: item.time,
-    averageTemp: item.averageTemp,
-  }));
+  option.series[0].data = calculateData[0].map((item) => [
+    item.time,
+    item.averageTemp,
+  ]);
 
   // 芯部温度
-  coreTempsArr.value = calculateData[0].map((item) => ({
-    time: item.time,
-    coreTemp: item.coreTemp,
-  }));
+  option.series[1].data = calculateData[0].map((item) => [
+    item.time,
+    item.coreTemp,
+  ]);
 
   // 表面温度
-  surfaceTempsArr.value = calculateData[0].map((item) => ({
-    time: item.time,
-    surfaceTemp: item.surfaceTemp,
-  }));
+  option.series[2].data = calculateData[0].map((item) => [
+    item.time,
+    item.surfaceTemp,
+  ]);
 
-  console.log("averageTempsArr", averageTempsArr);
+  initChart();
+};
 
-  option.series[0].data = averageTempsArr;
-  option.series[1].data = coreTempsArr;
-  option.series[2].data = surfaceTempsArr;
-
-  // console.log("averageTempsArr", averageTempsArr);
-
+// 初始化图表的函数
+const initChart = () => {
   // 等待DOM渲染完成后再初始化图表
   nextTick(() => {
-    const chartConfigs = [{ id: "graph1", option: option }];
+    const chartDom = document.getElementById("graph1");
+    const myChart = echarts.init(chartDom);
 
-    chartConfigs.forEach(({ id, option }) => {
-      if (myCharts.value[id]) {
-        myCharts.value[id].dispose();
-      }
-      myCharts.value[id] = echarts.init(document.getElementById(id));
-      myCharts.value[id].setOption(option, true);
-    });
+    // 显示加载效果
+    // myChart.showLoading({
+    //   text: "正在加载...",
+    //   color: "#0c5fff",
+    //   textColor: "#000",
+    //   maskColor: "rgba(255, 255, 255, 0.8)",
+    //   zlevel: 0,
+    // });
 
-    // 调整窗口大小时的处理
-    window.onresize = function () {
-      for (const id in myCharts.value) {
-        if (myCharts.value.hasOwnProperty(id)) {
-          myCharts.value[id].resize();
-        }
-      }
-    };
+    myChart.setOption(option);
   });
 };
 
-onUnmounted(() => {
-  // 销毁图表实例
-  for (const id in myCharts.value) {
-    if (myCharts.value.hasOwnProperty(id)) {
-      myCharts.value[id].dispose();
-    }
-  }
-});
-
 defineExpose({
-  initChart,
+  renderChart,
 });
 </script>
 
@@ -164,16 +156,8 @@ defineExpose({
 
   .echarts-item {
     width: 100%;
-    margin-top: -10px;
+    margin-top: 50px;
     border-radius: 8px;
-
-    .echarts-title {
-      height: 80px;
-      display: flex;
-      align-items: center;
-      font-size: 15px;
-      margin-left: 30px;
-    }
 
     .echarts {
       width: 100%;
