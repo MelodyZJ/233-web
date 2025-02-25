@@ -52,7 +52,7 @@
 const calculation = reactive({
   gridNumberX: "20",
   gridNumberY: "20",
-  calculateStep: "100",
+  calculateStep: "10",
 });
 
 // 校验规则

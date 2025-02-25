@@ -3,13 +3,21 @@
     <div class="part-title">铸轧温度图像</div>
     <div class="echarts-item" v-if="showGraph">
       <div class="px-10 pb-8">
-        <v-btn-toggle v-model="type" divided>
-          <v-btn value="distance" @click="calcChart">
-            <span class="hidden-sm-and-down">距离-温度</span>
+        <v-btn-toggle v-model="type" divided variant="outlined">
+          <v-btn value="head-distance" @click="calcChart">
+            <span class="hidden-sm-and-down">头部-距离-温度</span>
           </v-btn>
 
-          <v-btn value="time" @click="calcChart">
-            <span class="hidden-sm-and-down">时间-温度</span>
+          <v-btn value="head-time" @click="calcChart">
+            <span class="hidden-sm-and-down">头部-时间-温度</span>
+          </v-btn>
+
+          <v-btn value="tail-distance" @click="calcChart">
+            <span class="hidden-sm-and-down">尾部-距离-温度</span>
+          </v-btn>
+
+          <v-btn value="tail-time" @click="calcChart">
+            <span class="hidden-sm-and-down">尾部-时间-温度</span>
           </v-btn>
         </v-btn-toggle>
       </div>
@@ -22,11 +30,11 @@
 <script setup>
 import * as echarts from "echarts";
 import { reactive, ref } from "vue";
-// import calcResultMock from "@/assets/mock/calcResult.json";
+import calcResultMock from "@/assets/mock/calcResult.json";
 
-// onMounted(() => {
-//   renderChart();
-// });
+onMounted(() => {
+  renderChart();
+});
 
 // 折线图配置
 let option = {
@@ -82,7 +90,7 @@ let option = {
 };
 
 const showGraph = ref(false);
-const type = ref("distance");
+const type = ref("head-distance");
 
 // 图表数据
 let chartData = reactive([]);
@@ -90,8 +98,8 @@ let chartData = reactive([]);
 //外部调用方法
 const renderChart = (calcResult) => {
   showGraph.value = true;
-  // const { data } = calcResultMock; // mock数据
-  const { data } = calcResult; // 真实数据
+  const { data } = calcResultMock; // mock数据
+  // const { data } = calcResult; // 真实数据
   const { calculateData } = data;
   chartData = calculateData;
   calcChart();
@@ -101,19 +109,19 @@ const renderChart = (calcResult) => {
 const calcChart = () => {
   // 平均温度
   option.series[0].data = chartData[0].map((item) => [
-    type.value === "distance" ? item.distance : item.time,
+    type.value === "head-distance" ? item.distance : item.time,
     item.averageTemp,
   ]);
 
   // 芯部温度
   option.series[1].data = chartData[0].map((item) => [
-    type.value === "distance" ? item.distance : item.time,
+    type.value === "head-distance" ? item.distance : item.time,
     item.coreTemp,
   ]);
 
   // 表面温度
   option.series[2].data = chartData[0].map((item) => [
-    type.value === "distance" ? item.distance : item.time,
+    type.value === "head-distance" ? item.distance : item.time,
     item.surfaceTemp,
   ]);
 
