@@ -12,13 +12,15 @@
             <span class="hidden-sm-and-down">头部-时间-温度</span>
           </v-btn>
 
-          <v-btn value="tail-distance" @click="calcChart">
-            <span class="hidden-sm-and-down">尾部-距离-温度</span>
-          </v-btn>
+          <template v-if="route.path == '/directCastRoll'">
+            <v-btn value="tail-distance" @click="calcChart">
+              <span class="hidden-sm-and-down">尾部-距离-温度</span>
+            </v-btn>
 
-          <v-btn value="tail-time" @click="calcChart">
-            <span class="hidden-sm-and-down">尾部-时间-温度</span>
-          </v-btn>
+            <v-btn value="tail-time" @click="calcChart">
+              <span class="hidden-sm-and-down">尾部-时间-温度</span>
+            </v-btn>
+          </template>
         </v-btn-toggle>
       </div>
       <div id="graph1" class="echarts"></div>
@@ -29,12 +31,14 @@
 
 <script setup>
 import * as echarts from "echarts";
-import { reactive, ref } from "vue";
-import calcResultMock from "@/assets/mock/calcResult.json";
+import { useRoute } from "vue-router";
+// import calcResultMock from "@/assets/mock/calcResult.json";
 
-onMounted(() => {
-  renderChart();
-});
+const route = useRoute();
+
+// onMounted(() => {
+//   renderChart();
+// });
 
 // 折线图配置
 let option = {
@@ -98,32 +102,59 @@ let chartData = reactive([]);
 //外部调用方法
 const renderChart = (calcResult) => {
   showGraph.value = true;
-  const { data } = calcResultMock; // mock数据
-  // const { data } = calcResult; // 真实数据
+  // const { data } = calcResultMock; // mock数据
+  const { data } = calcResult; // 真实数据
   const { calculateData } = data;
   chartData = calculateData;
   calcChart();
 };
 
-// 计算并从新渲染图表
+// 计算并重新渲染图表
 const calcChart = () => {
+  let index;
+  let xAxisType;
+
+  switch (type.value) {
+    case "head-distance":
+      index = 0;
+      xAxisType = "distance";
+      break;
+    case "head-time":
+      index = 0;
+      xAxisType = "time";
+      break;
+    case "tail-distance":
+      index = 1;
+      xAxisType = "distance";
+      break;
+    case "tail-time":
+      index = 1;
+      xAxisType = "time";
+      break;
+  }
+
+  console.log("chartData", chartData);
+
   // 平均温度
-  option.series[0].data = chartData[0].map((item) => [
-    type.value === "head-distance" ? item.distance : item.time,
-    item.averageTemp,
-  ]);
+  option.series[0].data = chartData[index].map((item) => {
+    const xAxisValue = item[xAxisType];
+    const yAxisValue = item.averageTemp;
+    return [xAxisValue, yAxisValue];
+  });
 
   // 芯部温度
-  option.series[1].data = chartData[0].map((item) => [
-    type.value === "head-distance" ? item.distance : item.time,
-    item.coreTemp,
-  ]);
+  option.series[1].data = chartData[index].map((item) => {
+    const xAxisValue = item[xAxisType];
+    const yAxisValue = item.coreTemp;
+    return [xAxisValue, yAxisValue];
+  });
 
   // 表面温度
-  option.series[2].data = chartData[0].map((item) => [
-    type.value === "head-distance" ? item.distance : item.time,
-    item.surfaceTemp,
-  ]);
+  option.series[2].data = chartData[index].map((item) => {
+    const xAxisValue = item[xAxisType];
+    const yAxisValue = item.surfaceTemp;
+    return [xAxisValue, yAxisValue];
+  });
 
   // 重新渲染图表
   initChart();
