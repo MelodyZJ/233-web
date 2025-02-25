@@ -1,7 +1,18 @@
 <template>
-  <div class="part-box" :style="{ height: showGraph ? '530px' : '200px' }">
+  <div class="part-box" :style="{ height: showGraph ? '580px' : '200px' }">
     <div class="part-title">铸轧温度图像</div>
     <div class="echarts-item" v-if="showGraph">
+      <div class="px-10 pb-8">
+        <v-btn-toggle v-model="type" divided>
+          <v-btn value="distance" @click="renderChart">
+            <span class="hidden-sm-and-down">距离-温度</span>
+          </v-btn>
+
+          <v-btn value="time" @click="renderChart">
+            <span class="hidden-sm-and-down">时间-温度</span>
+          </v-btn>
+        </v-btn-toggle>
+      </div>
       <div id="graph1" class="echarts"></div>
     </div>
     <div v-else class="no-data">提交后生成图像</div>
@@ -12,10 +23,9 @@
 import * as echarts from "echarts";
 // import calcResultMock from "@/assets/mock/calcResult.json";
 
-onMounted(() => {
-  // initChart();
-  // renderChart();
-});
+// onMounted(() => {
+//   renderChart();
+// });
 
 // 折线图配置
 let option = {
@@ -71,35 +81,35 @@ let option = {
 };
 
 const showGraph = ref(false);
+const type = ref("distance");
 
+// 渲染图表
 const renderChart = (calcResult) => {
   showGraph.value = true;
-
-  // mock数据
-  // const { data } = calcResultMock;
-
-  // 真实数据
-  const { data } = calcResult;
+  
+  // const { data } = calcResultMock; // mock数据
+  const { data } = calcResult; // 真实数据
   const { calculateData } = data;
 
   // 平均温度
   option.series[0].data = calculateData[0].map((item) => [
-    item.time,
+    type.value === "distance" ? item.distance : item.time,
     item.averageTemp,
   ]);
 
   // 芯部温度
   option.series[1].data = calculateData[0].map((item) => [
-    item.time,
+    type.value === "distance" ? item.distance : item.time,
     item.coreTemp,
   ]);
 
   // 表面温度
   option.series[2].data = calculateData[0].map((item) => [
-    item.time,
+    type.value === "distance" ? item.distance : item.time,
     item.surfaceTemp,
   ]);
 
+  // 重新渲染图表
   initChart();
 };
 
@@ -109,16 +119,6 @@ const initChart = () => {
   nextTick(() => {
     const chartDom = document.getElementById("graph1");
     const myChart = echarts.init(chartDom);
-
-    // 显示加载效果
-    // myChart.showLoading({
-    //   text: "正在加载...",
-    //   color: "#0c5fff",
-    //   textColor: "#000",
-    //   maskColor: "rgba(255, 255, 255, 0.8)",
-    //   zlevel: 0,
-    // });
-
     myChart.setOption(option);
   });
 };
@@ -154,8 +154,8 @@ defineExpose({
 
   .echarts-item {
     width: 100%;
-    margin-top: 50px;
     border-radius: 8px;
+    margin-top: -5px;
 
     .echarts {
       width: 100%;
