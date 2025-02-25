@@ -72,8 +72,6 @@ let option = {
 
 const showGraph = ref(false);
 
-const myCharts = ref({});
-
 const renderChart = (calcResult) => {
   showGraph.value = true;
 

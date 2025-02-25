@@ -158,7 +158,7 @@ const submit = async () => {
       });
 
       // 渲染图表
-      tempImgRef.value.renderChart(res.data.data);
+      tempImgRef.value.renderChart(res.data);
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",
