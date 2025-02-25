@@ -4,11 +4,11 @@
     <div class="echarts-item" v-if="showGraph">
       <div class="px-10 pb-8">
         <v-btn-toggle v-model="type" divided>
-          <v-btn value="distance" @click="renderChart">
+          <v-btn value="distance" @click="calcChart">
             <span class="hidden-sm-and-down">距离-温度</span>
           </v-btn>
 
-          <v-btn value="time" @click="renderChart">
+          <v-btn value="time" @click="calcChart">
             <span class="hidden-sm-and-down">时间-温度</span>
           </v-btn>
         </v-btn-toggle>
@@ -21,6 +21,7 @@
 
 <script setup>
 import * as echarts from "echarts";
+import { reactive, ref } from "vue";
 // import calcResultMock from "@/assets/mock/calcResult.json";
 
 // onMounted(() => {
@@ -83,28 +84,35 @@ let option = {
 const showGraph = ref(false);
 const type = ref("distance");
 
-// 渲染图表
+// 图表数据
+let chartData = reactive([]);
+
+//外部调用方法
 const renderChart = (calcResult) => {
   showGraph.value = true;
-  
   // const { data } = calcResultMock; // mock数据
   const { data } = calcResult; // 真实数据
   const { calculateData } = data;
+  chartData = calculateData;
+  calcChart();
+};
 
+// 计算并从新渲染图表
+const calcChart = () => {
   // 平均温度
-  option.series[0].data = calculateData[0].map((item) => [
+  option.series[0].data = chartData[0].map((item) => [
     type.value === "distance" ? item.distance : item.time,
     item.averageTemp,
   ]);
 
   // 芯部温度
-  option.series[1].data = calculateData[0].map((item) => [
+  option.series[1].data = chartData[0].map((item) => [
     type.value === "distance" ? item.distance : item.time,
     item.coreTemp,
   ]);
 
   // 表面温度
-  option.series[2].data = calculateData[0].map((item) => [
+  option.series[2].data = chartData[0].map((item) => [
     type.value === "distance" ? item.distance : item.time,
     item.surfaceTemp,
   ]);
