@@ -219,9 +219,9 @@ const route = useRoute();
 const billetForm = reactive({
   shape: "圆坯",
   billetSize: {
-    length: route.path == "/directCastRoll" ? "165" : "",
+    length: route.path == "/directCastRoll" ? "12000" : "",
     width: "165",
-    height: "12000",
+    height: "165",
   },
   chamfer: "8",
   density: "7700",
@@ -371,7 +371,7 @@ const getBillet = async () => {
       chamfer,
       density,
       speed,
-      size: [billetSize.width, billetSize.length || -1, billetSize.height],
+      size: [billetSize.height, billetSize.width, billetSize.length || -1],
       temperature: [
         surfaceCenterTemp.head, // 表面
         surfaceCenterTemp.tail || -1, // 连续铸轧尾部温度默认传-1

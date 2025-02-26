@@ -11,9 +11,9 @@
       >
         <el-row>
           <el-col :span="11">
-            <el-form-item label="铸坯高度网格数量" prop="gridNumberX">
+            <el-form-item label="铸坯高度网格数量" prop="gridNumberY">
               <el-input
-                v-model="calculation.gridNumberX"
+                v-model="calculation.gridNumberY"
                 placeholder="请输入"
                 type="number"
                 style="width: 200px"
@@ -22,9 +22,9 @@
             </el-form-item>
           </el-col>
           <el-col :span="13">
-            <el-form-item label="铸坯宽度网格数量" prop="gridNumberY">
+            <el-form-item label="铸坯宽度网格数量" prop="gridNumberX">
               <el-input
-                v-model="calculation.gridNumberY"
+                v-model="calculation.gridNumberX"
                 placeholder="请输入"
                 type="number"
                 style="width: 200px"
@@ -50,18 +50,18 @@
 
 <script setup>
 const calculation = reactive({
-  gridNumberX: "20",
   gridNumberY: "20",
+  gridNumberX: "30",
   calculateStep: "10",
 });
 
 // 校验规则
 const rules = reactive({
   gridNumberX: [
-    { required: true, message: "请输入铸坯高度网格数量", trigger: "change" },
+    { required: true, message: "请输入铸坯宽度网格数量", trigger: "change" },
   ],
   gridNumberY: [
-    { required: true, message: "请输入铸坯宽度网格数量", trigger: "change" },
+    { required: true, message: "请输入铸坯高度网格数量", trigger: "change" },
   ],
   calculateStep: [
     { required: true, message: "请输入空冷计算步长", trigger: "change" },
