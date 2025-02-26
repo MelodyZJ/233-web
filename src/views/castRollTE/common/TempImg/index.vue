@@ -56,7 +56,7 @@ const option = {
     },
   },
   legend: {
-    data: ["平均温度", "芯部温度", "表面温度"],
+    data: ["平均温度", "心部温度", "表面温度"],
   },
   grid: {
     left: "5%",
@@ -79,16 +79,19 @@ const option = {
     {
       name: "平均温度",
       type: "line",
+      showSymbol: false,
       data: [],
     },
     {
-      name: "芯部温度",
+      name: "心部温度",
       type: "line",
+      showSymbol: false,
       data: [],
     },
     {
       name: "表面温度",
       type: "line",
+      showSymbol: false,
       data: [],
     },
   ],
@@ -147,7 +150,7 @@ const calcChart = () => {
     return [xAxisValue, yAxisValue];
   });
 
-  // 芯部温度
+  // 心部温度
   copyOption.series[1].data = chartData[index].map((item) => {
     const xAxisValue = item[xAxisType];
     const yAxisValue = item.coreTemp;
@@ -163,20 +166,40 @@ const calcChart = () => {
 
   // 如果是方坯/矩形坯计算
   if (billetData.billetShape == "方坯" || billetData.billetShape == "矩形坯") {
-    copyOption.legend.data.push("铸坯高度方向表面温度", "铸坯宽度方向表面温度");
-
+    copyOption.legend.data.pop(); // 删除最后一个元素
+    copyOption.legend.data.push(
+      "角部温度",
+      "铸坯高度方向表面温度",
+      "铸坯宽度方向表面温度"
+    );
+    copyOption.series.pop();
     copyOption.series.push(
+      {
+        name: "角部温度",
+        type: "line",
+        showSymbol: false,
+        data: [],
+      },
       {
         name: "铸坯高度方向表面温度",
         type: "line",
+        showSymbol: false,
         data: [],
       },
       {
         name: "铸坯宽度方向表面温度",
         type: "line",
+        showSymbol: false,
         data: [],
       }
     );
+
+    // 角部温度
+    copyOption.series[2].data = chartData[index].map((item) => {
+      const xAxisValue = item[xAxisType];
+      const yAxisValue = item.cornerTemp;
+      return [xAxisValue, yAxisValue];
+    });
 
     // 铸坯高度方向表面温度
     copyOption.series[3].data = chartData[index].map((item) => {
