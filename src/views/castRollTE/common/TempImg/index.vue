@@ -31,6 +31,7 @@
 
 <script setup>
 import * as echarts from "echarts";
+import { reactive } from "vue";
 import { useRoute } from "vue-router";
 // import calcResultMock from "@/assets/mock/calcResult.json";
 
@@ -41,7 +42,7 @@ const route = useRoute();
 // });
 
 // 折线图配置
-let option = {
+const option = {
   title: {
     text: "",
   },
@@ -96,7 +97,9 @@ let option = {
 const showGraph = ref(false);
 const type = ref("head-distance");
 
-// 图表数据
+// 表头数据
+let billetData = reactive({});
+// 图表渲染数据
 let chartData = reactive([]);
 
 //外部调用方法
@@ -104,7 +107,8 @@ const renderChart = (calcResult) => {
   showGraph.value = true;
   // const { data } = calcResultMock; // mock数据
   const { data } = calcResult; // 真实数据
-  const { calculateData } = data;
+  const { billetParams, calculateData } = data;
+  billetData = billetParams;
   chartData = calculateData;
   calcChart();
 };
@@ -133,40 +137,73 @@ const calcChart = () => {
       break;
   }
 
-  // console.log("chartData", chartData);
+  // 隔离option
+  const copyOption = JSON.parse(JSON.stringify(option));
 
   // 平均温度
-  option.series[0].data = chartData[index].map((item) => {
+  copyOption.series[0].data = chartData[index].map((item) => {
     const xAxisValue = item[xAxisType];
     const yAxisValue = item.averageTemp;
     return [xAxisValue, yAxisValue];
   });
 
   // 芯部温度
-  option.series[1].data = chartData[index].map((item) => {
+  copyOption.series[1].data = chartData[index].map((item) => {
     const xAxisValue = item[xAxisType];
     const yAxisValue = item.coreTemp;
     return [xAxisValue, yAxisValue];
   });
 
   // 表面温度
-  option.series[2].data = chartData[index].map((item) => {
+  copyOption.series[2].data = chartData[index].map((item) => {
     const xAxisValue = item[xAxisType];
     const yAxisValue = item.surfaceTemp;
     return [xAxisValue, yAxisValue];
   });
 
+  // 如果是方坯/矩形坯计算
+  if (billetData.billetShape == "方坯" || billetData.billetShape == "矩形坯") {
+    copyOption.legend.data.push("铸坯高度方向表面温度", "铸坯宽度方向表面温度");
+
+    copyOption.series.push(
+      {
+        name: "铸坯高度方向表面温度",
+        type: "line",
+        data: [],
+      },
+      {
+        name: "铸坯宽度方向表面温度",
+        type: "line",
+        data: [],
+      }
+    );
+
+    // 铸坯高度方向表面温度
+    copyOption.series[3].data = chartData[index].map((item) => {
+      const xAxisValue = item[xAxisType];
+      const yAxisValue = item.heightSurfaceTemp;
+      return [xAxisValue, yAxisValue];
+    });
+
+    // 铸坯宽度方向表面温度
+    copyOption.series[4].data = chartData[index].map((item) => {
+      const xAxisValue = item[xAxisType];
+      const yAxisValue = item.widthSurfaceTemp;
+      return [xAxisValue, yAxisValue];
+    });
+  }
+
   // 重新渲染图表
-  initChart();
+  initChart(copyOption);
 };
 
 // 初始化图表的函数
-const initChart = () => {
+const initChart = (copyOption) => {
   // 等待DOM渲染完成后再初始化图表
   nextTick(() => {
     const chartDom = document.getElementById("graph1");
     const myChart = echarts.init(chartDom);
-    myChart.setOption(option);
+    myChart.setOption(copyOption);
   });
 };
 
