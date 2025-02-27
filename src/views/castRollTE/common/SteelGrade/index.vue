@@ -52,7 +52,7 @@
               v-for="item in markList"
               :key="item.id"
               :label="item.mark"
-              :value="item.id"
+              :value="item.mark"
             />
           </el-select>
         </el-form-item>
