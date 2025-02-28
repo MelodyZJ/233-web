@@ -1,8 +1,8 @@
 <template>
-  <div class="part-box" :style="{ height: showGraph ? '580px' : '200px' }">
+  <div class="part-box" :style="{ height: showGraph ? '880px' : '200px' }">
     <div class="part-title">铸轧温度图像</div>
     <div class="echarts-item" v-if="showGraph">
-      <div class="px-10 pb-8">
+      <div class="px-10 pt-4 pb-12">
         <v-btn-toggle v-model="type" divided variant="outlined">
           <v-btn value="head-distance" @click="calcChart">
             <span class="hidden-sm-and-down">头部-距离-温度</span>
@@ -225,7 +225,9 @@ const initChart = (copyOption) => {
   // 等待DOM渲染完成后再初始化图表
   nextTick(() => {
     const chartDom = document.getElementById("graph1");
-    const myChart = echarts.init(chartDom);
+    // const myChart = echarts.init(chartDom); // 原生
+    // const myChart = echarts.init(chartDom, null, { renderer: "svg" }); // svg渲染
+    const myChart = echarts.init(chartDom, null, { devicePixelRatio: 2 }); // 2倍分辨率
     myChart.setOption(copyOption);
   });
 };
@@ -266,7 +268,7 @@ defineExpose({
 
     .echarts {
       width: 100%;
-      height: 420px;
+      height: 700px;
     }
   }
 
