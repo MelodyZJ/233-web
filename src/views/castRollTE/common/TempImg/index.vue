@@ -56,7 +56,11 @@ const option = {
     },
   },
   legend: {
-    data: ["平均温度", "心部温度", "表面温度"],
+    data: [
+      { name: "平均温度", itemStyle: { opacity: 0 } },
+      { name: "心部温度", itemStyle: { opacity: 0 } },
+      { name: "表面温度", itemStyle: { opacity: 0 } },
+    ],
   },
   grid: {
     left: "5%",
@@ -201,9 +205,9 @@ const calcChart = () => {
   if (billetData.billetShape == "方坯" || billetData.billetShape == "矩形坯") {
     copyOption.legend.data.pop(); // 删除最后一个元素
     copyOption.legend.data.push(
-      "角部温度",
-      "铸坯高度方向表面温度",
-      "铸坯宽度方向表面温度"
+      { name: "角部温度", itemStyle: { opacity: 0 } },
+      { name: "铸坯高度方向表面温度", itemStyle: { opacity: 0 } },
+      { name: "铸坯宽度方向表面温度", itemStyle: { opacity: 0 } }
     );
     copyOption.series.pop();
     copyOption.series.push(
