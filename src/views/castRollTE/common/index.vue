@@ -1,5 +1,5 @@
 <template>
-  <div class="common-container">
+  <div class="common-container" :key="resetKey">
     <el-row>
       <el-col :span="showAnchor ? 18 : 23">
         <div ref="containerRef" class="form-container">
@@ -17,6 +17,7 @@
           <finish
             id="part6"
             @submitFn="submit"
+            @resetFn="reset"
             :submitLoading="submitLoading"
           ></finish>
         </div>
@@ -94,6 +95,7 @@ const handleResize = () => {
 
 // 锚点点击
 const handleClick = (e) => {
+  console.log(e, "---");
   e.preventDefault();
 };
 
@@ -173,6 +175,13 @@ const submit = async () => {
   } finally {
     submitLoading.value = false;
   }
+};
+
+const resetKey = ref(0);
+// 表单重置
+const reset = () => {
+  resetKey.value++;
+  ElMessage.success("已重置");
 };
 </script>
 

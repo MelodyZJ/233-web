@@ -30,7 +30,9 @@ const submit = () => {
   emit("submitFn");
 };
 
-const reset = () => {};
+const reset = () => {
+  emit("resetFn");
+};
 </script>
 
 <style lang="scss" scoped>
