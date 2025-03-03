@@ -60,12 +60,17 @@ const option = {
   },
   grid: {
     left: "5%",
-    right: "5%",
+    right: "8%",
     bottom: "8%",
     containLabel: true,
   },
   xAxis: {
     type: "value",
+    name: "距离(m)",
+    nameTextStyle: {
+      fontSize: 16, // 设置字体大小
+      padding: [0, 0, 0, 15], // 上右下左与原位置距离
+    },
   },
   yAxis: {
     type: "value",
@@ -80,18 +85,39 @@ const option = {
       name: "平均温度",
       type: "line",
       showSymbol: false,
+      itemStyle: {
+        normal: {
+          color: "#6ce56e",
+        },
+      },
       data: [],
     },
     {
       name: "心部温度",
       type: "line",
       showSymbol: false,
+      itemStyle: {
+        normal: {
+          color: "#EE6666",
+          lineStyle: {
+            type: "dashed",
+          },
+        },
+      },
       data: [],
     },
     {
       name: "表面温度",
       type: "line",
       showSymbol: false,
+      itemStyle: {
+        normal: {
+          color: "#5c7bd9",
+          lineStyle: {
+            type: "dashed",
+          },
+        },
+      },
       data: [],
     },
   ],
@@ -164,6 +190,13 @@ const calcChart = () => {
     return [xAxisValue, yAxisValue];
   });
 
+  // x轴单位
+  if (xAxisType == "distance") {
+    copyOption.xAxis.name = "距离(m)";
+  } else {
+    copyOption.xAxis.name = "时间(s)";
+  }
+
   // 如果是方坯/矩形坯计算
   if (billetData.billetShape == "方坯" || billetData.billetShape == "矩形坯") {
     copyOption.legend.data.pop(); // 删除最后一个元素
@@ -226,7 +259,6 @@ const initChart = (copyOption) => {
   nextTick(() => {
     const chartDom = document.getElementById("graph1");
     // const myChart = echarts.init(chartDom); // 原生
-    // const myChart = echarts.init(chartDom, null, { renderer: "svg" }); // svg渲染
     const myChart = echarts.init(chartDom, null, { devicePixelRatio: 2 }); // 2倍分辨率
     myChart.setOption(copyOption);
   });
