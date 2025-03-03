@@ -95,7 +95,6 @@ const handleResize = () => {
 
 // 锚点点击
 const handleClick = (e) => {
-  console.log(e, "---");
   e.preventDefault();
 };
 
