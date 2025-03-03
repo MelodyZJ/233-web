@@ -1,5 +1,5 @@
 <template>
-  <div class="part-box" :style="{ height: showGraph ? '880px' : '200px' }">
+  <div class="part-box" :style="{ height: showGraph ? '850px' : '200px' }">
     <div class="part-title">铸轧温度图像</div>
     <div class="echarts-item" v-if="showGraph">
       <div class="px-10 pt-4 pb-12">
@@ -211,18 +211,42 @@ const calcChart = () => {
         name: "角部温度",
         type: "line",
         showSymbol: false,
+        itemStyle: {
+          normal: {
+            color: "#5c7bd9",
+            lineStyle: {
+              type: "dashed",
+            },
+          },
+        },
         data: [],
       },
       {
         name: "铸坯高度方向表面温度",
         type: "line",
         showSymbol: false,
+        itemStyle: {
+          normal: {
+            color: "#fac858",
+            lineStyle: {
+              type: "dashed",
+            },
+          },
+        },
         data: [],
       },
       {
         name: "铸坯宽度方向表面温度",
         type: "line",
         showSymbol: false,
+        itemStyle: {
+          normal: {
+            color: "#fc8452",
+            lineStyle: {
+              type: "dashed",
+            },
+          },
+        },
         data: [],
       }
     );
@@ -300,7 +324,7 @@ defineExpose({
 
     .echarts {
       width: 100%;
-      height: 700px;
+      height: 680px;
     }
   }
 
