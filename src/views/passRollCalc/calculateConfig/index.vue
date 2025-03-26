@@ -13,7 +13,7 @@
               <!-- 基本信息 -->
               <base-info></base-info>
               <!-- 参数配置 -->
-              <para-config :tab="tab"></para-config>
+              <para-config-design></para-config-design>
             </div>
           </v-tabs-window-item>
           <v-tabs-window-item value="2">
@@ -21,7 +21,7 @@
               <!-- 基本信息 -->
               <base-info></base-info>
               <!-- 参数配置 -->
-              <para-config :tab="tab"></para-config>
+              <para-config-user></para-config-user>
             </div>
           </v-tabs-window-item>
         </v-tabs-window>
@@ -32,7 +32,8 @@
 
 <script setup>
 import BaseInfo from "./BaseInfo/index.vue";
-import ParaConfig from "./ParaConfig/index.vue";
+import ParaConfigDesign from "./ParaConfig/Design.vue";
+import ParaConfigUser from "./ParaConfig/User.vue";
 
 const tab = ref("1");
 </script>

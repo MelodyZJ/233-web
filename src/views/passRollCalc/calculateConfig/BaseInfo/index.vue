@@ -4,23 +4,23 @@
     <div class="part-content">
       <el-form :inline="true" :model="baseInfoForm" label-width="100px">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="6">
             <el-form-item label="任务名称">
               <el-input
                 v-model="baseInfoForm.riskName"
                 placeholder="请输入"
-                style="width: 300px"
+                style="width: 180px"
               />
             </el-form-item>
           </el-col>
-          <el-col :span="16">
+          <el-col :span="6">
             <el-form-item label="所属项目">
               <el-select
                 v-model="baseInfoForm.belongProject"
                 placeholder="请选择"
                 filterable
                 clearable
-                style="width: 300px"
+                style="width: 180px"
               >
                 <template #footer>
                   <v-btn
@@ -33,6 +33,42 @@
                 </template>
                 <el-option
                   v-for="item in belongProjectList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="产线类型">
+              <el-select
+                v-model="baseInfoForm.lineType"
+                placeholder="请选择"
+                filterable
+                clearable
+                style="width: 180px"
+              >
+                <el-option
+                  v-for="item in lineTypeList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="相似产线">
+              <el-select
+                v-model="baseInfoForm.similarLine"
+                placeholder="请选择"
+                filterable
+                clearable
+                style="width: 180px"
+              >
+                <el-option
+                  v-for="item in similarLineList"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
@@ -76,6 +112,8 @@
 const baseInfoForm = reactive({
   riskName: "",
   belongProject: "",
+  lineType: "",
+  similarLine: "",
 });
 
 const belongProjectList = [
@@ -90,6 +128,32 @@ const belongProjectList = [
   {
     label: "项目3",
     value: 3,
+  },
+];
+
+const lineTypeList = [
+  {
+    label: "高速线材",
+    value: 1,
+  },
+  {
+    label: "高速棒材",
+    value: 2,
+  },
+  {
+    label: "中小棒材",
+    value: 3,
+  },
+  {
+    label: "开坯大棒",
+    value: 4,
+  },
+];
+
+const similarLineList = [
+  {
+    label: "相似产线1",
+    value: 1,
   },
 ];
 
