@@ -7,7 +7,7 @@
           <el-col :span="6">
             <el-form-item label="任务名称">
               <el-input
-                v-model="baseInfoForm.riskName"
+                v-model="baseInfoForm.taskName"
                 placeholder="请输入"
                 style="width: 180px"
               />
@@ -16,7 +16,7 @@
           <el-col :span="6">
             <el-form-item label="所属项目">
               <el-select
-                v-model="baseInfoForm.belongProject"
+                v-model="baseInfoForm.group_id"
                 placeholder="请选择"
                 filterable
                 clearable
@@ -43,7 +43,7 @@
           <el-col :span="6">
             <el-form-item label="产线类型">
               <el-select
-                v-model="baseInfoForm.lineType"
+                v-model="baseInfoForm.roll_line_typ"
                 placeholder="请选择"
                 filterable
                 clearable
@@ -109,10 +109,10 @@
 </template>
 
 <script setup>
-const baseInfoForm = reactive({
-  riskName: "",
-  belongProject: "",
-  lineType: "",
+const baseInfoForm = ref({
+  taskName: "",
+  group_id: "",
+  roll_line_typ: "",
   similarLine: "",
 });
 
@@ -161,6 +161,14 @@ const dialog = ref(false);
 const addProject = () => {
   dialog.value = true;
 };
+
+const getBaseInfoForm = () => {
+  return baseInfoForm.value;
+};
+
+defineExpose({
+  getBaseInfoForm,
+})
 </script>
 
 <style lang="scss" scoped>

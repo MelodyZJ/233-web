@@ -10,18 +10,12 @@
         <v-tabs-window v-model="tab">
           <v-tabs-window-item value="1">
             <div class="table-box">
-              <!-- 基本信息 -->
-              <base-info></base-info>
-              <!-- 参数配置 -->
-              <para-config-design></para-config-design>
+              <design-table></design-table>
             </div>
           </v-tabs-window-item>
           <v-tabs-window-item value="2">
             <div class="table-box">
-              <!-- 基本信息 -->
-              <base-info></base-info>
-              <!-- 参数配置 -->
-              <para-config-user></para-config-user>
+              <design-table></design-table>
             </div>
           </v-tabs-window-item>
         </v-tabs-window>
@@ -31,9 +25,7 @@
 </template>
 
 <script setup>
-import BaseInfo from "./BaseInfo/index.vue";
-import ParaConfigDesign from "./ParaConfig/Design.vue";
-import ParaConfigUser from "./ParaConfig/User.vue";
+import DesignTable from "./designTable/index.vue";
 
 const tab = ref("1");
 </script>

@@ -286,11 +286,6 @@
           </template>
         </el-table-column>
       </el-table>
-
-      <div class="btn">
-        <v-btn variant="tonal" class="submit-btn">提交</v-btn>
-        <v-btn variant="outlined" class="reset-btn">重置</v-btn>
-      </div>
     </div>
   </div>
 </template>
@@ -406,6 +401,20 @@ const onAddItem = () => {
     rollSpeed: "",
   });
 };
+
+const getTableData = () => {
+  let parmas = {
+    designTableData1: designTableData1.value,
+    designTableData2: designTableData2.value,
+    designTableData3: designTableData3.value,
+  };
+
+  return parmas;
+};
+
+defineExpose({
+  getTableData,
+})
 </script>
 
 <style lang="scss" scoped>
@@ -439,22 +448,6 @@ const onAddItem = () => {
   .custom-btn {
     background-color: #fff;
     color: #0c5fff;
-  }
-
-  .btn {
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px 0 30px 0;
-
-    .submit-btn {
-      background-color: #0c5fff;
-      color: #fff;
-    }
-
-    .reset-btn {
-      border: 1px solid #dcdfe6;
-      margin-left: 10px;
-    }
   }
 }
 </style>

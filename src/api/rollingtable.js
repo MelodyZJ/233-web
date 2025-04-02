@@ -66,3 +66,11 @@ export function deleteTask(params) {
   });
 }
 
+// 保存计算配置
+export function designSave(data) {
+  return request({
+    url: "/wbds/rolling_table_for_design/entry_func",
+    method: "post",
+    data,
+  });
+}
