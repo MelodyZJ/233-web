@@ -291,7 +291,7 @@ const paraConfigForm = reactive({});
 const now = new Date();
 
 const cardinalNum = ref(""); // 基数
-const highSpeed  = ref(""); // 高速
+const highSpeed = ref(""); // 高速
 
 const userTableRef1 = ref(null);
 const userTableData1 = ref([

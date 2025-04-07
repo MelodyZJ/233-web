@@ -84,7 +84,11 @@
       <v-card width="400" class="px-1 py-2">
         <v-card-title class="text-lg px-3">新建项目</v-card-title>
         <v-card-text class="px-3">
-          <el-input v-model="input" placeholder="新建项目名称" class="h-10" />
+          <el-input
+            v-model="projectName"
+            placeholder="新建项目名称"
+            class="h-10"
+          />
         </v-card-text>
 
         <template v-slot:actions>
@@ -157,10 +161,13 @@ const similarLineList = [
   },
 ];
 
+// 新建项目弹窗
 const dialog = ref(false);
 const addProject = () => {
   dialog.value = true;
 };
+
+const projectName = ref("");
 
 const getBaseInfoForm = () => {
   return baseInfoForm.value;
@@ -168,11 +175,14 @@ const getBaseInfoForm = () => {
 
 defineExpose({
   getBaseInfoForm,
-})
+});
 </script>
 
 <style lang="scss" scoped>
 .part-box {
+  width: 100%;
+  overflow: hidden;
+
   .part-title {
     height: 50px;
     display: flex;

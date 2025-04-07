@@ -3,7 +3,18 @@
     <div class="part-title">参数配置</div>
     <div class="part-content">
       <div class="top-botton">
-        <v-btn variant="outlined" class="custom-btn">上传参数</v-btn>
+        <el-upload
+          :file-list="fileList"
+          class="upload-demo"
+          multiple
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :before-remove="beforeRemove"
+          :limit="1"
+          :on-exceed="handleExceed"
+        >
+          <v-btn variant="outlined" class="custom-btn">上传参数</v-btn>
+        </el-upload>
         <v-btn variant="outlined" class="custom-btn">下载模板</v-btn>
       </div>
 
@@ -429,6 +440,9 @@ const objectSpanMethod = ({ row, column, rowIndex, columnIndex }) => {
     }
   }
 };
+
+// 文件上传
+const fileList = ref([]);
 
 defineExpose({
   getTableData,
