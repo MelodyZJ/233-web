@@ -15,7 +15,7 @@
           </v-tabs-window-item>
           <v-tabs-window-item value="2">
             <div class="table-box">
-              <design-table></design-table>
+              <user-table></user-table>
             </div>
           </v-tabs-window-item>
         </v-tabs-window>
@@ -26,6 +26,7 @@
 
 <script setup>
 import DesignTable from "./designTable/index.vue";
+import UserTable from "./userTable/index.vue";
 
 const tab = ref("1");
 </script>
