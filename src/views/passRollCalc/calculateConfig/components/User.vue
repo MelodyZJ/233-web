@@ -15,6 +15,7 @@
         height="100%"
         :header-cell-style="{ background: '#fafafa' }"
         border
+        :span-method="objectSpanMethod"
       >
         <el-table-column
           label="序号"
@@ -90,13 +91,13 @@
 
         <el-table-column label="基数/rpm" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.cardinalNum" placeholder="请输入" />
+            <el-input v-model="cardinalNum" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="高速/rpm" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.highSpeed" placeholder="请输入" />
+            <el-input v-model="highSpeed" placeholder="请输入" />
           </template>
         </el-table-column>
 
@@ -289,6 +290,9 @@ const paraConfigForm = reactive({});
 
 const now = new Date();
 
+const cardinalNum = ref(""); // 基数
+const highSpeed  = ref(""); // 高速
+
 const userTableRef1 = ref(null);
 const userTableData1 = ref([
   {
@@ -305,8 +309,6 @@ const userTableData1 = ref([
     rollGap: "",
     ringDiameter: "",
     rollSpeed: "",
-    cardinalNum: "",
-    highSpeed: "",
     rollLineNum: "",
     ratedPower: "",
     spacingMill: "",
@@ -360,6 +362,23 @@ const onAddItem = () => {
     ringDiameter: "",
     rollSpeed: "",
   });
+};
+
+// 合并单元格逻辑
+const objectSpanMethod = ({ row, column, rowIndex, columnIndex }) => {
+  if (columnIndex === 12 || columnIndex === 13) {
+    if (rowIndex === 0) {
+      return {
+        rowspan: userTableData1.value.length,
+        colspan: 1,
+      };
+    } else {
+      return {
+        rowspan: 0,
+        colspan: 0,
+      };
+    }
+  }
 };
 </script>
 

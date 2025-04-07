@@ -15,6 +15,7 @@
         height="100%"
         :header-cell-style="{ background: '#fafafa' }"
         border
+        :span-method="objectSpanMethod"
       >
         <el-table-column
           label="序号"
@@ -412,9 +413,26 @@ const getTableData = () => {
   return parmas;
 };
 
+// 合并单元格逻辑
+const objectSpanMethod = ({ row, column, rowIndex, columnIndex }) => {
+  if (columnIndex === 8 || columnIndex === 9) {
+    if (rowIndex === 0) {
+      return {
+        rowspan: designTableData1.value.length,
+        colspan: 1,
+      };
+    } else {
+      return {
+        rowspan: 0,
+        colspan: 0,
+      };
+    }
+  }
+};
+
 defineExpose({
   getTableData,
-})
+});
 </script>
 
 <style lang="scss" scoped>
