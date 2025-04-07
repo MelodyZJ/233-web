@@ -22,7 +22,9 @@
 import BaseInfo from "../components/BaseInfo.vue";
 import ParaConfigDesign from "../components/Design.vue";
 import { designSave } from "@/api/rollingTable.js";
+import { useHomeStore } from "@/store/home.js";
 
+const homeStore = useHomeStore();
 const baseInfoRef = ref(null);
 const paraConfigRef = ref(null);
 const loading = ref(false);
@@ -30,13 +32,20 @@ const loading = ref(false);
 const submitForm = async () => {
   const baseInfoForm = baseInfoRef.value.getBaseInfoForm();
   const paraConfig = paraConfigRef.value.getTableData();
+  const uuid = homeStore.userInfo?.user?.uuid;
 
   try {
     loading.value = true;
     const res = await designSave({
-      uuid: "123",
+      uuid,
       ...baseInfoForm,
-      data: paraConfig,
+      data: {
+        roll_data: paraConfig.designTableData1,
+        base_data: {
+          ...paraConfig.designTableData2[0],
+          ...paraConfig.designTableData3[0],
+        },
+      },
     });
     if (res.data.code === 0) {
     } else {
