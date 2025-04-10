@@ -58,7 +58,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <!-- <el-col :span="6">
             <el-form-item label="相似产线">
               <el-select
                 v-model="baseInfoForm.similarLine"
@@ -75,7 +75,7 @@
                 />
               </el-select>
             </el-form-item>
-          </el-col>
+          </el-col> -->
         </el-row>
       </el-form>
     </div>
@@ -114,10 +114,10 @@
 
 <script setup>
 const baseInfoForm = ref({
-  taskName: "",
-  group_id: "",
-  roll_line_typ: "",
-  similarLine: "",
+  taskName: "test1",
+  group_id: "abc",
+  roll_line_type: 0,
+  // similarLine: "",
 });
 
 const belongProjectList = [
@@ -138,19 +138,19 @@ const belongProjectList = [
 const lineTypeList = [
   {
     label: "高速线材",
-    value: 1,
+    value: 0,
   },
   {
     label: "高速棒材",
-    value: 2,
+    value: 1,
   },
   {
     label: "中小棒材",
-    value: 3,
+    value: 2,
   },
   {
     label: "开坯大棒",
-    value: 4,
+    value: 3,
   },
 ];
 

@@ -359,18 +359,18 @@ const designTableData2 = ref([
 const designTableRef3 = ref(null);
 const designTableData3 = ref([
   {
-    C: "",
-    Mn: "",
-    Cr: "",
-    P: "",
-    S: "",
-    Si: "",
-    Al: "",
-    V: "",
-    Cu: "",
-    Ni: "",
-    Mo: "",
-    Ti: "",
+    C: 1,
+    Mn: 0.3,
+    Cr: 1.5,
+    P: 0.0157,
+    S: 0.0173,
+    Si: 0.25,
+    Al: 0,
+    V: 0,
+    Cu: 0.019,
+    Ni: null,
+    Mo: 0.02,
+    Ti: 0,
   },
 ]);
 
