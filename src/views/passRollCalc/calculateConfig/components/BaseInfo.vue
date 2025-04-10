@@ -118,6 +118,7 @@ const baseInfoForm = ref({
   group_id: "abc",
   roll_line_type: 0,
   // similarLine: "",
+  file_flag: false,
 });
 
 const belongProjectList = [

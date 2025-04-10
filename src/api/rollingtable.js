@@ -66,10 +66,19 @@ export function deleteTask(params) {
   });
 }
 
-// 保存计算配置
+// 保存计算配置-设计
 export function designSave(data) {
   return request({
     url: "/wbds/rolling_table_for_design/entry_func",
+    method: "post",
+    data,
+  });
+}
+
+// 保存计算配置-用户
+export function userSave(data) {
+  return request({
+    url: "/wbds/rolling_table_for_users/entry_func",
     method: "post",
     data,
   });
