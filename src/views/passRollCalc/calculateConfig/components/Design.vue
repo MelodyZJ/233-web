@@ -41,43 +41,46 @@
         </el-table-column>
         <el-table-column label="机架号" align="center" min-width="120">
           <template #default="scope">
-            <el-input v-model="scope.row.rackNum" placeholder="请输入" />
+            <el-input v-model="scope.row.rackNumber" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="孔型形状" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.passShape" placeholder="请输入" />
+            <el-input v-model="scope.row.holeShape" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="孔型高度/mm" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.passHeight" placeholder="请输入" />
+            <el-input v-model="scope.row.holeHeight" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="菱形孔顶角/°" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.topAngle" placeholder="请输入" />
+            <el-input
+              v-model="scope.row.diamondHoleAngle"
+              placeholder="请输入"
+            />
           </template>
         </el-table-column>
 
         <el-table-column label="辊环直径/mm" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.ringDiameter" placeholder="请输入" />
+            <el-input v-model="scope.row.rollerDiameter" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="轧制速度/m/s" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.rollSpeed" placeholder="请输入" />
+            <el-input v-model="scope.row.rollingSpeed" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="基数/rpm" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.cardinalNum" placeholder="请输入" />
+            <el-input v-model="scope.row.basisSpeed" placeholder="请输入" />
           </template>
         </el-table-column>
 
@@ -89,7 +92,10 @@
 
         <el-table-column label="同轧线数" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.rollLineNum" placeholder="请输入" />
+            <el-input
+              v-model="scope.row.sameMillLineNumber"
+              placeholder="请输入"
+            />
           </template>
         </el-table-column>
 
@@ -101,7 +107,7 @@
 
         <el-table-column label="轧机间距/m" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.spacingMill" placeholder="请输入" />
+            <el-input v-model="scope.row.millSpacing" placeholder="请输入" />
           </template>
         </el-table-column>
 
@@ -113,7 +119,10 @@
 
         <el-table-column label="机组温降/°C" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.unitTemperDrop" placeholder="请输入" />
+            <el-input
+              v-model="scope.row.setTemperatureDrop"
+              placeholder="请输入"
+            />
           </template>
         </el-table-column>
 
@@ -150,74 +159,74 @@
       >
         <el-table-column label="钢种" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.steelGrade" placeholder="请输入" />
+            <el-input v-model="scope.row.steel" placeholder="请输入" />
           </template>
         </el-table-column>
         <el-table-column label="牌号" align="center" min-width="120">
           <template #default="scope">
-            <el-input v-model="scope.row.brand" placeholder="请输入" />
+            <el-input v-model="scope.row.steelGrade" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="轧制力模型" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.rollForceModel" placeholder="请输入" />
+            <el-input
+              v-model="scope.row.rollingForceModel"
+              placeholder="请输入"
+            />
           </template>
         </el-table-column>
 
         <el-table-column label="产线布置形式" align="center" min-width="150">
           <template #default="scope">
-            <el-input
-              v-model="scope.row.productLineLayout"
-              placeholder="请输入"
-            />
+            <el-input v-model="scope.row.layoutForm" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="热膨胀系数" align="center" min-width="150">
           <template #default="scope">
-            <el-input
-              v-model="scope.row.heatExpansionCoe"
-              placeholder="请输入"
-            />
+            <el-input v-model="scope.row.cte" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="铸坯高度/mm" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.billetHeight" placeholder="请输入" />
+            <el-input v-model="scope.row.castHeight" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="铸坯宽度/mm" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.billetWidth" placeholder="请输入" />
+            <el-input v-model="scope.row.castWidth" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="铸坯长度/mm" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.billetLength" placeholder="请输入" />
+            <el-input v-model="scope.row.castLength" placeholder="请输入" />
           </template>
         </el-table-column>
         <el-table-column label="铸坯倒角/mm" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.billetChamfer" placeholder="请输入" />
+            <el-input v-model="scope.row.castFarming" placeholder="请输入" />
           </template>
         </el-table-column>
         <el-table-column label="开轧温度/°C" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.rollTemper" placeholder="请输入" />
+            <el-input v-model="scope.row.beginRollTemp" placeholder="请输入" />
           </template>
         </el-table-column>
         <el-table-column label="成品尺寸/mm" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.FinishedSize" placeholder="请输入" />
+            <el-input
+              v-model="scope.row.finishedDiameter"
+              placeholder="请输入"
+            />
           </template>
         </el-table-column>
         <el-table-column label="终轧速度/m/s" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.FinishingSpeed" placeholder="请输入" />
+            <el-input v-model="scope.row.finalRollSpeed" placeholder="请输入" />
           </template>
         </el-table-column>
       </el-table>
@@ -233,68 +242,68 @@
       >
         <el-table-column label="C" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel1" placeholder="请输入" />
+            <el-input v-model="scope.row.C" placeholder="请输入" />
           </template>
         </el-table-column>
         <el-table-column label="Mn" align="center" min-width="120">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel2" placeholder="请输入" />
+            <el-input v-model="scope.row.Mn" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="Cr" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel3" placeholder="请输入" />
+            <el-input v-model="scope.row.Cr" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="P" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel4" placeholder="请输入" />
+            <el-input v-model="scope.row.P" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="S" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel5" placeholder="请输入" />
+            <el-input v-model="scope.row.S" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="Si" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel6" placeholder="请输入" />
+            <el-input v-model="scope.row.Si" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="Al" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel7" placeholder="请输入" />
+            <el-input v-model="scope.row.Al" placeholder="请输入" />
           </template>
         </el-table-column>
 
         <el-table-column label="V" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel8" placeholder="请输入" />
+            <el-input v-model="scope.row.V" placeholder="请输入" />
           </template>
         </el-table-column>
         <el-table-column label="Cu" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel9" placeholder="请输入" />
+            <el-input v-model="scope.row.Cu" placeholder="请输入" />
           </template>
         </el-table-column>
         <el-table-column label="Ni" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel10" placeholder="请输入" />
+            <el-input v-model="scope.row.Ni" placeholder="请输入" />
           </template>
         </el-table-column>
         <el-table-column label="Mo" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel11" placeholder="请输入" />
+            <el-input v-model="scope.row.Mo" placeholder="请输入" />
           </template>
         </el-table-column>
         <el-table-column label="Ti" align="center" min-width="150">
           <template #default="scope">
-            <el-input v-model="scope.row.valuel12" placeholder="请输入" />
+            <el-input v-model="scope.row.Ti" placeholder="请输入" />
           </template>
         </el-table-column>
       </el-table>
@@ -313,87 +322,55 @@ const designTableRef1 = ref(null);
 const designTableData1 = ref([
   {
     set: "",
-    rackNum: "",
-    passShape: "",
-    passHeight: "",
-    topAngle: "",
-    ringDiameter: "",
-    rollSpeed: "",
-    cardinalNum: "",
+    rackNumber: "",
+    holeShape: "",
+    holeHeight: "",
+    diamondHoleAngle: "",
+    rollerDiameter: "",
+    rollingSpeed: "",
+    basisSpeed: "",
     highSpeed: "",
-    rollLineNum: "",
+    sameMillLineNumber: "",
     ratedPower: "",
-    spacingMill: "",
+    millSpacing: "",
     reductionRatio: "",
-    unitTemperDrop: "",
-  },
-  {
-    set: "",
-    rackNum: "",
-    passShape: "",
-    passHeight: "",
-    topAngle: "",
-    ringDiameter: "",
-    rollSpeed: "",
-    cardinalNum: "",
-    highSpeed: "",
-    rollLineNum: "",
-    ratedPower: "",
-    spacingMill: "",
-    reductionRatio: "",
-    unitTemperDrop: "",
-  },
-  {
-    set: "",
-    rackNum: "",
-    passShape: "",
-    passHeight: "",
-    topAngle: "",
-    ringDiameter: "",
-    rollSpeed: "",
-    cardinalNum: "",
-    highSpeed: "",
-    rollLineNum: "",
-    ratedPower: "",
-    spacingMill: "",
-    reductionRatio: "",
-    unitTemperDrop: "",
+    setTemperatureDrop: "",
   },
 ]);
 
 const designTableRef2 = ref(null);
 const designTableData2 = ref([
   {
+    steel: "",
     steelGrade: "",
-    brand: "",
-    rollForceModel: "",
-    productLineLayout: "",
-    heatExpansionCoe: "",
-    billetHeight: "",
-    billetWidth: "",
-    billetLength: "",
-    billetChamfer: "",
-    rollTemper: "",
-    FinishedSize: "",
-    FinishingSpeed: "",
+    rollingForceModel: "",
+    layoutForm: "",
+    cte: "",
+    castHeight: "",
+    castWidth: "",
+    castLength: "",
+    castFarming: "",
+    beginRollTemp: "",
+    finishedDiameter: "",
+    finalRollSpeed: "",
   },
 ]);
 
 const designTableRef3 = ref(null);
 const designTableData3 = ref([
   {
-    valuel1: "",
-    valuel2: "",
-    valuel3: "",
-    valuel4: "",
-    valuel5: "",
-    valuel6: "",
-    valuel7: "",
-    valuel8: "",
-    valuel9: "",
-    valuel10: "",
-    valuel11: "",
-    valuel12: "",
+    C: "",
+    Mn: "",
+    Cr: "",
+    P: "",
+    S: "",
+    Si: "",
+    Al: "",
+    V: "",
+    Cu: "",
+    Ni: "",
+    Mo: "",
+    Ti: "",
   },
 ]);
 
@@ -405,12 +382,19 @@ const onAddItem = () => {
   now.setDate(now.getDate() + 1);
   designTableData1.value.push({
     set: "",
-    rackNum: "",
-    passShape: "",
-    passHeight: "",
-    topAngle: "",
-    ringDiameter: "",
-    rollSpeed: "",
+    rackNumber: "",
+    holeShape: "",
+    holeHeight: "",
+    diamondHoleAngle: "",
+    rollerDiameter: "",
+    rollingSpeed: "",
+    basisSpeed: "",
+    highSpeed: "",
+    sameMillLineNumber: "",
+    ratedPower: "",
+    millSpacing: "",
+    reductionRatio: "",
+    setTemperatureDrop: "",
   });
 };
 
