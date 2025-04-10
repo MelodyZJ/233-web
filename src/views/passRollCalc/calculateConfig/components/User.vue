@@ -274,11 +274,6 @@
           </template>
         </el-table-column>
       </el-table>
-
-      <div class="btn">
-        <v-btn variant="tonal" class="submit-btn">提交</v-btn>
-        <v-btn variant="outlined" class="reset-btn">重置</v-btn>
-      </div>
     </div>
   </div>
 </template>
