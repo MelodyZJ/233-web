@@ -40,14 +40,18 @@ const submitForm = async () => {
       uuid,
       ...baseInfoForm,
       data: {
-        roll_data: paraConfig.designTableData1,
-        base_data: {
-          ...paraConfig.designTableData2[0],
-          ...paraConfig.designTableData3[0],
+        roll_data: paraConfig.userTableData1,
+        basic_data: {
+          ...paraConfig.userTableData2[0],
+          ...paraConfig.userTableData3[0],
         },
       },
     });
     if (res.data.code === 0) {
+      ElMessage({
+        message: res.data.data,
+        type: "success",
+      });
     } else {
       ElMessage({
         message: res.data.msg || "接口请求出错！",
