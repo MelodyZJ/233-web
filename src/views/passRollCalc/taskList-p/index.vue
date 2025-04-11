@@ -12,6 +12,7 @@
 <script setup>
 import taskList from "./taskList/index.vue";
 import { useRoute } from "vue-router";
+import { getTaskList } from "@/api/rollingTable.js";
 
 const tab = ref(null);
 
@@ -23,8 +24,9 @@ const unwatch = watch(
   (newPath, oldPath) => {
     routePath.value = newPath;
   },
-  { immediate: true },
+  { immediate: true }
 );
+
 
 // 在组件卸载时取消监听
 onUnmounted(() => {

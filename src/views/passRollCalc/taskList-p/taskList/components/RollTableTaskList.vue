@@ -2,13 +2,13 @@
   <div class="rollTableTaskList-container">
     <div class="top-search">
       <el-select
-        v-model="queryParams.belongProject"
+        v-model="searchInfo.group_id[0]"
         placeholder="所属项目"
         clearable
         class="select"
       >
         <el-option
-          v-for="item in belongProjectList"
+          v-for="item in groupList"
           :key="item.value"
           :label="item.label"
           :value="item.value"
@@ -16,13 +16,13 @@
       </el-select>
 
       <el-select
-        v-model="queryParams.tableType"
+        v-model="searchInfo.type[0]"
         placeholder="轧制表类型"
         clearable
         class="select"
       >
         <el-option
-          v-for="item in tableTypeList"
+          v-for="item in typeList"
           :key="item.value"
           :label="item.label"
           :value="item.value"
@@ -30,13 +30,13 @@
       </el-select>
 
       <el-select
-        v-model="queryParams.calculateState"
+        v-model="searchInfo.status[0]"
         placeholder="计算状态"
         clearable
         class="select"
       >
         <el-option
-          v-for="item in calculateStateList"
+          v-for="item in statusList"
           :key="item.value"
           :label="item.label"
           :value="item.value"
@@ -44,7 +44,9 @@
       </el-select>
 
       <div class="btn">
-        <v-btn variant="outlined" class="primary-btn">查询</v-btn>
+        <v-btn variant="outlined" class="primary-btn" @click="getList"
+          >查询</v-btn
+        >
         <v-btn variant="outlined" class="white-btn">重置</v-btn>
       </div>
     </div>
@@ -131,8 +133,8 @@
       <pagination
         v-show="total > 0"
         :total="total"
-        v-model:page="queryParams.pageNum"
-        v-model:limit="queryParams.pageSize"
+        v-model:page="searchInfo.index"
+        v-model:limit="searchInfo.size"
         @pagination="getList"
       />
     </div>
@@ -141,8 +143,11 @@
 
 <script setup>
 import router from "@/router";
+import { getTaskList } from "@/api/rollingTable.js";
 
-const now = new Date();
+onMounted(() => {
+  getList();
+});
 
 const data = reactive({
   tableData: [
@@ -189,20 +194,26 @@ const data = reactive({
       creatTime: "2024-11-08",
     },
   ],
-  queryParams: {
-    pageNum: 1,
-    pageSize: 10,
-    belongProject: undefined,
-    tableType: undefined,
-    calculateState: undefined,
+  searchInfo: {
+    index: 1,
+    size: 10,
+    group_id: [],
+    type: [],
+    status: [],
   },
 });
-const { queryParams, tableData, rules } = toRefs(data);
+const { searchInfo, tableData, rules } = toRefs(data);
 const total = ref(20);
 const tableRef = ref(null);
 
-// 获取列表
-const getList = () => {};
+// 获取任务列表
+const getList = async () => {
+  const res = await getTaskList(searchInfo.value);
+  console.log(res, "-----");
+};
+
+const groupList = ref([]);
+
 // 跳转到孔型系统
 const toSystem = (index) => {};
 // 跳转到轧制表
@@ -231,25 +242,25 @@ const belongProjectList = ref([
   },
 ]);
 
-const tableTypeList = ref([
+const typeList = ref([
   {
-    value: "选项1",
     label: "表1",
+    value: "0",
   },
   {
-    value: "选项2",
     label: "表2",
+    value: "1",
   },
 ]);
 
-const calculateStateList = ref([
+const statusList = ref([
   {
-    value: "选项1",
-    label: "状态1",
+    label: "暂存",
+    value: "0",
   },
   {
-    value: "选项2",
-    label: "状态2",
+    label: "已完成",
+    value: "1",
   },
 ]);
 </script>

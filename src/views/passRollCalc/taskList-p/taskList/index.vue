@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import RollTableTaskList from "./components/RollTableTaskList/index.vue";
+import RollTableTaskList from "./components/RollTableTaskList.vue";
 
 const tab = ref(null);
 </script>
