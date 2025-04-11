@@ -38,7 +38,7 @@ const tab = ref("1");
   border-radius: $base-border-radius;
   height: calc(100vh - $base-main-padding * 2 - $top-header-height - 10px);
   box-shadow: $box-shadow;
-  
+
   ::-webkit-scrollbar {
     display: none;
   }

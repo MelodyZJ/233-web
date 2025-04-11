@@ -13,7 +13,9 @@
         @click="submitForm"
         >提交</v-btn
       >
-      <v-btn variant="outlined" class="reset-btn">重置</v-btn>
+      <v-btn variant="outlined" class="reset-btn" @click="resetForm"
+        >重置</v-btn
+      >
     </div>
   </div>
 </template>
@@ -66,6 +68,11 @@ const submitForm = async () => {
   } finally {
     loading.value = false;
   }
+};
+
+const resetForm = () => {
+  baseInfoRef.value.resetForm();
+  paraConfigRef.value.resetForm();
 };
 </script>
 

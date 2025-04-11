@@ -58,7 +58,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <!-- <el-col :span="6">
+          <el-col :span="6">
             <el-form-item label="相似产线">
               <el-select
                 v-model="baseInfoForm.similarLine"
@@ -75,7 +75,7 @@
                 />
               </el-select>
             </el-form-item>
-          </el-col> -->
+          </el-col>
         </el-row>
       </el-form>
     </div>
@@ -117,7 +117,7 @@ const baseInfoForm = ref({
   taskName: "test1",
   group_id: "abc",
   roll_line_type: 0,
-  // similarLine: "",
+  similarLine: "",
   file_flag: false,
 });
 
@@ -174,8 +174,19 @@ const getBaseInfoForm = () => {
   return baseInfoForm.value;
 };
 
+const resetForm = () => {
+  baseInfoForm.value = {
+    taskName: "",
+    group_id: "",
+    roll_line_type: "",
+    similarLine: "",
+    file_flag: false,
+  };
+};
+
 defineExpose({
   getBaseInfoForm,
+  resetForm,
 });
 </script>
 

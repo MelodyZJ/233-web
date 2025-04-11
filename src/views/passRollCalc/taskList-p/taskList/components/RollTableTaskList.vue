@@ -47,7 +47,9 @@
         <v-btn variant="outlined" class="primary-btn" @click="getList"
           >查询</v-btn
         >
-        <v-btn variant="outlined" class="white-btn">重置</v-btn>
+        <v-btn variant="outlined" class="white-btn" @click="resetSearch"
+          >重置</v-btn
+        >
       </div>
     </div>
 
@@ -75,7 +77,7 @@
           label="项目名称"
           align="center"
           max-width="120"
-          prop="projectName"
+          prop="groupName"
         />
         <el-table-column
           label="类型"
@@ -93,7 +95,7 @@
           label="创建时间"
           align="center"
           max-width="150"
-          prop="creatTime"
+          prop="createTime"
         />
 
         <el-table-column
@@ -143,57 +145,14 @@
 
 <script setup>
 import router from "@/router";
-import { getTaskList } from "@/api/rollingTable.js";
+import { getTaskList, deleteTask } from "@/api/rollingTable.js";
 
 onMounted(() => {
   getList();
 });
 
 const data = reactive({
-  tableData: [
-    {
-      taskName: "我是任务",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
-    },
-    {
-      taskName: "我是任务",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
-    },
-    {
-      taskName: "我才是任务",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
-    },
-    {
-      taskName: "今夜星光闪闪",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
-    },
-    {
-      taskName: "我爱你的心暖暖",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
-    },
-    {
-      taskName: "我爱你的心暖暖",
-      projectName: "222",
-      type: "类型1",
-      status: "已完成",
-      creatTime: "2024-11-08",
-    },
-  ],
+  tableData: [],
   searchInfo: {
     index: 1,
     size: 10,
@@ -206,13 +165,31 @@ const { searchInfo, tableData, rules } = toRefs(data);
 const total = ref(20);
 const tableRef = ref(null);
 
+const resetSearch = () => {
+  searchInfo.value = {
+    group_id: [],
+    type: [],
+    status: [],
+  };
+};
+
 // 获取任务列表
 const getList = async () => {
   const res = await getTaskList(searchInfo.value);
-  console.log(res, "-----");
+  tableData.value = res.data.data.list;
+  total.value = res.data.data.total;
 };
 
-const groupList = ref([]);
+const groupList = ref([
+  {
+    value: 1,
+    label: "项目1",
+  },
+  {
+    value: 2,
+    label: "项目2",
+  },
+]);
 
 // 跳转到孔型系统
 const toSystem = (index) => {};
@@ -223,44 +200,29 @@ const toTable = (index) => {
   });
 };
 // 删除操作
-const deleteItem = (index) => {
-  tableData.value.splice(index, 1);
+const deleteItem = async (index) => {
+  const res = await deleteTask({ uuid: tableData.value[index].uuid });
 };
-
-const belongProjectList = ref([
-  {
-    value: "选项1",
-    label: "项目1",
-  },
-  {
-    value: "选项2",
-    label: "项目2",
-  },
-  {
-    value: "选项3",
-    label: "项目3",
-  },
-]);
 
 const typeList = ref([
   {
     label: "表1",
-    value: "0",
+    value: 0,
   },
   {
     label: "表2",
-    value: "1",
+    value: 1,
   },
 ]);
 
 const statusList = ref([
   {
     label: "暂存",
-    value: "0",
+    value: 0,
   },
   {
     label: "已完成",
-    value: "1",
+    value: 1,
   },
 ]);
 </script>

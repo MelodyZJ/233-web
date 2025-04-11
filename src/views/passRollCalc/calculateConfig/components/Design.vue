@@ -888,8 +888,62 @@ const getTableData = () => {
   return parmas;
 };
 
+const resetForm = () => {
+  designTableData1.value = [
+    {
+      set: null,
+      rackNumber: null,
+      holeShape: null,
+      holeHeight: null,
+      diamondHoleAngle: null,
+      rollerDiameter: null,
+      rollingSpeed: null,
+      basisSpeed: null,
+      highSpeed: null,
+      sameMillLineNumber: null,
+      ratedPower: null,
+      millSpacing: null,
+      reductionRatio: null,
+      setTemperatureDrop: null,
+    },
+  ];
+  designTableData2.value = [
+    {
+      steel: "",
+      steelGrade: "",
+      rollingForceModel: "",
+      layoutForm: "",
+      cte: null,
+      castHeight: null,
+      castWidth: null,
+      castLength: null,
+      castFarming: null,
+      beginRollTemp: null,
+      finishedDiameter: null,
+      finalRollSpeed: null,
+    },
+  ];
+  designTableData3.value = [
+    {
+      C: null,
+      Mn: null,
+      Cr: null,
+      P: null,
+      S: null,
+      Si: null,
+      Al: null,
+      V: null,
+      Cu: null,
+      Ni: null,
+      Mo: null,
+      Ti: null,
+    },
+  ];
+};
+
 defineExpose({
   getTableData,
+  resetForm,
 });
 </script>
 
