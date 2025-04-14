@@ -133,7 +133,6 @@
       </el-table>
 
       <pagination
-        v-show="total > 0"
         :total="total"
         v-model:page="searchInfo.index"
         v-model:limit="searchInfo.size"
@@ -162,7 +161,7 @@ const data = reactive({
   },
 });
 const { searchInfo, tableData, rules } = toRefs(data);
-const total = ref(20);
+const total = ref(0);
 const tableRef = ref(null);
 
 const resetSearch = () => {
