@@ -84,20 +84,36 @@
           align="center"
           max-width="150"
           prop="type"
+        >
+          <template #default="scope">
+            <span v-if="scope.row.type == 0">设计轧制表</span>
+            <span v-if="scope.row.type == 1">用户轧制表</span>
+          </template></el-table-column
+        >
+        <el-table-column
+          label="产线类型"
+          align="center"
+          max-width="150"
+          prop="roll_line_type"
         />
         <el-table-column
           label="状态"
           align="center"
           max-width="150"
           prop="status"
-        />
+        >
+          <template #default="scope">
+            <span v-if="scope.row.status == 0">未完成</span>
+            <span v-if="scope.row.status == 1">已完成</span>
+          </template></el-table-column
+        >
         <el-table-column
           label="创建时间"
           align="center"
           max-width="150"
           prop="createTime"
+          :formatter="formatDate"
         />
-
         <el-table-column
           fixed="right"
           label="操作"
@@ -143,6 +159,7 @@
 </template>
 
 <script setup>
+import dayjs from "dayjs";
 import router from "@/router";
 import { getTaskList, deleteTask } from "@/api/rollingTable.js";
 
@@ -163,6 +180,11 @@ const data = reactive({
 const { searchInfo, tableData, rules } = toRefs(data);
 const total = ref(0);
 const tableRef = ref(null);
+
+const formatDate = (row, column, cellValue) => {
+  if (!cellValue) return "";
+  return dayjs(cellValue).format("YYYY-MM-DD"); // 使用 dayjs 格式化日期
+};
 
 const resetSearch = () => {
   searchInfo.value = {
@@ -205,18 +227,18 @@ const deleteItem = async (index) => {
 
 const typeList = ref([
   {
-    label: "表1",
+    label: "设计轧制表",
     value: 0,
   },
   {
-    label: "表2",
+    label: "用户轧制表",
     value: 1,
   },
 ]);
 
 const statusList = ref([
   {
-    label: "暂存",
+    label: "未完成",
     value: 0,
   },
   {
