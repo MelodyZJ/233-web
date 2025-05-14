@@ -18,6 +18,11 @@ import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 
+// vant
+import { PullRefresh, List } from "vant";
+// 2. 引入组件样式
+import "vant/lib/index.css";
+
 // tailwindcss
 import "tailwindcss/tailwind.css";
 
@@ -51,6 +56,8 @@ app
   .use(router)
   .use(ElementPlus, { locale: zhCn })
   .use(vuetify)
+  .use(PullRefresh)
+  .use(List)
   .use(store)
   .use(lazyPlugin)
   .mount("#app");
