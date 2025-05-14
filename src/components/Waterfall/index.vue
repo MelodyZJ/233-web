@@ -74,7 +74,13 @@ import { watch } from "vue";
 const route = useRoute();
 
 onMounted(() => {
-  items.value = waterfallMock;
+  if (route.query.type == "1") {
+    items.value = waterfallMock;
+  } else if (route.query.type == "2") {
+    items.value = waterfallMock2;
+  } else {
+    items.value = waterfallMock;
+  }
 });
 
 const count = ref(0);
