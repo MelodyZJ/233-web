@@ -5,11 +5,15 @@ import { createRouter, createWebHashHistory } from "vue-router";
 const routes = [
   {
     path: "/",
-    redirect: "/home",
+    redirect: "/content",
   },
   {
-    path: "/home",
-    component: () => import("@/views/home/index.vue"),
+    path: "/content",
+    component: () => import("@/views/content/index.vue"),
+    props: (route) => ({
+      param1: route.query.param1,
+      param2: route.query.param2,
+    }),
   },
 ];
 

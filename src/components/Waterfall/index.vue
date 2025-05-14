@@ -65,15 +65,23 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
 import { showToast } from "vant";
 import waterfallMock from "@/assets/mock/waterfall.json";
+import waterfallMock2 from "@/assets/mock/waterfall2.json";
+import { useRoute } from "vue-router";
+import { watch } from "vue";
+
+const route = useRoute();
+
+onMounted(() => {
+  items.value = waterfallMock;
+});
 
 const count = ref(0);
 const loading = ref(false);
 const listLoading = ref(false);
 const finished = ref(false);
-const items = ref(waterfallMock);
+const items = ref([]);
 const currentPage = ref(1);
 const pageSize = 6; // 每页加载的数据量
 
@@ -129,6 +137,18 @@ const onLoad = () => {
     listLoading.value = false;
   }, 1000);
 };
+
+watch(
+  () => route.query,
+  (newQuery) => {
+    if (newQuery.type == "1") {
+      items.value = waterfallMock;
+    } else if (newQuery.type == "2") {
+      items.value = waterfallMock2;
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <style lang="scss" scoped>
