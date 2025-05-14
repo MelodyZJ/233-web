@@ -11,18 +11,6 @@ const routes = [
     path: "/login",
     component: () => import("@/views/login/index.vue"),
   },
-  {
-    path: "/home",
-    component: Layout,
-    children: [
-      {
-        path: "",
-        component: () => import("@/views/home/index.vue"),
-        name: "Home",
-        meta: { title: "首页" },
-      },
-    ],
-  },
 ];
 
 const router = createRouter({
